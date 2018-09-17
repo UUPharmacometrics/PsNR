@@ -1,0 +1,26 @@
+Package: pmutils
+Type: Package
+Title: R package for pharmacometric utilities
+Version: 0.1.0
+Authors@R: c(
+      person('Svetlana', 'Freiberga',
+             role  = c('aut', 'cre', 'cph'),
+             email = 'svetlana.freiberga@farmbio.uu.se'),
+      person('Rikard', 'Nordgren', 
+             role  = c('aut', 'cph'),
+             email = 'rikard.nordgren@farmbio.uu.se'),
+      person('Sebastian', 'Ueckert',
+             role  = c('aut', 'cph'),
+             email = 'sebastian.ueckert@farmbio.uu.se'))
+Description: 
+Depends: R (>= 3.1.2)
+Imports: tidyverse (>= 1.2.1), xpose (>= 0.4.3), kableExtra (>= 0.9.0), devtools (>= 1.13.3), yaml (>= 2.1.14), expm, PEIP, rmarkdown, knitr, mvtnorm, methods
+Suggests: testthat
+License: LGPL-3
+URL: https://github.com/UUPharmacometrics/pmutils
+LazyData: true
+RoxygenNote: 6.0.1
+Author: Svetlana Freiberga [aut, cre, cph],
+  Rikard Nordgren [aut, cph],
+  Sebastian Ueckert [aut, cph]
+Maintainer: Svetlana Freiberga <svetlana.freiberga@farmbio.uu.se>
