@@ -23,8 +23,8 @@ summary.table.ebe.npde <- function(ebenpde_obs,eta.names) {
       indiv_amount[i] <- length(vect)
       variance[i] <- var(vect)
       mymean[i] <- mean(vect)
-      myskewness[i] <- skewness(vect)
-      mykurtosis[i] <- kurtosis(vect)
+      myskewness[i] <- PerformanceAnalytics::skewness(vect)
+      mykurtosis[i] <- PerformanceAnalytics::kurtosis(vect)
       p_mean_not_0[i] <- wilcox.test(vect)$p.value # $p.value (it means that we look only on p-value from this test)
       p_var_not_1[i]  <- ks.test(vect,"pnorm",mean=mymean[i],sd=1)$p.value #sd = standard variatio and $p.value (it means that we look only on p-value from this test)
       if(length(vect)>=3) { # shapiro wilks test works only fif samples are form 3-5000

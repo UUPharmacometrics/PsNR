@@ -58,26 +58,26 @@ yaml_summary <- function(model.filename,
   colnames(ovw_table)[1] <- "name"
   group_name <- rep(overview_table_list$rgroup_names,times = overview_table_list$n.rgroup)
   ovw_table <- ovw_table %>%
-    mutate(group_name=rep(overview_table_list$rgroup_names,times = overview_table_list$n.rgroup))
+    dplyr::mutate(group_name=rep(overview_table_list$rgroup_names,times = overview_table_list$n.rgroup))
   
   # overview (structural)
   tree$overview <- list()
   overview <- ovw_table %>%
-    filter(group_name=="Structural Model") 
+    dplyr::filter(group_name=="Structural Model") 
   if(tree$dvid_exists==TRUE) {
     overview <- overview %>%
-      mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
+      dplyr::mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
-      fill(dvid, .direction = "down") %>%
-      filter(!(grepl(dvid_name,name)))
+      dplyr::fill(dvid, .direction = "down") %>%
+      dplyr::filter(!(grepl(dvid_name,name)))
     
     tree$overview$structural <- list()
     for(i in 1:length(unique(overview$dvid))) {
       tree$overview$structural[[i]] <- list()
       tree$overview$structural[[i]]$dvid_value <- unique(overview$dvid)[i]
       overview_dvid <- overview %>%
-        filter(dvid==unique(overview$dvid)[i])
+        dplyr::filter(dvid==unique(overview$dvid)[i])
 
       for(j in 1:nrow(overview_dvid)) {
         tree$overview$structural[[i]]$dofv[[overview$name[j]]] <- overview_dvid$dOFV[j]
@@ -95,7 +95,7 @@ yaml_summary <- function(model.filename,
   # overview (parameter variability)
   tree$overview$param_variability <- list()
   par_variab <- ovw_table %>%
-    filter(group_name=="Parameter Variability Model")
+    dplyr::filter(group_name=="Parameter Variability Model")
   for(i in 1:nrow(par_variab)) {
     tree$overview$param_variability$dofv[[par_variab$name[i]]] <- par_variab$dOFV[i]
     tree$overview$param_variability$additional_param[[par_variab$name[i]]] <- par_variab$`Additional parameters`[i]
@@ -104,36 +104,36 @@ yaml_summary <- function(model.filename,
   # overview (frem)
   tree$overview$frem <- list()
   frem_part <- ovw_table %>%
-    filter(group_name=="Covariates") %>%
-    slice(1)
+    dplyr::filter(group_name=="Covariates") %>%
+    dplyr::slice(1)
   tree$overview$frem$dofv[[frem_part$name]] <- frem_part$dOFV
   tree$overview$frem$additional_param[[frem_part$name]] <- frem_part$`Additional parameters`
   
   # overview (scm)
   tree$overview$scm <- list()
   scm_part <- ovw_table %>%
-    filter(group_name=="Covariates") %>%
-    slice(2)
+    dplyr::filter(group_name=="Covariates") %>%
+    dplyr::slice(2)
   tree$overview$scm$dofv[[scm_part$name]] <- scm_part$dOFV
   tree$overview$scm$additional_param[[scm_part$name]] <- scm_part$`Additional parameters`
   
   # overview (ruv)
   overview <- ovw_table %>%
-    filter(group_name=="Residual Error Model") 
+    dplyr::filter(group_name=="Residual Error Model") 
   if(tree$dvid_exists==TRUE) {
     overview <- overview %>%
-      mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
+      dplyr::mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
-      fill(dvid, .direction = "down") %>%
-      filter(!(grepl(dvid_name,name)))
+      dplyr::fill(dvid, .direction = "down") %>%
+      dplyr::filter(!(grepl(dvid_name,name)))
     
     tree$overview$residual_error <- list()
     for(i in 1:length(unique(overview$dvid))) {
       tree$overview$residual_error[[i]] <- list()
       tree$overview$residual_error[[i]]$dvid_value <- unique(overview$dvid)[i]
       overview_dvid <- overview %>%
-        filter(dvid==unique(overview$dvid)[i])
+        dplyr::filter(dvid==unique(overview$dvid)[i])
       
       for(j in 1:nrow(overview_dvid)) {
         tree$overview$residual_error[[i]]$dofv[[overview$name[j]]] <- overview_dvid$dOFV[j]
@@ -151,16 +151,16 @@ yaml_summary <- function(model.filename,
   # overview (cdd)
   tree$overview$infl_id <- list()
   cdd_part <- ovw_table %>%
-    filter(group_name=="Influential Individuals") %>%
-    slice(1)
+    dplyr::filter(group_name=="Influential Individuals") %>%
+    dplyr::slice(1)
   tree$overview$infl_id$dofv[[cdd_part$name]] <- cdd_part$dOFV
   tree$overview$infl_id$additional_param[[cdd_part$name]] <- cdd_part$`Additional parameters`
   
   # overview (simeval)
   tree$overview$outliers <- list()
   simeval_part <- ovw_table %>%
-    filter(group_name=="Outliers") %>%
-    slice(1)
+    dplyr::filter(group_name=="Outliers") %>%
+    dplyr::slice(1)
   tree$overview$outliers$dofv[[simeval_part$name]] <- simeval_part$dOFV
   tree$overview$outliers$additional_param[[simeval_part$name]] <- simeval_part$`Additional parameters`
   
@@ -247,7 +247,7 @@ yaml_summary <- function(model.filename,
   }
 
   #create a yaml file
-  yaml <- as.yaml(tree, indent.mapping.sequence=TRUE)
+  yaml <- yaml::as.yaml(tree, indent.mapping.sequence=TRUE)
   cat(yaml, file="results_summary.yaml")
 }
 

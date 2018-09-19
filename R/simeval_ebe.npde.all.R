@@ -42,13 +42,13 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
   if(length(iov.eta.names) > 0) {
     iiv.eta.names_text <- etas_list$iiv.eta.names_text
     if(make_plot) { # make or not to make plot
-      textplot(iiv.eta.names_text,halign="center",valign="center")
+      gplots::textplot(iiv.eta.names_text,halign="center",valign="center")
     }
   }
   # create EBE-NPDE correlation graph
   if(make_plot) { # make or not to make plot
     if(ncol(ebenpde_obs_iiv) > 1) {
-      chart.Correlation(ebenpde_obs_iiv, histogram = TRUE, method = c("spearman"))
+      PerformanceAnalytics::chart.Correlation(ebenpde_obs_iiv, histogram = TRUE, method = c("spearman"))
     }
   }
   
@@ -81,7 +81,7 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     if((length(iov.eta.names[[1]]) > 1) && !(any(is.na(ebenpde_obs_iov_sect)))) {
       iov.eta.names_text <- etas_list$iov.eta.names_text
       if(make_plot) { # make or not to make plot
-        textplot(iov.eta.names_text,halign="center",valign="center")
+        gplots::textplot(iov.eta.names_text,halign="center",valign="center")
       }
     }
     
@@ -89,7 +89,7 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     if(make_plot) { # make or not to make plot
       if(!(any(is.na(ebenpde_obs_iov_sect)))) {
         if(ncol(ebenpde_obs_iov_sect) > 1) {
-          chart.Correlation(ebenpde_obs_iov_sect, histogram = TRUE, method = c("spearman"))
+          PerformanceAnalytics::chart.Correlation(ebenpde_obs_iov_sect, histogram = TRUE, method = c("spearman"))
         }
       }
     }

@@ -14,7 +14,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip,nonli
     cdd.data.all <- data_full$cdd.data.all
     if(any(colnames(cdd.data.all)=="cdd.delta.ofv")) {
       all_dofv <- cdd.data.all$cdd.delta.ofv[-1]
-      cdd.data.all <- cdd.data.all %>% dplyr::select(c(ID,cdd.delta.ofv)) %>% slice(-1)
+      cdd.data.all <- cdd.data.all %>% dplyr::select(c(ID,cdd.delta.ofv)) %>% dplyr::slice(-1)
       colnames(cdd.data.all) <- c("id", "dOFV")
       
       #find negative delta ofv values, if exist

@@ -17,8 +17,8 @@ summary.table <- function(residual.files,residual.names) {
     mymean[j] <- mean(residual_npde)
     p_mean_not_0[j] <- wilcox.test(residual_npde)$p.value
     p_var_not_1[j]  <- ks.test(residual_npde,pnorm,mean=mymean[j],sd=1)$p.value
-    myskewness[j] <- skewness(residual_npde)
-    mykurtosis[j] <- kurtosis(residual_npde)
+    myskewness[j] <- PerformanceAnalytics::skewness(residual_npde)
+    mykurtosis[j] <- PerformanceAnalytics::kurtosis(residual_npde)
     if(length(residual_npde)>=3) { # shapiro wilks test works only fif samples are form 3-5000
       p_shap.wilks[j] <- shapiro.test(residual_npde)$p.value
     } else {

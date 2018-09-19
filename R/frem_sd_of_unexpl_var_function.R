@@ -2,10 +2,10 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
   # check if there are all 3 input data files
   files_exist <- (exists("sd_coef_summary") & exists("covdata") & exists("pardata"))
   if (files_exist) {
-    library(grid)
-    library(gridExtra)
-    library(dplyr)
-    library(ggplot2)
+    # library(grid)
+    # library(gridExtra)
+    # library(dplyr)
+    # library(ggplot2)
     
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
@@ -103,7 +103,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
       title <- paste0("Unexplained variability on ",parameter_names[j])
       
       # print out forest plot with table text
-      sd_unexpl_var_plots[[j]] <- arrangeGrob(p, data_table, ncol=2, top = textGrob(title,gp=gpar(fontsize=20)))
+      sd_unexpl_var_plots[[j]] <- gridExtra::arrangeGrob(p, data_table, ncol=2, top = textGrob(title,gp=gpar(fontsize=20)))
       
       # Save each plot with different names in different pdg files (based on each parameter j)
       param[[j]] <- paste0("SD.OF.UNEXPL.VAR.",parameter_names[j])

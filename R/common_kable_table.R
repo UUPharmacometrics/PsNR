@@ -1,5 +1,5 @@
 kable_table <- function(table,format,...) {
-  library(kableExtra)
+  # library(kableExtra)
   table_new <- kable(table,...)
   if(format=="latex") {
     if(ncol(table)>1 && all(is.null(colnames(table)))) {

@@ -55,7 +55,7 @@ get_x_min_max <- function(data_table,eta_table,y_pec=0.01) {
     x_min <- min(spec$eta,na.rm=TRUE)
     
     # check if y_min_limit should be smaller because of the real eta values
-    real_eta_values <- eta_table %>% filter(!is.na(value)) %>% select(value) %>% pull(value)
+    real_eta_values <- eta_table %>% dplyr::filter(!is.na(value)) %>% dplyr::select(value) %>% dplyr::pull(value)
     if(any(real_eta_values > x_max)) {
       x_max <- max(eta_table$value,na.rm=TRUE)
     }

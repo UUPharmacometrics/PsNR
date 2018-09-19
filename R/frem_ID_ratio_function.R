@@ -4,10 +4,10 @@ ID_ratio <- function(frem_id,covdata,pardata) {
   files_exist <- (exists("frem_id") & exists("covdata") & exists("pardata"))
   if (files_exist) {
 
-    library(grid)
-    library(gridExtra)
-    library(dplyr)
-    library(ggplot2)
+    # library(grid)
+    # library(gridExtra)
+    # library(dplyr)
+    # library(ggplot2)
 
     # Half of numbers of ID shown in plots.
     EXTR_ID_NUM = 10
@@ -184,11 +184,11 @@ ID_ratio <- function(frem_id,covdata,pardata) {
 
       # print out forest plot with table text
       if (ncolumns >= 16) {
-        indiv_for_param_plots[[j]] <- arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)), widths = c(1:2))
+        indiv_for_param_plots[[j]] <- gridExtra::arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)), widths = c(1:2))
       } else if ((ncolumns >= 8) && (ncolumns < 16)) {
-        indiv_for_param_plots[[j]] <- arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)), widths = c(2:3))
+        indiv_for_param_plots[[j]] <- gridExtra::arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)), widths = c(2:3))
       } else {
-        indiv_for_param_plots[[j]] <- arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)))
+        indiv_for_param_plots[[j]] <- gridExtra::arrangeGrob(p, t, ncol = 2,top = textGrob(paste0("Individuals for parameter ", parameter_names[j]), gp = gpar(fontsize=20)))
       }
 
       # Save each plot with different names in different pdf files (based on each parameter j)

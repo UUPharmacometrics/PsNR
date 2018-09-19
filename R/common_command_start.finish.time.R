@@ -7,7 +7,7 @@ command_start.finish.time <- function(yaml_file) {
   run_start <- c()
   run_finish <- c() 
   if(file.exists(yaml_file)) {
-    yaml_file <- yaml.load_file(yaml_file)
+    yaml_file <- yaml::yaml.load_file(yaml_file)
     
     if(exists("command_line",yaml_file) && yaml_file$command_line!="") {
       full_command <- strsplit(yaml_file$command_line," ")

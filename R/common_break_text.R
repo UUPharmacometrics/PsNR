@@ -25,6 +25,3 @@ break_text <- function(text,max_symb=100) {
   new_text <- paste0(new_text,one_row)
   return(new_text)
 }
-
-
-

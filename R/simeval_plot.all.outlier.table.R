@@ -32,8 +32,8 @@ plot.all.outlier.table <- function(all_outlier_table,total_rows_per_page) {
         end_row <- nrow(all_outlier_table)
       }
       
-      tab <- tableGrob(all_outlier_table_part, rows=NULL)
-      header <- tableGrob(all_outlier_table_part[1, 1:3], rows=NULL, cols=c("","Individual level", "Observation level")) 
+      tab <- gridExtra::tableGrob(all_outlier_table_part, rows=NULL)
+      header <- gridExtra::tableGrob(all_outlier_table_part[1, 1:3], rows=NULL, cols=c("","Individual level", "Observation level")) 
       
       jn <- gridExtra::combine(header[1,], tab, along=2)
       # jn$widths <- rep(max(jn$widths), length(jn$widths)) # make column widths equal

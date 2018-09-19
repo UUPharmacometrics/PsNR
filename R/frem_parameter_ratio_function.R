@@ -3,11 +3,11 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
   # check if there are all 3 input data files
   files_exist <- (exists("inTable_frem") & exists("covdata") & exists("pardata"))
   if (files_exist) {
-    library(grid)
-    library(gridExtra)
-    library(dplyr)
-    library(ggplot2)
-    library(tidyr)
+    # library(grid)
+    # library(gridExtra)
+    # library(dplyr)
+    # library(ggplot2)
+    # library(tidyr)
 
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
@@ -113,10 +113,11 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       DF_melt <- tidyr::gather(DF, variable, value)
 
       # summaryze dataframe and calculate mean, quantile for each group (for each column in DF)
-      outTable <- DF_melt %>% group_by(variable) %>%
-      summarise(mean = mean(value),
-                ci_low = quantile(value, probs=c(0.05),type=2),
-                ci_high = quantile(value, probs=c(0.95),type=2))
+      outTable <- DF_melt %>% 
+        dplyr::group_by(variable) %>%
+        dplyr::summarise(mean = mean(value),
+                  ci_low = quantile(value, probs=c(0.05),type=2),
+                  ci_high = quantile(value, probs=c(0.95),type=2))
       # calculating procentage of outTable
       outTablet_proc <- t(round(t((outTable[, 2:ncol(outTable)])-1) * 100, 2))
       outTable <- cbind(outTable[1],outTablet_proc)
@@ -181,7 +182,7 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       title <- paste0("Covariate effects on parameter ",parameter_names[j])
 
       # print out forest plot with table text
-      cov_effect_on_param_plots[[j]] <- arrangeGrob(p, data_table, ncol=2, top = textGrob(title,gp=gpar(fontsize=20)))
+      cov_effect_on_param_plots[[j]] <- gridExtra::arrangeGrob(p, data_table, ncol=2, top = textGrob(title,gp=gpar(fontsize=20)))
 
       # Save each plot with different names in different pdg files (based on each parameter j)
       param[[j]] <- paste0(parameter_names[j])

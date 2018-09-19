@@ -1,5 +1,5 @@
 plot.table <- function(table,total_rows_per_page,rotate) {
-  library(gridExtra)
+  # library(gridExtra)
   # draw only 18 rows of table per each page
   if (missing(total_rows_per_page)) {
     total_rows_per_page <- 18
@@ -27,16 +27,16 @@ plot.table <- function(table,total_rows_per_page,rotate) {
     # }
     if(packageVersion("gridExtra") < "2.0.0"){
       if(!missing(rotate)){
-        grid.table(table_plot,show.rownames=FALSE,theme=rotate)
+        gridExtra::grid.table(table_plot,show.rownames=FALSE,theme=rotate)
       } else {
-        grid.table(table_plot,show.rownames=FALSE)
+        gridExtra::grid.table(table_plot,show.rownames=FALSE)
       }
        
     } else {
       if(!missing(rotate)) {
-        grid.table(table_plot,rows=NULL,theme=rotate)
+        gridExtra::grid.table(table_plot,rows=NULL,theme=rotate)
       } else {
-        grid.table(table_plot,rows=NULL)
+        gridExtra::grid.table(table_plot,rows=NULL)
       }
     }
     start_row <- end_row + 1
