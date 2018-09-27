@@ -182,7 +182,7 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       title <- paste0("Covariate effects on parameter ",parameter_names[j])
 
       # print out forest plot with table text
-      cov_effect_on_param_plots[[j]] <- gridExtra::arrangeGrob(p, data_table, ncol=2, top = grid::textGrob(title,gp=gpar(fontsize=20)))
+      cov_effect_on_param_plots[[j]] <- gridExtra::arrangeGrob(p, data_table, ncol=2, top = grid::textGrob(title,gp=grid::gpar(fontsize=20)))
 
       # Save each plot with different names in different pdg files (based on each parameter j)
       param[[j]] <- paste0(parameter_names[j])
