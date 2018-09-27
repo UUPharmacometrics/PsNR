@@ -40,8 +40,8 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
     param <- list()
     for (j in 1:length(parameter_names)) {
       DF <- sd_coef_summary %>%
-        filter(grepl(paste0("^",parameter_names[j],"\\."), .$par.conditionedOn)) %>%
-        select(1:4)
+        dplyr::filter(grepl(paste0("^",parameter_names[j],"\\."), .$par.conditionedOn)) %>%
+        select::select(1:4)
       DF[,3] <- as.numeric(DF[,3])
       DF[,4] <- as.numeric(DF[,4])
       DF[,1] <- sub(paste0(parameter_names[j],"\\."),'',DF[,1])
