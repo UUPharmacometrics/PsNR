@@ -96,7 +96,6 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
   }
   
   # create outlier grafs and tables
-  if (require("PEIP") == TRUE){
     #...........................................(3)emp_distance....................................................    
     # Calsulate empirical distance
     list_emp_distance <- empirical.distance(ebenpde_obs,n.subjects)
@@ -148,9 +147,6 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
       ebe.npde_outliers <- fortable1
     }
     
-  } else {
-    print("library PEIP not installed, cannot create outlier results for ebe npde")
-  }
   
   out <- list(ebe.npde_outliers=ebe.npde_outliers,
               ID_deleted_ebe=ID_deleted_ebe)
