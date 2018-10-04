@@ -39,7 +39,8 @@ Imports:
     mvtnorm,
     methods,
     gridExtra,
-    PerformanceAnalytics
+    PerformanceAnalytics,
+    magrittr
 Suggests:
     testthat
 URL: https://github.com/UUPharmacometrics/pmutils
