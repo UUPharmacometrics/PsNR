@@ -12,7 +12,7 @@ qa_data <- function(xpdb, resmod_folder, derivatives_model) {
               name = .x[[3]], 
               parameters = list( param = .x[5:length(.x)]),
               dvid=.x[[2]])) %>% 
-    purrr::map(as_tibble) %>% 
+    purrr::map(tibble::as_tibble) %>% 
     dplyr::bind_rows() %>% 
     tidyr::unnest() %>% 
     dplyr::filter(dvid!="sum") %>%
