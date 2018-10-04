@@ -40,7 +40,8 @@ Imports:
     methods,
     gridExtra,
     PerformanceAnalytics,
-    magrittr
+    magrittr,
+    ggplot2
 Suggests:
     testthat
 URL: https://github.com/UUPharmacometrics/pmutils
