@@ -38,7 +38,7 @@ outlier.table <- function(residual.outliers.file) {
       outliers_count <- outlier_table %>%
         dplyr::select(select_col) %>%
         dplyr::group_by(ID) %>%
-        dplyr::summarize_at(select_col[-1],funs(sum(. == 1))) %>%
+        dplyr::summarize_at(select_col[-1],dplyr::funs(sum(. == 1))) %>%
         as.data.frame()
       
       # Replace 0 to blank

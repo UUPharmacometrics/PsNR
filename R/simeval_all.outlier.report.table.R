@@ -39,9 +39,9 @@ all.outlier.report.table <- function(ofv_outliers,ebe.npde_outliers,cwres.iwres_
       }
     }
     all_outlier_table <- all_outlier_table %>%
-      dplyr::mutate_at("ofv",funs(ifelse(ID %in% ID_deleted_ofv,"NA",.))) %>%
-      dplyr::mutate_at("ebe_npde",funs(ifelse(ID %in% ID_deleted_ebe,"NA",.))) %>%
-      dplyr::mutate_all(funs(ifelse(is.na(.),"",.))) %>%
+      dplyr::mutate_at("ofv",dplyr::funs(ifelse(ID %in% ID_deleted_ofv,"NA",.))) %>%
+      dplyr::mutate_at("ebe_npde",dplyr::funs(ifelse(ID %in% ID_deleted_ebe,"NA",.))) %>%
+      dplyr::mutate_all(dplyr::funs(ifelse(is.na(.),"",.))) %>%
       setNames(new_names) %>%
       dplyr::arrange(ID) %>%
       dplyr::mutate_all(as.character)
@@ -52,9 +52,9 @@ all.outlier.report.table <- function(ofv_outliers,ebe.npde_outliers,cwres.iwres_
                                    as.data.frame(array("",c(nrow(cwres.iwres_outliers),2)),stringsAsFactors=FALSE)) %>%
           setNames(c("ID","ofv","ebe_npde")) %>%
           cbind(.,cwres.iwres_outliers[2:ncol(cwres.iwres_outliers)],stringsAsFactors=FALSE) %>%
-          dplyr::mutate_at("ofv",funs(ifelse(ID %in% ID_deleted_ofv,"NA",.))) %>%
-          dplyr::mutate_at("ebe_npde",funs(ifelse(ID %in% ID_deleted_ebe,"NA",.))) %>%
-          dplyr::mutate_all(funs(ifelse(is.na(.),"",.))) %>%
+          dplyr::mutate_at("ofv",dplyr::funs(ifelse(ID %in% ID_deleted_ofv,"NA",.))) %>%
+          dplyr::mutate_at("ebe_npde",dplyr::funs(ifelse(ID %in% ID_deleted_ebe,"NA",.))) %>%
+          dplyr::mutate_all(dplyr::funs(ifelse(is.na(.),"",.))) %>%
           setNames(new_names) %>%
           dplyr::arrange(ID) %>%
           dplyr::mutate_all(as.character)
