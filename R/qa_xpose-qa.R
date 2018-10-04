@@ -172,7 +172,7 @@ get_frem_eta <- function(xpdb,dvid_col_name,dvid_value){
     xpose::fetch_data(., filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>%
     filter_dvid(.,dvid_col_name,dvid_value) %>% 
     dplyr::filter(FREMTYPE!=0) %>% 
-    dplyr::select(matches("G\\d{3}")) %>% 
+    dplyr::select(dplyr::matches("G\\d{3}")) %>% 
     purrr::map_lgl(~any(.x!=0)) %>% 
     seq_along(.)[.]
 }
@@ -194,7 +194,7 @@ calc_eta_contribution <- function(xpdb, conditioning_order, dvid_col_name, dvid_
   qa_data$derivatives %>%
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>%
     filter_dvid(.,dvid_col_name,dvid_value) %>% 
-    dplyr::select(ID, matches("G\\d{3}")) %>% 
+    dplyr::select(ID, dplyr::matches("G\\d{3}")) %>% 
     tidyr::nest(-ID, .key = "df_deta") %>% 
     dplyr::mutate(df_deta = purrr::map(df_deta, as.matrix),
                   eta_contribution = purrr::map(df_deta, 
@@ -344,9 +344,9 @@ calc_ruv_contribution <- function(xpdb,dvid_col_name,dvid_value){
     filter_dvid(.,dvid_col_name,dvid_value) %>% 
     dplyr::group_by(ID) %>% 
     dplyr::do(var_matrix = {
-      df_deps <- dplyr::select(., matches("H\\d{3}")) %>% as.matrix()
+      df_deps <- dplyr::select(., dplyr::matches("H\\d{3}")) %>% as.matrix()
       
-      df_deps_deta <- dplyr::select(., matches("D_EPSETA")) %>% as.matrix()
+      df_deps_deta <- dplyr::select(., dplyr::matches("D_EPSETA")) %>% as.matrix()
       interaction_terms <- diag(diag(df_deps_deta %*% kronecker(omega_matrix, sigma_matrix) %*% t(df_deps_deta)), nrow = NROW(df_deps))
       diag(diag(df_deps %*% sigma_matrix %*% t(df_deps)),  nrow = NROW(df_deps)) + interaction_terms
     },
@@ -454,7 +454,7 @@ calc_iiv_contribution <- function(xpdb, dvid_col_name, dvid_value, per_eta = F){
   iiv_contribution <- qa_data$derivatives %>%
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>%
     filter_dvid(.,dvid_col_name,dvid_value) %>%
-    dplyr::select(ID, matches("G\\d{3}")) %>% 
+    dplyr::select(ID, dplyr::matches("G\\d{3}")) %>% 
     tidyr::nest(-ID, .key = "df_deta") %>% 
     dplyr::mutate(df_deta = purrr::map(df_deta, as.matrix),
            iiv_var = purrr::map(df_deta, ~.x %*% omega_matrix %*% t(.x)))
@@ -483,7 +483,7 @@ calc_percent_eta_contribution <- function(xpdb, dvid_col_name, dvid_value){
   table <- qa_data$derivatives %>%
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>%
     filter_dvid(.,dvid_col_name,dvid_value) %>%
-    dplyr::select(ID, matches("G\\d{3}")) %>% 
+    dplyr::select(ID, dplyr::matches("G\\d{3}")) %>% 
     tidyr::nest(-ID, .key = "df_deta") %>% 
     dplyr::mutate(df_deta = purrr::map(df_deta, as.matrix),
                   iiv_var = purrr::map(df_deta, ~.x %*% omega_matrix %*% t(.x) %>% diag )) %>%  
@@ -533,7 +533,7 @@ get_eta_values <- function(xpdb,dvid_col_name, dvid_value){
   qa_data$derivatives %>% 
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>% 
     filter_dvid(.,dvid_col_name,dvid_value) %>%
-    dplyr::select(ID, matches("^(ETA\\d|ET\\d+)$")) %>% 
+    dplyr::select(ID, dplyr::matches("^(ETA\\d|ET\\d+)$")) %>% 
     dplyr::group_by(ID) %>% 
     dplyr::slice(1) %>% 
     dplyr::ungroup() %>% 
@@ -545,7 +545,7 @@ get_df_eta <- function(xpdb, dvid_col_name, dvid_value){
   get_qa_data(xpdb)$derivatives %>%
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>% 
     filter_dvid(.,dvid_col_name,dvid_value) %>%
-    dplyr::select(ID, matches("G\\d{3}")) %>% 
+    dplyr::select(ID, dplyr::matches("G\\d{3}")) %>% 
     tidyr::nest(-ID, .key = "df_deta") %>% 
     dplyr::mutate(df_deta = purrr::map(df_deta, as.matrix))
 }
