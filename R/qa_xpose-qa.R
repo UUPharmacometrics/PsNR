@@ -553,7 +553,7 @@ get_df_eta <- function(xpdb, dvid_col_name, dvid_value){
 get_theta_estimates <- function(xpdb){
   xpose::get_file(xpdb, ext = "ext", .problem = 1, .subprob = 0, quiet = T) %>% 
     dplyr::filter(ITERATION==-1000000000) %>% 
-    dplyr::select(starts_with("THETA")) %>% 
+    dplyr::select(dplyr::starts_with("THETA")) %>% 
     tidyr::gather("name", "value")
 }
 
@@ -561,7 +561,7 @@ get_sigma_matrix <- function(xpdb, problem = NULL, subprob = NULL,
                             method = NULL){
   xpose::get_file(xpdb, ext = "ext", .problem = problem, .subprob = subprob, .method = method, quiet = T) %>% 
     dplyr::filter(ITERATION==-1000000000) %>% 
-    dplyr::select(starts_with("SIGMA")) %>% unlist() %>%
+    dplyr::select(dplyr::starts_with("SIGMA")) %>% unlist() %>%
     vector_to_matrix()
 }
 
@@ -569,7 +569,7 @@ get_omega_matrix <- function(xpdb, problem = NULL, subprob = NULL,
                              method = NULL){
   xpose::get_file(xpdb, ext = "ext", .problem = problem, .subprob = subprob, .method = method, quiet = T) %>% 
     dplyr::filter(ITERATION==-1000000000) %>% 
-    dplyr::select(starts_with("OMEGA")) %>% unlist() %>%
+    dplyr::select(dplyr::starts_with("OMEGA")) %>% unlist() %>%
     vector_to_matrix()
 }
 

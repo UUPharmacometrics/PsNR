@@ -4,7 +4,7 @@
     dplyr::filter(ITERATION==-1000000000)
   
   # populate omega from .ext file
-  omega_values <- final_estimates %>% dplyr::select(starts_with("OMEGA")) 
+  omega_values <- final_estimates %>% dplyr::select(dplyr::starts_with("OMEGA")) 
   # create omega matrix
   numeration <- sub('.*OMEGA\\.','',colnames(omega_values)) %>% substr(., 1, nchar(.)-1)
   dim_omega <- length(unique(as.numeric(sub('\\..*','',numeration))))
@@ -21,7 +21,7 @@
   }
   
   # populate sigma from ext file
-  sigma_values <- final_estimates %>% dplyr::select(starts_with("SIGMA"))
+  sigma_values <- final_estimates %>% dplyr::select(dplyr::starts_with("SIGMA"))
   numeration <- sub('.*SIGMA\\.','',colnames(sigma_values)) %>% substr(., 1, nchar(.)-1)
   dim_sigma <- length(unique(as.numeric(sub('\\..*','',numeration))))
   sigma_matrix <- matrix(0, dim_sigma, dim_sigma)
