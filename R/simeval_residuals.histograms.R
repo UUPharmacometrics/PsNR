@@ -1,4 +1,4 @@
-histograms.cwres.iwres <- function(residual.files,residual.names) {
+histograms.cwres.iwres <- function(residual.files,residual.names,do_plot=T) {
   n.residuals <- length(residual.files)
   #npde (for each data frame plot a histogram)
   inf_list <- list()
@@ -15,9 +15,13 @@ histograms.cwres.iwres <- function(residual.files,residual.names) {
     ylimit=max(c(max(dy1),max(dy)))
     xlimit_min=min(x,min(residual_npde))
     xlimit_max=max(x,max(residual_npde))
-    hist(residual_npde,main=paste0("Histogram of ",residual.names[j]," NPDE"),
-         xlab=paste0(residual.names[j]," NPDE"),ylim=c(0,ylimit),xlim=c(xlimit_min,xlimit_max))
-    lines(x,dy, col="red")
+    
+    if(do_plot) {
+      hist(residual_npde,main=paste0("Histogram of ",residual.names[j]," NPDE"),
+           xlab=paste0(residual.names[j]," NPDE"),ylim=c(0,ylimit),xlim=c(xlimit_min,xlimit_max))
+      lines(x,dy, col="red")
+    }
+
     # Put information to lists(need for tests)
     inf_list[[j]] <- list(RESIDUAL=RESIDUAL,
                           residual_npde=residual_npde,

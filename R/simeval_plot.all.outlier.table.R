@@ -35,14 +35,14 @@ plot.all.outlier.table <- function(all_outlier_table,total_rows_per_page) {
       tab <- gridExtra::tableGrob(all_outlier_table_part, rows=NULL)
       header <- gridExtra::tableGrob(all_outlier_table_part[1, 1:3], rows=NULL, cols=c("","Individual level", "Observation level")) 
       
-      jn <- gridExtra::combine(header[1,], tab, along=2)
+      jn <- gridExtra::gtable_combine(header[1,], tab, along=2)
       # jn$widths <- rep(max(jn$widths), length(jn$widths)) # make column widths equal
       
       # change the relevant rows of gtable
       jn$layout[1:6 , c("l","r")] <- list(c(1,2,4),c(1,3,nr_col))
       
-      grid.newpage()
-      grid.draw(jn) 
+      gridExtra::grid.newpage()
+      gridExtra::grid.draw(jn) 
       
     }
   }
