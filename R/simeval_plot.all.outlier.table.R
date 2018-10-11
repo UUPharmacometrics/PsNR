@@ -41,8 +41,8 @@ plot.all.outlier.table <- function(all_outlier_table,total_rows_per_page) {
       # change the relevant rows of gtable
       jn$layout[1:6 , c("l","r")] <- list(c(1,2,4),c(1,3,nr_col))
       
-      gridExtra::grid.newpage()
-      gridExtra::grid.draw(jn) 
+      grid::grid.newpage()
+      grid::grid.draw(jn) 
       
     }
   }
