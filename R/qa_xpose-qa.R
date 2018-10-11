@@ -54,7 +54,7 @@ add_resmod_xpdbs <- function(xpdb, resmod_folder,  dvid_value) {
 }
 
 
-resmod_variability_attribution <- function(xpdb, idv = quo(TIME), dvid_col_name, dvid_value, smooth = F, conditioning_order = NULL){
+resmod_variability_attribution <- function(xpdb, idv = rlang::quo(TIME), dvid_col_name, dvid_value, smooth = F, conditioning_order = NULL){
   idv_name <- dplyr::quo_name(idv)
   
   resmod_attribution_data <- calculate_variability_attribution(xpdb, idv, dvid_col_name, dvid_value, smooth, conditioning_order, resmod = T)
