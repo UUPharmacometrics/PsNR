@@ -66,7 +66,7 @@ yaml_summary <- function(model.filename,
     dplyr::filter(group_name=="Structural Model") 
   if(tree$dvid_exists==TRUE) {
     overview <- overview %>%
-      dplyr::mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
+      dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
       dplyr::fill(dvid, .direction = "down") %>%
@@ -122,7 +122,7 @@ yaml_summary <- function(model.filename,
     dplyr::filter(group_name=="Residual Error Model") 
   if(tree$dvid_exists==TRUE) {
     overview <- overview %>%
-      dplyr::mutate(dvid=case_when(grepl(dvid_name,name) ~ name,
+      dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
       dplyr::fill(dvid, .direction = "down") %>%
