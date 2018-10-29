@@ -69,7 +69,7 @@ yaml_summary <- function(model.filename,
       dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
-      dplyr::fill(dvid, .direction = "down") %>%
+      tidyr::fill(dvid, .direction = "down") %>%
       dplyr::filter(!(grepl(dvid_name,name)))
     
     tree$overview$structural <- list()
@@ -125,7 +125,7 @@ yaml_summary <- function(model.filename,
       dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
                             TRUE ~ as.character(NA)),
              dvid=as.numeric(gsub("\\D", "", dvid))) %>%
-      dplyr::fill(dvid, .direction = "down") %>%
+      tidyr::fill(dvid, .direction = "down") %>%
       dplyr::filter(!(grepl(dvid_name,name)))
     
     tree$overview$residual_error <- list()
