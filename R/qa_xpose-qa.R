@@ -71,8 +71,12 @@ resmod_variability_attribution <- function(xpdb, idv = rlang::quo(TIME), dvid_co
     fct_colors <- gg_color_hue(length(levels(resmod_attribution_data$source))) %>% 
       purrr::set_names(levels(resmod_attribution_data$source))
     fct_colors["RUV"] <- "darkgray"
-  } else { # to keep nicer colors if there are less than 11 etas + ruv (because RColorBrewer::brewer.pal has max 12 colors)
-    fct_colors <- RColorBrewer::brewer.pal(length(levels(resmod_attribution_data$source)), "Set3") %>% 
+  } else if(length(levels(resmod_attribution_data$source))<3){ 
+    fct_colors <- c()
+    fct_colors[levels(resmod_attribution_data$source)[1]] <- "darkseagreen"
+    fct_colors["RUV"] <- "darkgray"
+  } else {
+    fct_colors <- RColorBrewer::brewer.pal(length(levels(resmod_attribution_data$source)), "Set3") %>%  # to keep nicer colors if there are less than 11 etas + ruv (because RColorBrewer::brewer.pal has max 12 colors)
       purrr::set_names(levels(resmod_attribution_data$source))
     fct_colors["RUV"] <- "darkgray"
   }
@@ -80,13 +84,13 @@ resmod_variability_attribution <- function(xpdb, idv = rlang::quo(TIME), dvid_co
   
 
   
-  ggplot(resmod_attribution_data, aes_string(idv_name, "value", fill = "source"))+
-    geom_area(position = position_fill(reverse = T))+
-    facet_wrap(~name)+
-    annotate("line", x = original_ruv[[idv_name]], y = original_ruv[["value"]], linetype = "dashed") +
-    scale_fill_manual("Source", values = fct_colors)+
-    scale_y_continuous("Percent variability", labels = scales::percent)+
-    theme(legend.position = "bottom")
+  ggplot2::ggplot(resmod_attribution_data, ggplot2::aes_string(idv_name, "value", fill = "source"))+
+    ggplot2::geom_area(position = ggplot2::position_fill(reverse = T))+
+    ggplot2::facet_wrap(~name)+
+    ggplot2::annotate("line", x = original_ruv[[idv_name]], y = original_ruv[["value"]], linetype = "dashed") +
+    ggplot2::scale_fill_manual("Source", values = fct_colors)+
+    ggplot2::scale_y_continuous("Percent variability", labels = scales::percent)+
+    ggplot2::theme(legend.position = "bottom")
   
 }
 
