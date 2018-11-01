@@ -367,7 +367,9 @@ calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
     dplyr::slice(1) %>%
     purrr::flatten()
 
-  resmod_models <- filter(resmod_data$summary, name %in% c("autocorrelation", "power", "tdist", "IIV_on_RUV", best_tvar$name), !is.na(value)) %>%
+  resmod_models <- resmod_data$summary %>%
+    dplyr::filter(name %in% c("autocorrelation", "power", "tdist", "IIV_on_RUV", best_tvar$name),
+           !is.na(value)) %>%
     filter_dvid(.,"dvid",dvid_value) %>% 
     .$name
   tvar <- function(params, var_matrix, TIME, ...) {
@@ -395,7 +397,7 @@ calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
   }
   
   resmod_estimates <- resmod_data$xpdbs[resmod_models] %>%
-    purrr::map_df(~get_file(.x, ext = "ext") %>% dplyr::filter(`ITERATION`==-1E9) %>% dplyr::select(-ITERATION, -OBJ), .id = "name") %>% 
+    purrr::map_df(~xpose::get_file(.x, ext = "ext") %>% dplyr::filter(`ITERATION`==-1E9) %>% dplyr::select(-ITERATION, -OBJ), .id = "name") %>% 
     tidyr::gather("parameter", "value", -name, na.rm = T)
  
   # collect ruv eta values from phi file
