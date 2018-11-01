@@ -8,5 +8,10 @@ fix_column_names <- function(col_names) {
     }
   }
   col_names <- gsub("[^A-z0-9_]",".",col_names) # if not letter, digit or underscore, replace with point
+  
+  # replace square brackets
+  col_names <- gsub("\\[",".",col_names)
+  col_names <- gsub("\\]",".",col_names)
+  
   return(col_names)
 }
