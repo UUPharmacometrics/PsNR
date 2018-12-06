@@ -27,7 +27,6 @@ Imports:
     ggforce (>= 0.1.1),
     stringr,
     stringi,
-    plyr,
     RColorBrewer,
     scales,
     forcats,
