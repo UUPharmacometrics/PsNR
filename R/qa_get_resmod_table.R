@@ -22,12 +22,22 @@ get_resmod_table <- function(directory, idv,quiet=F){
       }
     }
     
-    resmod_table <- plyr::ldply(fields, function(l){
+    save_each_list_element_to_one_row <- function(l){
       fields_with_header <- l[seq_along(header)]
       names(fields_with_header) <- tolower(header)
       fields_with_header[[length(header)]] <-  paste0(l[length(header):length(l)], collapse=",")
       fields_with_header
-    }) %>%
+    }
+    for(i in 1:length(fields)) {
+      resmod_table_i <- save_each_list_element_to_one_row(l=fields[[i]])
+      if(i==1) {
+        resmod_table <- as.data.frame(matrix(resmod_table_i,1,length(resmod_table_i)),stringsAsFactors = F)
+        names(resmod_table) <- names(resmod_table_i)
+      } else {
+        resmod_table <- dplyr::bind_rows(resmod_table,resmod_table_i)
+      }
+    }
+    resmod_table <- resmod_table %>%
       dplyr::rename(dOFV=dofv)
     
     new_dofv <- c()

@@ -8,7 +8,7 @@ resmod_structural_details_tables <- function(working.directory,base_dataset,orig
     resmod_file_exists_idv <- list()
     resmod_table <- list()
     for (i in 1:length(idv_all)) {
-      resmod_table_list <- get_resmod_table(directory=working.directory, idv_all[i])
+      resmod_table_list <- get_resmod_table(directory=working.directory, idv=idv_all[i])
       resmod_file_exists_idv[i] <- resmod_table_list$resmod_file_exists
       resmod_table[[i]] <- resmod_table_list$resmod_table
       dvid_nr_idv[[i]] <- find_dvid_values(working.directory,idv_all[i],dvid_name)
