@@ -41,7 +41,18 @@ Imports:
     PerformanceAnalytics,
     magrittr,
     ggplot2,
-    xpose4
+    xpose4,
+    Rcpp,
+    caTools,
+    formatR,
+    ggthemes,
+    gplots,
+    grid,
+    gridExtra,
+    MCMCpack,
+    plotrix,
+    plyr,
+    stats4
 Suggests:
     testthat
 URL: https://github.com/UUPharmacometrics/pmutils
