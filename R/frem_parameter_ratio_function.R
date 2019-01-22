@@ -11,7 +11,7 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
 
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
-    parameter_names <- make.names(parameter_names)
+    # parameter_names <- make.names(parameter_names)
 
     # colnames of frem data
     colnames_frem <- colnames(inTable_frem)

@@ -14,7 +14,7 @@ ID_ratio <- function(frem_id,covdata,pardata) {
 
     # names of parameter (names of first column in pardata input table,header = FALSE)
     parameter_names <- pardata[[1]]
-    parameter_names <- make.names(parameter_names)
+    # parameter_names <- make.names(parameter_names)
     # names of covariate (names of first column in covdata input table,header = FALSE)
     covariate <- as.character(covdata[[1]])
     

@@ -9,7 +9,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
     
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
-    parameter_names <- make.names(parameter_names)
+    # parameter_names <- make.names(parameter_names)
 
     # names of covariate (names of first column in covdata input table, header = FALSE)
     covariate <- as.character(covdata[[1]])
