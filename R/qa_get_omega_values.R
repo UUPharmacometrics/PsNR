@@ -1,3 +1,10 @@
+#' Get non-ziro omega values.
+#'   
+#' @param ext_file A string of the ext file name.
+#' @param omegas A string "all", "var" or "cov", where "all" means that all omegas will be selected, 
+#' "var" - only diagonal omegas will be selected and "cov" - only omegas outside the diagonal will be selected.
+#' 
+#' @return A data frame with non-ziro omega values and omega names as column names.
 get_omega_values <- function(ext_file,omegas){
   omega_table <- get_initial_estimates_from_ext(filename=ext_file,select="omega")
   omegas_v <- c()

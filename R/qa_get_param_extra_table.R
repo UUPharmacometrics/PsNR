@@ -1,3 +1,15 @@
+#' Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values 
+#' as well as expected improvement in OFV when estimating a Box-Cox/t-distribution transformation for each subject-level random effect.
+#'   
+#' @param original_max0_model The base model file name.
+#' @param param_model The parameter model (box-cox or tdist) file name.
+#' @param dofv Difference between base and the boxcox or tdist transformed model OFV values.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of two data frames (param_extra_table and param_extra_table_orig) and one logical argument (param_extra_table_error) 
+#' indicating whether both input files original_max0_model and param_model exist in the folder. 
+#' Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and 
+#' the dOFV value is not added to this data frame.
 get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) {
   if(grepl("boxcox",param_model)) {
     table_col_name <- "Lambda"

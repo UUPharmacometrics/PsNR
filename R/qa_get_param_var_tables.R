@@ -1,4 +1,20 @@
-get_param_var_tables <- function(directory,base_model,skip,quiet=F) {
+#' Summary of the transformed models dOFV values and added parameters.
+#'   
+#' @param directory A string of the directory name where modelfit_run, add_etas_run folders and base model ext file can be found. 
+#' In modelfit_run folder expecting to have mod and ext files from fullblock, boxcox, tdist and iov runs. 
+#' In add_etas_run expecting to have mod and ext files from the add_etas_linbase. 
+#' @param base_model A string of the model file name that was transformed.
+#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "transform" is one of the vector elements.
+#' By default skip=NULL.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of one data frame (with dOFV values of the transformed models and number of added parameters to each of the transformed models), 
+#' five character elements of dofv values and five logical arguments indicating whether transform models exist in the folder.
+#' In case if string "transform" is one of the 'skip' vector elements, all dOFV values of the output data frame will be replaced with the string "SKIPPED".
+#' In case of missing ext file of the base model all dOFV values will be replaced with the string "ERROR".
+#' In case of missing transformation model file corresponding dOFV value will be replaced with the string "NA".
+#' In case of missing ext file of the transformation model corresponding dOFV value will be replaced with the string "ERROR".
+get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
   #for overview table
   fullblock_mod <- file.exists(file.path(directory,"modelfit_run/fullblock.mod"))
   boxcox_mod <- file.exists(file.path(directory,"modelfit_run/boxcox.mod"))
@@ -154,7 +170,7 @@ get_param_var_tables <- function(directory,base_model,skip,quiet=F) {
                                  c(dofv_block,dofv_box,dofv_additional_eta,dofv_tdist,dofv_iov),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV")
   }
-  # check if etas run was skipped
+  # check if transform run was skipped
   if(any(skip=="transform")) {
     par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","Additional ETA","t-distribution","Interoccasion variability"), 
                                  c(rep("SKIPPED",5)),stringsAsFactors = F)

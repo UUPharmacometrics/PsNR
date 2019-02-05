@@ -1,4 +1,14 @@
-get_full_omega_block <- function(original_max0_model,fullblock_model,dofv_block,quiet=F) {
+#' Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a 
+#' full block correlation structure between subject-level random effects.
+#'   
+#' @param original_max0_model The base model file name.
+#' @param fullblock_model The full omega block model file name.
+#' @param dofv Difference between base and the full omega block transformed model OFV values.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of one data frame (full_omega_block_table) and one logical argument (full_omega_block_error) indicating whether both input files 
+#' original_max0_model and fullblock_model exist in the folder.
+get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=F) {
   full_omega_block_error <- FALSE
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   fullblock_ext_file <- sub("(\\.[^.]+)$",".ext",fullblock_model)
@@ -61,8 +71,8 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv_block,
     full_omega_block_table[,2] <- format(round(as.numeric(full_omega_block_table[,2]),2),digits=1,trim=T,nsmall=2,scientific = F)
     full_omega_block_table[,3] <- format(round(as.numeric(full_omega_block_table[,3]),2),digits=1,trim=T,nsmall=2,scientific = F)
     
-    if(class(dofv_block)!="character") {
-      full_omega_block_table <- rbind(full_omega_block_table,c("dOFV",format(round(dofv_block,2),digits=1,scientific=F,nsmall=1),""))
+    if(class(dofv)!="character") {
+      full_omega_block_table <- rbind(full_omega_block_table,c("dOFV",format(round(dofv,2),digits=1,scientific=F,nsmall=1),""))
     }
     
   } else {

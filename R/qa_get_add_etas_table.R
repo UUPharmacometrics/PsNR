@@ -1,3 +1,15 @@
+#' Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new 
+#' and existing random effect parameters as well as expected improvement in OFV.
+#'   
+#' @param original_max0_model The base model file name.
+#' @param add_etas_dir A name of the directory where add_etas_linbase.ext (nonlinear=FALSE) or add_etas.ext (nonlinear=TRUE) can be found.
+#' @param added_etas A list of additional etas and their numeric position in the model. (added_etas <- list(TPEN=6, SIND=5))
+#' @param dofv_add.etas Difference between base model and the model with additional etas OFV values.
+#' @param nonlinear A logical indicating whether nonlinear qa have been run.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of one data frame (add_etas_table) and one logical argument (add_etas_error) indicating whether both ext files 
+#' original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder.
 get_add_etas_table <- function(original_max0_model,add_etas_dir,added_etas,dofv_add.etas,nonlinear,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   if(!nonlinear) {

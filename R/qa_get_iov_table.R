@@ -1,3 +1,14 @@
+#' Consequences of including inter-occasion variability in terms of estimated standard deviation (SD) for inter-individual (IIV) 
+#' and inter-occasion variability (IOV) as well as expected improvement in OFV.
+#'   
+#' @param original_max0_model The base model file name.
+#' @param iov_model The iov model file name.
+#' @param iov_etas A list of occasion vectors of eta numbers. (iov_etas <- list(occ1=c(1, 2, 5, 7), occ2=c(3, 4, 6, 8)))
+#' @param dofv_iov Difference between base model and the model with added iov OFV values.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of one data frame (iov_table) and one logical argument (iov_error) indicating whether both ext files from models
+#' original_max0_model and iov_model exist in the folder.
 get_iov_table <- function(original_max0_model,iov_model,iov_etas,dofv_iov,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   iov_ext_file <- sub("(\\.[^.]+)$",".ext",iov_model)

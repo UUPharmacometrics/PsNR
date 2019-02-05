@@ -1,3 +1,7 @@
+#' Add information from R run to the meta.yaml file. Will add R library path as well as loaded R packages and their versions during the run.
+#' 
+#' @param directory A directory name where the meta.yaml file can be found.
+#' @param only_libPaths A logical indicating to add only R library path. By default only_libPaths=FALSE.
 R_info <- function(directory,only_libPaths=F) {
   if(only_libPaths) {
     if(file.exists(file.path(directory,"meta.yaml"))) {
