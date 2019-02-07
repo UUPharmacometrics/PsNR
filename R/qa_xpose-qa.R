@@ -186,10 +186,10 @@ calc_eta_contribution <- function(xpdb, conditioning_order, dvid_col_name, dvid_
   
   omega_matrix <- get_omega_matrix(xpdb, problem = 1, subprob = 0)
   
-  conditioning_args <- conditioning_order %>% 
-    purrr::accumulate(~list(eta_index = .y, given_index = unlist(.x, use.names = F)), .init = c()) %>% 
+  conditioning_args <- conditioning_order %>%
+    purrr::accumulate(~list(eta_index = .y, given_index = unlist(.x, use.names = F)), .init = numeric(0)) %>%
     .[-1] # remove first entry
-  
+
   if(purrr::is_empty(names(conditioning_order))){
     col_names <- paste0("var", seq_along(conditioning_order))
   }else{
