@@ -1,4 +1,16 @@
-get_scm_table <- function(scm_directory,parameters,continuous,categorical,skip,quiet=F){
+#' Table of model parameter-covariate relationship, resulting improvement in OFV and estimated covariate coefficient.
+#'
+#' @param scm_directory Scm run directory. Will search for the file raw_results_scm.csv. Columns relation, ofv, step.number 
+#' and all columns with estimated covariate coefficient values (like, CLWGT.4.1) will be used in the function.
+#' @param nr_cov Number of covariates from the scm point of view, because categorical covariates can be binarized.
+#' @param nr_param Numbner of parameters.
+#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "scm" is one of the vector elements.
+#' By default skip=NULL.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of two data frames scm_table and max_scm_table (with biggest dofv value) and one logical argument (scm_files_exists) indicating whether 
+#' needed file exist in the input directory and there is at least one covariate and one parameter.
+get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
   rawres_file <- file.path(scm_directory,"raw_results_scm.csv")
   scm_files_exists <- file.exists(rawres_file)
   if(any(skip=="scm")) {
@@ -6,7 +18,7 @@ get_scm_table <- function(scm_directory,parameters,continuous,categorical,skip,q
     colnames(scm_table) <- c("","dOFV")
     max_scm_table <- cbind(scm_table,"",stringsAsFactors = F)
   } else {
-    if(length(parameters)!=0 && (length(categorical)!=0 || (length(continuous)!=0))) {
+    if(nr_param!=0 && nr_cov!=0) {
       if(scm_files_exists) {
         scm_table <- read.csv(rawres_file,stringsAsFactors = F) %>%
           dplyr::mutate(dOFV = ofv[step.number==0]-ofv) %>%
@@ -46,7 +58,7 @@ get_scm_table <- function(scm_directory,parameters,continuous,categorical,skip,q
       }
     } else {
       if(!quiet) {
-        message("WARNING: Parameters and covariates vectors are empty!")
+        message("WARNING: Parameter and covariate vectors are empty!")
       }
       scm_files_exists <- FALSE
       scm_table <- data.frame("SCM","NA",stringsAsFactors = F)

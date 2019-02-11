@@ -1,3 +1,14 @@
+#' Calculate ETAT values for each eta in normal distribution. Calculations done based on the formula: 
+#' If boxcox model: (exp(eta)^lambda -1)/lambda
+#' If tdist model: eta(1+((eta^2 + 1)/(4deg_of_freedom))+((5eta^4 + 16eta^2 + 3)/(96deg_of_freedom^2))+((3eta^6 + 19eta^4 + 17eta^2 - 15)/(384deg_of_freedom^3)))
+#'
+#' @param input_table A data frame of ETA name in the column ETA, lambda/degrees of freedom values in the column Lambda/Degrees of freedom and 
+#' standard deviation (from parameter model) of the ETA in the third column.
+#' @param seq_length.out Desired length of the sequence for the seq function. So many eta values for each ETA and each ETAT will be in the output dataframe. 
+#' By default seq_length.out=1000.
+#' 
+#' @return A list of one data frame (eta_transf_table) of the transformed ETA values, hight of the figure (fig_height) which is based on how many ETAs are in the table and
+#'  a logical identifier if eta transformation plot should be created (make_eta_transf_plot).
 get_eta_transf_table <- function(input_table,seq_length.out=1000) {
   fig_height <- 15
   if(any(grepl('ETA',input_table$ETA)) && (any(colnames(input_table)=="Lambda") || any(colnames(input_table)=="Degrees of freedom")))  {

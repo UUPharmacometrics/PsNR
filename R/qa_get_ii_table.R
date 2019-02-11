@@ -1,3 +1,24 @@
+#' Get influential individuals table.
+#'
+#' @param cdd_directory Cdd run directory. Will search for the files skipped_individuals1.csv and 
+#' raw_results_"model name"_linbase.csv (if nonlinear=F) or raw_results_"model name".csv (if nonlinear=T)
+#' @param model.filename The base model file name.
+#' @param cutoff The dOFV cutoff value for influential individual identification.
+#' @param max_rows Number of infuential individuals to print in the pdf file.
+#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "scm" is one of the vector elements.
+#' By default skip=NULL.
+#' @param nonlinear A logical indicating whether nonlinear qa have been run.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of 7 arguments.
+#' cdd_files_exist - a logical indicating whether needed files exist in the input directory.
+#' cdd.data - a data frame of all id numbers and dOFV values for each id.
+#' all_dofv - a vector of all dofv values.
+#' cdd_highest_dofv - A data frame of one most influential individual. Will be used for summary table.
+#' ii_table - A data frame of all influential individuals, where max row number is set to max_rows.
+#' infl_id - A numeric vector with all influential individual ID numbers.
+#' fig_height_infl - A numeric for idividual plots hight.
+fig_height_infl=fig_height_infl
 get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip,nonlinear,quiet=F){
   skipped.id.file <- file.path(cdd_directory,"skipped_individuals1.csv")
   if(!nonlinear) {

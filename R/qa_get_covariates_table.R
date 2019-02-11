@@ -1,3 +1,13 @@
+#' Create covariate table for the summary part and the table of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient. 
+#' Furthermore, the sum of all univariate improvements in OFV ignoring between covariate correlations (sum(SCMu)), as well as joint improvement in OFV 
+#' when taking correlations into account (FREM).
+#'
+#' @param frem_table A data frame of one row with column names c("","dOFV","Add.params") or c("","dOFV") if frem model run crash or was not run.
+#' @param scm_table A data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient. 
+#' Column names c("","dOFV","Coef").
+#' @param max_scm_table A data frame of one row with column names c("","dOFV","Add.params") or c("","dOFV") if scm model run crash or was not run.
+#' 
+#' @return A list of two data frames covariates_table (for summary section) and covariates_extra_table (for covariate section).
 get_covariates_table <- function(frem_table,scm_table,max_scm_table) {
   covariates_table <- rbind(c("FREM",frem_table[,2:3]),max_scm_table,stringsAsFactors=F)
   if(any(c("ERROR","NA","SKIPPED")==scm_table$dOFV[1]) && length(scm_table$dOFV)==1) {
