@@ -1,7 +1,7 @@
 # PsNR
 R package for pharmacometric utilities used by PsN
 
-Currently this package contains the R functions needed to run qa. This package removes the need for the old install_R_packages.R script as all dependencies will be taken care of by installing this package.
+This package is needed for using the -rplots functionality in PsN. Currently this package does not contain all R functions available in PsN. This package removes the need for the old install_R_packages.R script as all dependencies will be taken care of by installing this package.
 
 # Installation instructions
 
