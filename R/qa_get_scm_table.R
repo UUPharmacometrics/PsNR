@@ -8,8 +8,10 @@
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of two data frames scm_table and max_scm_table (with biggest dofv value) and one logical argument (scm_files_exists) indicating whether 
-#' needed file exist in the input directory and there is at least one covariate and one parameter.
+#' @return A list of 3 elements:
+#' scm_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient
+#' max_scm_table - a data frame with only one row from scm_table with the highest dofv value
+#' scm_files_exists - logical argument indicating whether needed file exists in the input directory and whether there is at least one covariate and one parameter.
 get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
   rawres_file <- file.path(scm_directory,"raw_results_scm.csv")
   scm_files_exists <- file.exists(rawres_file)

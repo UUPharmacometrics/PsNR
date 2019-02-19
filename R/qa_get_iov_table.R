@@ -7,8 +7,9 @@
 #' @param dofv_iov Difference between base model and the model with added iov OFV values.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of one data frame (iov_table) and one logical argument (iov_error) indicating whether both ext files from models
-#' original_max0_model and iov_model exist in the folder.
+#' @return A list of 2 elements:
+#' iov_table - a data frame
+#' iov_error - a logical indicating whether both ext files from models original_max0_model and iov_model exist in the folder
 get_iov_table <- function(original_max0_model,iov_model,iov_etas,dofv_iov,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   iov_ext_file <- sub("(\\.[^.]+)$",".ext",iov_model)

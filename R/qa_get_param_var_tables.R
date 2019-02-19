@@ -8,8 +8,19 @@
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of one data frame (with dOFV values of the transformed models and number of added parameters to each of the transformed models), 
-#' five character elements of dofv values and five logical arguments indicating whether transform models exist in the folder.
+#' @return A list of 11 elements:
+#' par_var_models - a data frame with dOFV values of the transformed models and number of added parameters to each of the transformed models
+#' dofv_block - dofv values of full omega block transformed model
+#' dofv_box - dofv values of box-cox transformed model
+#' dofv_tdist - dofv values of t-dist transformed model
+#' dofv_add_etas - dofv values of transformed model with added etas
+#' dofv_iov - dofv values of transformed model with added iov
+#' fullblock_mod - a logical indicating whether transformed model (fullblock.mod) exist in the folder
+#' boxcox_mod - a logical indicating whether transformed model (boxcox.mod) exist in the folder
+#' add_etas_mod - a logical indicating whether transformed model (add_etas_linbase.mod) exist in the folder
+#' tdist_mod - a logical indicating whether transformed model (tdist.mod) exist in the folder
+#' iov_mod - a logical indicating whether transformed model (iov.mod) exist in the folder
+#' 
 #' In case if string "transform" is one of the 'skip' vector elements, all dOFV values of the output data frame will be replaced with the string "SKIPPED".
 #' In case of missing ext file of the base model all dOFV values will be replaced with the string "ERROR".
 #' In case of missing transformation model file corresponding dOFV value will be replaced with the string "NA".

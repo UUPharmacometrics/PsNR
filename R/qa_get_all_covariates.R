@@ -9,8 +9,9 @@
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of one data frame with joint improvement in OFV when taking correlations into account (frem_table) and one logical argument (frem_files_exists) indicating whether 
-#' needed files exist in the input directory and there is at least one covariate.
+#' @return A list of 2 elements:
+#' frem_table - a data frame with joint improvement in OFV when taking correlations into account
+#' frem_files_exists - logical argument indicating whether needed files exist in the input directory and there is at least one covariate
 get_all_covariates <- function(frem_directory,nr_cov,nr_param,dofv_full_block,skip=NULL,quiet=F) {
   if(any(skip=="frem")) {
     frem_files_exists <- FALSE

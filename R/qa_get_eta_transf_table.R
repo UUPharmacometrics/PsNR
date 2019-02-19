@@ -7,8 +7,10 @@
 #' @param seq_length.out Desired length of the sequence for the seq function. So many eta values for each ETA and each ETAT will be in the output dataframe. 
 #' By default seq_length.out=1000.
 #' 
-#' @return A list of one data frame (eta_transf_table) of the transformed ETA values, hight of the figure (fig_height) which is based on how many ETAs are in the table and
-#'  a logical identifier if eta transformation plot should be created (make_eta_transf_plot).
+#' @return A list of 3 elements:
+#' eta_transf_table - a data frame of the transformed ETA values
+#' fig_height - hight of the figure which is based on how many ETAs are in the table
+#' make_eta_transf_plot - a logical identifier if eta transformation plot should be created
 get_eta_transf_table <- function(input_table,seq_length.out=1000) {
   fig_height <- 15
   if(any(grepl('ETA',input_table$ETA)) && (any(colnames(input_table)=="Lambda") || any(colnames(input_table)=="Degrees of freedom")))  {

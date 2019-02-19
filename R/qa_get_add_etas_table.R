@@ -8,8 +8,9 @@
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of one data frame (add_etas_table) and one logical argument (add_etas_error) indicating whether both ext files 
-#' original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder.
+#' @return A list of 2 arguments:
+#' add_etas_table - a data frame
+#' add_etas_error - a logical indicating whether both ext files original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder
 get_add_etas_table <- function(original_max0_model,add_etas_dir,added_etas,dofv_add.etas,nonlinear,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   if(!nonlinear) {

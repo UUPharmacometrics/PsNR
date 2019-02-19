@@ -6,8 +6,9 @@
 #' @param dofv Difference between base and the full omega block transformed model OFV values.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
-#' @return A list of one data frame (full_omega_block_table) and one logical argument (full_omega_block_error) indicating whether both input files 
-#' original_max0_model and fullblock_model exist in the folder.
+#' @return A list of 2 elements:
+#' full_omega_block_table - a data frame
+#' full_omega_block_error - a logical indicating whether both input files original_max0_model and fullblock_model exist in the folder
 get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=F) {
   full_omega_block_error <- FALSE
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
