@@ -1,3 +1,17 @@
+#' Get overview table.
+#'
+#' @param structural_overview a data frame of structural models, corresponding dofv values and number of added parameters
+#' @param param_var_overview a data frame of patameter models, corresponding dofv values and number of added parameters
+#' @param covariates_overview a data frame of covariate models, corresponding dofv values and number of added parameters
+#' @param resmod_ruv_overview a data frame of residual error models, corresponding dofv values and number of added parameters
+#' @param infl_indiv_overview a data frame of most influential individual, corresponding dofv value and number of added parameters
+#' @param outliers_overview a data frame of most outlying individual, corresponding dofv value and number of added parameters
+#' 
+#' @return A list of 4 arguments.
+#' overview_table - a data frame
+#' n.rgroup - a numeric vector with number of rows in each group
+#' rgroup_names - a character vector of group names
+#' row_groups - a data frame with group names as well as first and last row number in the overview_table for each group
 get_overview_table <- function(structural_overview,param_var_overview,covariates_overview,resmod_ruv_overview,infl_indiv_overview,outliers_overview) {
   overview_list <- list(structural_overview,param_var_overview,covariates_overview,resmod_ruv_overview,infl_indiv_overview,outliers_overview)
   rgroup_names <- c("Structural Model","Parameter Variability Model","Covariates","Residual Error Model","Influential Individuals","Outliers")

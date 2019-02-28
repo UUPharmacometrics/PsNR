@@ -1,3 +1,13 @@
+#' Density of the Box-Cox/t-distribution transformed random effect in comparison with the density of the original (untransformed) random effect. 
+#' The rug below the densities indicates the empirical Bayes estimates for the transformed random effect.
+#'
+#' @param data_table the eta density dataframe with ETA_name, density, type and eta columns
+#' @param eta_table a data frame with ETA_name and values columns where eta values are calculated based on the formula:
+#' If have boxcox model: (exp(eta)^lambda -1)/lambda
+#' If have tdist model: eta(1+((eta^2 + 1)/(4deg_of_freedom))+((5eta^4 + 16eta^2 + 3)/(96deg_of_freedom^2))+((3eta^6 + 19eta^4 + 17eta^2 - 15)/(384deg_of_freedom^3)))
+#' @param param_model a character. Possible values: boxcox or tdist. Needed only for lables in the plots.
+#' 
+#' @return A list of plots
 plot_transformed_density <- function(data_table,eta_table,param_model) {
   if(param_model=="boxcox") {
     labels=c("Untransformed density","Boxcox transformed density")

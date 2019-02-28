@@ -1,3 +1,10 @@
+#' Three type of plots. Plots of 5th and 95th percentile of each covariate and the size of the effect on parameter (assuming log-normal),
+#' plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal) and
+#' plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates
+#'
+#' @param postfremdir Postfrem run directory. Will search for the file covdata.csv, pardata.csv, frem_ratio.csv, frem_id_ratios.csv and sd_coefficients_summary.csv
+#' 
+#' @return Print out all created plots
 all_frem_plots <- function(postfremdir) {
   if(file.exists(file.path(postfremdir,"covdata.csv")) &&
      file.exists(file.path(postfremdir,"pardata.csv"))) {

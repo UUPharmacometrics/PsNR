@@ -1,3 +1,11 @@
+#' Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates, 
+#' each covariate separately and all covariates simultaneously.
+#'
+#' @param sd_coef_summary - a data frame
+#' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
+#' @param pardata - parameter data frame with column parname
+#' 
+#' @return Function does all the calculations and the creates a list of plots.
 sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
   # check if there are all 3 input data files
   files_exist <- (exists("sd_coef_summary") & exists("covdata") & exists("pardata"))

@@ -1,3 +1,11 @@
+#' Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal). 
+#' The bands show 90% confidence interval around the point estimate.
+#'
+#' @param frem_id - a data frame 
+#' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
+#' @param pardata - parameter data frame with column parname
+#' 
+#' @return Function does all the calculations and the creates a list of plots.
 ID_ratio <- function(frem_id,covdata,pardata) {
 
   # check if there are all 3 input data files

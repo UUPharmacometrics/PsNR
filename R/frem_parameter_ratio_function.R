@@ -1,3 +1,11 @@
+#' Plots of 5th and 95th percentile of each covariate and the size of the effect on parameter (assuming log-normal).
+#' The bands show 90% confidence interval around the point estimate. Categorical covariates are compared to the other category.
+#'
+#' @param inTable_frem - ratio data frame of 5th and 95th percentile of each covariate and the size of the effect on parameter
+#' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
+#' @param pardata - parameter data frame with column parname
+#' 
+#' @return Function does all the calculations and the creates a list of plots.
 parameter_ratio <- function(inTable_frem,covdata,pardata) {
 
   # check if there are all 3 input data files

@@ -1,4 +1,18 @@
-get_outliers_table <- function(simeval_directory,cdd.data,skip,quiet=F) {
+#' Get outliers table.
+#'
+#' @param simeval_directory Simeval run directory. Will search for the files raw_all_iofv.csv
+#' @param cdd.data a data frame of all id numbers and dOFV values for each id from the cdd run.
+#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "simeval" is one of the vector elements.
+#' By default skip=NULL.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of 5 arguments.
+#' simeval_files_exist - a logical indicating whether needed files exist in the input directory.
+#' outliers_table - A data frame of all outlying individuals. Max 10 rows.
+#' max_outlier_table - A data frame of one most outlying individual. Will be used for summary table.
+#' outlier_ids - A numeric vector with all outlying individual ID numbers.
+#' fig_height_outl - A numeric for idividual plots hight.
+get_outliers_table <- function(simeval_directory,cdd.data,skip=NULL,quiet=F) {
   outlier_ids <- c()
   simeval_files_exist <- file.exists(file.path(simeval_directory, "raw_all_iofv.csv"))
   if(simeval_files_exist && all(skip!="simeval")) {

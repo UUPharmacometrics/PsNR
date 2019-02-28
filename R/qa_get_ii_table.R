@@ -5,7 +5,7 @@
 #' @param model.filename The base model file name.
 #' @param cutoff The dOFV cutoff value for influential individual identification.
 #' @param max_rows Number of infuential individuals to print in the pdf file.
-#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "scm" is one of the vector elements.
+#' @param skip A character vector with names of the skipped parts in the qa run. Will check if "cdd" is one of the vector elements.
 #' By default skip=NULL.
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
@@ -18,7 +18,7 @@
 #' ii_table - A data frame of all influential individuals, where max row number is set to max_rows.
 #' infl_id - A numeric vector with all influential individual ID numbers.
 #' fig_height_infl - A numeric for idividual plots hight.
-get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip,nonlinear,quiet=F){
+get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,nonlinear,quiet=F){
   skipped.id.file <- file.path(cdd_directory,"skipped_individuals1.csv")
   if(!nonlinear) {
     raw.results.file <- file.path(cdd_directory,paste0("raw_results_",sub('.([^.]*)$','',model.filename),"_linbase.csv"))
