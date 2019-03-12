@@ -1,3 +1,10 @@
+#' A histogram of distribution of OFV improvements (dOFV) when excluding specific subjects during the fit.
+#'
+#' @param values All cdd dofv values. Missing values will be excluded.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A ggplot object.
+
 hist_of_cdd_dofv <- function(values,quiet=F) {
   values <- values[!is.na(values)]
   values_table <- data.frame(dOFV=values,stringsAsFactors = F)

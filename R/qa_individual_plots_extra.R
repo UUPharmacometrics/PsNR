@@ -1,3 +1,9 @@
+#' Observations (DV), individual predictions (IPRED) and population predictions (PRED) versus time for subjects identified as influential.
+#'
+#' @param values All cdd dofv values. Missing values will be excluded.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A ggplot object.
 individual_plots_extra <- function(file_name,ID_nr,dvid_name,quiet=F) {
   if(file.exists(file_name) && (length(ID_nr)!=0) ) {
     if(dvid_name=="") {
