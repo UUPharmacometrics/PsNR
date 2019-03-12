@@ -48,11 +48,11 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
     param <- list()
     for (j in 1:length(parameter_names)) {
       DF <- sd_coef_summary %>%
-        dplyr::filter(grepl(paste0("^",parameter_names[j],"\\."), .$par.conditionedOn)) %>%
+        dplyr::filter(grepl(paste0(parameter_names[j],"."), .$par.conditionedOn,fixed=TRUE)) %>%
         dplyr::select(1:4)
       DF[,3] <- as.numeric(DF[,3])
       DF[,4] <- as.numeric(DF[,4])
-      DF[,1] <- sub(paste0(parameter_names[j],"\\."),'',DF[,1])
+      DF[,1] <- sub(paste0(parameter_names[j],"."),'',DF[,1],fixed = TRUE)
       
       if(uncertainty) {
         DF$expected <- sprintf("%.3G [%.3G, %.3G]",DF$observed.sd,DF$sd.5th,DF$sd.95th)
