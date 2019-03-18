@@ -15,7 +15,7 @@ simeval_all_ouliers_table <- function(simeval_directory,ebe_npde_outl_crit=-3,qu
     ID_deleted_ebe <- input_data$ID_deleted
     eta.names <- input_data$eta.names
     
-    if(n.subjects>0) {
+    if(n.subjects>1) { # will not work if only one ID
       list_emp_distance <- empirical.distance(ebenpde_obs,n.subjects)
       emp_distance <- list_emp_distance$emp_distance
       
