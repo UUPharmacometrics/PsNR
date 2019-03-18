@@ -49,7 +49,8 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
     }
 
 
-    add_cols <- obs[,c(idv_all)]
+    add_cols <- obs %>%
+      dplyr::select(!!idv_all)
     sim <- xpose::read_nm_tables(sim_table,quiet = TRUE)
     if(dvid != "NA") {
       if(all(colnames(sim)!=dvid_name)) {
