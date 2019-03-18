@@ -60,27 +60,22 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
       add.par_block <- ''
     }
 
-    #boxcox transformation
-    if(boxcox_mod) {
-      if(file.exists(file.path(directory,"modelfit_run/boxcox.ext"))) {
-        boxcox_ofv <- .get_ext_ofv(file.path(directory,"modelfit_run/boxcox.ext"))
-        dofv_box <- as.numeric(base_ofv - boxcox_ofv)
-        #get nr TH+d
-        boxcox_thetas <- count_thetas(filename=file.path(directory,"modelfit_run/boxcox.ext"))
-        base_thetas <- count_thetas(filename=base_ext_file)
-        add.par_box <- boxcox_thetas - base_thetas
-      } else {
-        if(!quiet) {
-          message("WARNING: File ",file.path(directory,"modelfit_run/boxcox.ext")," not found!")
-        }
-        dofv_box <- "ERROR"
-        add.par_box <- ''
-      }
+    #boxcox transformation(the model file should always exist if transform is not skipped)
+    if(boxcox_mod && file.exists(file.path(directory,"modelfit_run/boxcox.ext"))) {
+      boxcox_ofv <- .get_ext_ofv(file.path(directory,"modelfit_run/boxcox.ext"))
+      dofv_box <- as.numeric(base_ofv - boxcox_ofv)
+      #get nr TH+d
+      boxcox_thetas <- count_thetas(filename=file.path(directory,"modelfit_run/boxcox.ext"))
+      base_thetas <- count_thetas(filename=base_ext_file)
+      add.par_box <- boxcox_thetas - base_thetas
     } else {
-      dofv_box <- "NA"
+      if(!quiet) {
+        message("WARNING: File ",file.path(directory,"modelfit_run/boxcox.ext")," not found!")
+      }
+      dofv_box <- "ERROR"
       add.par_box <- ''
     }
-        
+
     # additional etas
     if(add_etas_mod) {
       if(file.exists(file.path(directory,"add_etas_run/add_etas_linbase.ext"))) {
@@ -101,24 +96,19 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
       add.par_additional_eta <- ''
     }
     
-    # t-distribution
-    if(tdist_mod) {
-      if(file.exists(file.path(directory,"modelfit_run/tdist.ext"))) {
-        tdist_ofv <- .get_ext_ofv(file.path(directory,"modelfit_run/tdist.ext"))
-        dofv_tdist <- as.numeric(base_ofv - tdist_ofv)
-        #get nr TH+d
-        tdist_thetas <- count_thetas(filename=file.path(directory,"modelfit_run/tdist.ext"))
-        base_thetas <- count_thetas(filename=base_ext_file)
-        add.par_tdist <-  tdist_thetas - base_thetas
-      } else {
-        if(!quiet) {
-          message("WARNING: File ",file.path(directory,"modelfit_run/tdist.ext")," not found!")
-        }
-        dofv_tdist <- "ERROR"
-        add.par_tdist <- ''
-      }
+    # t-distribution (the model file should always exist if transform is not skipped)
+    if(tdist_mod && file.exists(file.path(directory,"modelfit_run/tdist.ext"))) {
+      tdist_ofv <- .get_ext_ofv(file.path(directory,"modelfit_run/tdist.ext"))
+      dofv_tdist <- as.numeric(base_ofv - tdist_ofv)
+      #get nr TH+d
+      tdist_thetas <- count_thetas(filename=file.path(directory,"modelfit_run/tdist.ext"))
+      base_thetas <- count_thetas(filename=base_ext_file)
+      add.par_tdist <-  tdist_thetas - base_thetas
     } else {
-      dofv_tdist <- "NA"
+      if(!quiet) {
+        message("WARNING: File ",file.path(directory,"modelfit_run/tdist.ext")," not found!")
+      }
+      dofv_tdist <- "ERROR"
       add.par_tdist <- ''
     }
     
@@ -157,16 +147,10 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
     } else {
       dofv_block <- "NA"
     }
-    if(boxcox_mod) {
-      dofv_box <- "ERROR"
-    } else {
-      dofv_box <- "NA"
-    }
-    if(tdist_mod) {
-      dofv_tdist <- "ERROR"
-    } else {
-      dofv_tdist <- "NA"
-    }
+    # because boxcox and tdist models should always exist
+    dofv_box <- "ERROR"
+    dofv_tdist <- "ERROR"
+    
     if(add_etas_mod) {
       dofv_additional_eta <- "ERROR"
     } else {
