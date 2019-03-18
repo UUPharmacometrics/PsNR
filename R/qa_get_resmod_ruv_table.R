@@ -2,6 +2,14 @@ get_resmod_ruv_table <- function(directory, idv_name, dvid_name, skip){
   resmod_table_list <- get_resmod_table(directory=directory, idv=idv_name)
   resmod_file_exists <- resmod_table_list$resmod_file_exists
   resmod_ruv_table_list <- list()
+  # for some $PRED models TIME and TAD can be missing but PRED will always be run with qa.
+  # resmod_PRED can be used instead, except idv_varying rows from the results.csv values.
+  if(!resmod_file_exists && all(skip!="resmod")) {
+    resmod_table_list <- get_resmod_table(directory=directory, idv="PRED")
+    resmod_file_exists <- resmod_table_list$resmod_file_exists
+    idv_name <- "PRED"
+  }
+  
   if(resmod_file_exists && all(skip!="resmod")) {
     resmod_table_full <- resmod_table_list$resmod_table
     dvid_nr <- find_dvid_values(directory,idv=idv_name,dvid_name)
@@ -22,17 +30,21 @@ get_resmod_ruv_table <- function(directory, idv_name, dvid_name, skip){
     k <- 1
     for (j in 1:length(dvid_nr)) {
       resmod_table <- resmod_table_full %>% dplyr::filter(dvid==!!dvid_nr[j]) %>% dplyr::select(-iteration, -dvid)
-      non_time_var <- resmod_table %>%
+      #no time varying
+      resmod_ruv_table <- resmod_table %>%
         dplyr::filter(!grepl("idv_varying", model)) %>%
         dplyr::mutate(df = stringr::str_count(parameters, "="))
-      time_var_cutoff <- resmod_table %>%
-        dplyr::filter(grepl("idv_varying_RUV_cutoff",model)) %>%
-        dplyr::mutate(df = 2) %>%
-        dplyr::arrange(desc(dOFV)) %>%
-        dplyr::slice(1) %>%
-        dplyr::mutate(model = "time varying")
-      resmod_ruv_table <- dplyr::bind_rows(non_time_var, 
-                                           time_var_cutoff)
+      if(idv_name!="PRED") { # time varying
+        time_var_cutoff <- resmod_table %>%
+          dplyr::filter(grepl("idv_varying_RUV_cutoff",model)) %>%
+          dplyr::mutate(df = 2) %>%
+          dplyr::arrange(desc(dOFV)) %>%
+          dplyr::slice(1) %>%
+          dplyr::mutate(model = "time varying")
+        resmod_ruv_table <- dplyr::bind_rows(resmod_ruv_table, 
+                                             time_var_cutoff)
+      }
+      
       #add tad varying row, if exists time after dose
       if(add_tad_varying) {
         tad_varying <- tad_table %>% dplyr::filter(dvid==!!dvid_nr[j]) %>% dplyr::select(-iteration, -dvid) %>%
