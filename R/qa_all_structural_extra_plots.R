@@ -47,7 +47,10 @@ all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_str
         if(make_vpc) {
           cat("\n\n")
           #vpc plots
-          vpc_plot <- plot_structural_vpc(vpc_tables_list$obs,vpc_tables_list$sim,shift_tab,idv=resmod_structural_details[[i]]$idv)
+          vpc_plot <- plot_structural_vpc(obs=vpc_tables_list$obs,
+                                          sim=vpc_tables_list$sim,
+                                          shift_tab=shift_tab,
+                                          idv=resmod_structural_details[[i]]$idv)
           print(vpc_plot)
           cat("\n\n")
           cat(vpc_captions)
