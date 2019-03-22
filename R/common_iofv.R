@@ -1,3 +1,12 @@
+#' Agreement in individual OFV contribution (iOFV) plot between between two models.
+#' 
+#' @param phi1 A string of the first model phi file name.
+#' @param phi2 A string of the second model phi file name.
+#' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
+#' 
+#' @return A list of two elements:
+#' make_plot - logical argument indicating whether needed files exist.
+#' plot - a ggplot plot object, scatter plot.
 iofv_vs_iofv <- function(phi1, phi2,quiet=F) {
   if(file.exists(phi1) && file.exists(phi2)) {
     make_plot <- TRUE
