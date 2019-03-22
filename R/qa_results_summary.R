@@ -1,3 +1,25 @@
+#' Creates a yaml file with all results of the qa run.
+#'
+#' @param model.filename The original model file name.
+#' @param ofv_table The ofv dataframe from the qa_ofv_summary_table.R function.
+#' @param resmod_structural_details The output list from the qa_get_resmod_structural_details.R function.
+#' @param full_omega_block_list The output list from the qa_get_full_omega_block.R function.
+#' @param boxcox_lambdas_list The output list from the qa_get_param_extra_table.R function for the boxcox model.
+#' @param tdist_list The output list from the get_param_extra_table.R function for the tdist model.
+#' @param add_etas_list The output list from the qa_get_add_etas_table.R function.
+#' @param iov_list The output list from the qa_get_iov_table.R function.
+#' @param frem_table_list The output list from the qa_get_all_covariates.R function.
+#' @param scm_table_list The output list from the qa_get_scm_table.R function.
+#' @param resmod_table_list The output list from the qa_get_resmod_ruv_table.R function.
+#' @param ii_list The output list from the qa_get_ii_table.R function.
+#' @param outlier_table_list The output list from the qa_get_outliers_table.R function.
+#' @param overview_table_list The output list from the qa_get_overview_table.R function.
+#' @param dvid_name A charaster of the DVID column name.
+#' @param skip A character vector with names of the skipped parts in the qa run.
+#' @param idv_all A character vector with all idv names.
+#'
+#' @return A yaml file results_summary.yaml for the specific qa run. 
+
 yaml_summary <- function(model.filename,
                          ofv_table,
                          resmod_structural_details,

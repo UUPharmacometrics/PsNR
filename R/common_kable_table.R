@@ -1,3 +1,10 @@
+#' Create a kable table basen on chosen Rmarkdown format (latex or html). Special case if only one column in the input dataframe.
+#'    
+#' @param table A data frame.
+#' @param format A string of the Rmarkdown format. Possible values "latex" or "html". Not tested with other values like "markdown", "pandoc", and "rst".
+#' @param ... All other arguments that can be passed to the kable() function.
+#' 
+#' @return A kable dataframe.
 kable_table <- function(table,format,...) {
   # library(kableExtra)
   table_new <- kable(table,...)

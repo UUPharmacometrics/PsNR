@@ -1,3 +1,11 @@
+#' Captions for the structural part plots and tables based on the idv name.
+#'     
+#' @param idv_all A string vector of all possible idv names for specific run.
+#' @param idv_name The string of the idv name from the -idv option in the qa run.
+#' @param which_idv The string of the idv name which captions are needed.
+#' @param perc A logical if values in the structural tables and plots are presented in percentages.
+#' 
+#' @return A list of the captions for structural plots and tables of specific idv.
 captions_structural <- function(idv_all,idv_name,which_idv,perc) {
   #captions
   #order TIME,TAD,PRED

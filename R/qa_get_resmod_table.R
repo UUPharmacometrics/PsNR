@@ -1,4 +1,13 @@
-# get resmod result.csv files (can't open like usually, besause there are more column than column names)
+#' Open results.csv file and save output in the dataframe readable for R
+#'    
+#' @param directory The qa run directory path. Will search for the results.csv file in the resmod_'idv' folder.
+#' @param idv The string of the idv name.
+#' @param quiet A logical indicating whether function should not write the warning message 
+#' if some file not found. By default quiet=FALSE.
+#' 
+#' @return The list of two elements:
+#' resmod_file_exists - logical argument indicating whether results.csv file exists in the expected directory
+#' resmod_table - a results.csv data frame
 get_resmod_table <- function(directory, idv,quiet=F){
   resmod_file_exists <- file.exists(file.path(directory, paste0("resmod_", idv), "results.csv"))
   if(resmod_file_exists) {
