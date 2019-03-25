@@ -8,13 +8,13 @@ individual_plots_extra <- function(file_name,ID_nr,dvid_name,quiet=F) {
   if(file.exists(file_name) && (length(ID_nr)!=0) ) {
     if(dvid_name=="") {
       p <- xpose::xpose_data(file=file_name) %>%
-        xpose::mutate(IPRED=OPRED) %>% 
+        xpose::mutate(IPRED=CIPREDI) %>%
         xpose::set_var_types(ipred="IPRED") %>% 
         dplyr::filter(ID %in% !!ID_nr) %>%
         xpose::ind_plots(nrow=4, ncol=3, title="Individual plots",subtitle="",caption="") + labs(color = NULL, linetype = NULL, alpha = NULL) + theme_bw()
     } else {
       p <- xpose::xpose_data(file=file_name) %>%
-        xpose::mutate(IPRED=OPRED) %>% 
+        xpose::mutate(IPRED=CIPREDI) %>% 
         xpose::set_var_types(ipred="IPRED",dvid=dvid_name) %>%
         dplyr::filter(ID %in% !!ID_nr) %>%
         xpose::ind_plots(nrow=4, ncol=3, facets = c('ID',dvid_name), title="Individual plots",subtitle="",caption="") + labs(color = NULL, linetype = NULL, alpha = NULL) + theme_bw()

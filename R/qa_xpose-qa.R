@@ -355,7 +355,7 @@ calc_ruv_contribution <- function(xpdb,dvid_col_name,dvid_value){
       diag(diag(df_deps %*% sigma_matrix %*% t(df_deps)),  nrow = NROW(df_deps)) + interaction_terms
     },
     TIME = .$TIME,
-    IPRED = .$OPRED
+    IPRED = .$CIPREDI
     )
 }
 
