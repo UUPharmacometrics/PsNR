@@ -55,6 +55,7 @@ yaml_summary <- function(model.filename,
   add_etas_list <- check_argument_existance(add_etas_list)
   iov_list <- check_argument_existance(iov_list)
   all_outl_list <- check_argument_existance(all_outl_list)
+  ofv_table <- check_argument_existance(ofv_table)
   
   #add nonlinear and linearized ofv values to the tree
   tree <- list(
@@ -64,6 +65,27 @@ yaml_summary <- function(model.filename,
     linearized_base_model_ofv_after_estimation = ofv_table[3,2],
     sum_of_individual_ofv_values = ofv_table[4,2]
   )
+  
+  # if nonlinear=TRUE then ofv_table will not exist
+  if(!is.null(ofv_table)) {
+    tree <- list(
+      model_filename = model.filename,
+      nonlinear=FALSE,
+      nonlinear_base_model_ofv = ofv_table[1,2],
+      linearized_base_model_ofv_before_estimation = ofv_table[2,2],
+      linearized_base_model_ofv_after_estimation = ofv_table[3,2],
+      sum_of_individual_ofv_values = ofv_table[4,2]
+    )
+  } else {
+    tree <- list(
+      model_filename = model.filename,
+      nonlinear=TRUE,
+      nonlinear_base_model_ofv = NA,
+      linearized_base_model_ofv_before_estimation = NA,
+      linearized_base_model_ofv_after_estimation = NA,
+      sum_of_individual_ofv_values = NA
+    )
+  }
   
  #check if dvid exists
   if(dvid_name!='') {
