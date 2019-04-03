@@ -1,6 +1,6 @@
-simeval_all_ouliers_table <- function(simeval_directory,ebe_npde_outl_crit=-3,quiet=F) {
-  if(file.exists(file.path(working.directory,"simeval_run/raw_all_iofv.csv")) 
-     && file.exists(file.path(working.directory,"simeval_run/ebe_npde.csv"))) {
+simeval_all_outliers_table <- function(simeval_directory,ebe_npde_outl_crit=-3,quiet=F) {
+  if(file.exists(file.path(working.directory,"simeval_run/raw_all_iofv.csv")) && 
+     file.exists(file.path(working.directory,"simeval_run/ebe_npde.csv"))) {
     
     #ofv outliers
     iofv_res <- i_ofv_res(file.path(simeval_directory, "raw_all_iofv.csv"),show.warning=F)
