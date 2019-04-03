@@ -39,10 +39,11 @@ outlier.table <- function(residual.outliers.file) {
         dplyr::select(select_col) %>%
         dplyr::group_by(ID) %>%
         dplyr::summarize_at(select_col[-1],dplyr::funs(sum(. == 1))) %>%
+        dplyr::ungroup() %>%
         as.data.frame()
       
       # Replace 0 to blank
-      outliers_count[outliers_count == 0] <- ""
+      outliers_count[,2:ncol(outliers_count)][outliers_count[,2:ncol(outliers_count)] == 0] <- ""
     }
   } else {
     outlier_table <- data.frame()
