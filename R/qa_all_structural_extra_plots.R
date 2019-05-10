@@ -37,7 +37,7 @@ all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_str
       vpc_captions <- all_captions$idv_vpc_captions
       
       #print
-      cat(paste0("##",resmod_structural_details[[i]]$idv_text,"\n\n"))
+      cat(paste0("## ",resmod_structural_details[[i]]$idv_text,"\n\n"))
       first_table <- kable_table(resmod_structural_details[[i]]$first_table,format=type,booktabs=T,align = c("l","r"),linesep="") %>%
         kableExtra::kable_styling(position="c",full_width = F) %>%
         kableExtra::column_spec(1,bold=T)
