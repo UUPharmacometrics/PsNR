@@ -42,7 +42,7 @@ get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
           dplyr::slice(-1)
         column_names <- paste0(scm_table_coef$relation,"-1")
         column_names <- gsub("\\-","\\.",column_names)
-        coef_table <- scm_table_coef[,which(colnames(scm_table_coef) %in% column_names)]
+        coef_table <- scm_table_coef[, which(colnames(scm_table_coef) %in% column_names), drop=F]
         scm_table <- cbind(scm_table,"Coef"=as.numeric(as.character(rep(NA,nrow(scm_table)))))
         for(i in 1:length(coef_table)) {
           row_nr <- which(paste0(gsub("\\-","\\.",scm_table[,1]),".1") == colnames(coef_table[i]))
