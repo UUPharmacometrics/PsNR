@@ -89,7 +89,7 @@ names(exp_outlierframe) <- NULL
 exp_outlierframe_1 <- data.frame(ID=c(24,24,42),TIME=c(176,61.5,95.5),DV=c("38.1","16.7","13.9"),
                                  PRED=c("116.400","17.707","52.912"),IWRES=c("-0.3635","-0.2838","-0.4272"),
                                  CWRES=c("-2.1581","-2.4754","-2.3480"),OUTLIER.IWRES=c(1,0,1),OUTLIER.CWRES=c(1,1,0),stringsAsFactors = F)
-exp_outliers_count_1 <- data.frame(ID=c(24,42),OUTLIER.CWRES=c(2,""),OUTLIER.IWRES=c(1,1),stringsAsFactors = F)
+exp_outliers_count_1 <- data.frame(ID=c(24,42),OUTLIER.CWRES=c(2,0),OUTLIER.IWRES=c(1,1),stringsAsFactors = F)
 exp_outlierframe_4 <- data.frame(ID=c(1,56,56),TIME=c(176,61.5,95.5),DV=c("38.1","16.7","13.9"),
                                  PRED=c("116.400","17.707","52.912"),CWRES=c("-2.1581","-2.4754","-2.3480"),
                                  OUTLIER.CWRES=c(1,1,1),stringsAsFactors = F)

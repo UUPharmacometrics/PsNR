@@ -42,8 +42,7 @@ outlier.table <- function(residual.outliers.file) {
         dplyr::ungroup() %>%
         as.data.frame()
       
-      # Replace 0 to blank
-      outliers_count[,2:ncol(outliers_count)][outliers_count[,2:ncol(outliers_count)] == 0] <- ""
+      
     }
   } else {
     outlier_table <- data.frame()
