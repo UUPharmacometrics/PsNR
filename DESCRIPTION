@@ -42,15 +42,12 @@ Imports:
     magrittr,
     ggplot2,
     xpose4,
-    Rcpp,
     caTools,
     formatR,
     ggthemes,
     gplots,
     grid,
-    gridExtra,
     MCMCpack,
-    plotrix,
     plyr,
     stats4
 Suggests:
