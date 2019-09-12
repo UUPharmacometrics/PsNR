@@ -5,6 +5,7 @@
 #' @param ... All other arguments that can be passed to the kable() function.
 #' 
 #' @return A kable dataframe.
+#' @export
 kable_table <- function(table,format,...) {
   # library(kableExtra)
   table_new <- kable(table,...)
