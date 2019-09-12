@@ -7,3 +7,5 @@
 ## usethis namespace: end
 NULL
 
+#' @import ggplot2
+NULL
