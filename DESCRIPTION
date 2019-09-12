@@ -41,7 +41,7 @@ Imports:
     PerformanceAnalytics,
     magrittr,
     ggplot2,
-    xpose4 (>= 4.5.0),
+    xpose4 (>= 4.6.0),
     caTools,
     formatR,
     ggthemes,
