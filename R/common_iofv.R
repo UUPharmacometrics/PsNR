@@ -7,6 +7,7 @@
 #' @return A list of two elements:
 #' make_plot - logical argument indicating whether needed files exist.
 #' plot - a ggplot plot object, scatter plot.
+#' @export
 iofv_vs_iofv <- function(phi1, phi2,quiet=F) {
   if(file.exists(phi1) && file.exists(phi2)) {
     make_plot <- TRUE
