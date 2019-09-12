@@ -1,3 +1,4 @@
+#' @export
 failed.values <- function(cdd.data) {
   # Count not successful values
   ms_nr <- length(which(cdd.data$minimization_successful == 0))

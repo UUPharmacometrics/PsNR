@@ -1,3 +1,4 @@
+#' @export
 pdf.cov.cook <- function(raw.results.file,skipped.id.file,pdf) {
   # create pdf file
   pdf(file=pdf,width=7,height=7)

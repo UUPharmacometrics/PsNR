@@ -8,7 +8,7 @@
 #' @return A list of two elements:
 #' boxcox_lambdas_orig - A data frame with lambda and sd values from the boxcox and derivatives models.
 #' boxcox_lambdas_table - A data frame with rounded lambda and sd values from the boxcox and derivatives models values, and added boxcox dofv value.
-
+#' @export
 get_boxcox_lambda_table <- function(directory,dofv_boxcox) {
   #get lambda values (extra table for box-cox transformation)
   if(file.exists(file.path(directory,"modelfit_run/boxcox.ext")) && file.exists(file.path(directory,"linearize_run/scm_dir1/derivatives.ext"))) {

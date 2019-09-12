@@ -1,3 +1,4 @@
+#' @export
 first_inclusion_step <- function(scm.log.file) {
   log_input <- read.delim(scm.log.file,header=F)
   log <- log_input

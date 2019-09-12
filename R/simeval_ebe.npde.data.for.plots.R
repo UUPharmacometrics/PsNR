@@ -1,3 +1,4 @@
+#' @export
 data.for.plots <- function(emp_distance,n.subjects,eta.names) {
   # Sort emp_distance values and remember rows, where they were in the beginning
   index_emp_distance <- sort(emp_distance,index.return=TRUE)

@@ -12,6 +12,7 @@
 #' scm_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient
 #' max_scm_table - a data frame with only one row from scm_table with the highest dofv value
 #' scm_files_exists - logical argument indicating whether needed file exists in the input directory and whether there is at least one covariate and one parameter.
+#' @export
 get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
   rawres_file <- file.path(scm_directory,"raw_results_scm.csv")
   scm_files_exists <- file.exists(rawres_file)

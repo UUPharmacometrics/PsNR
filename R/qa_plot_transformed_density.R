@@ -8,6 +8,7 @@
 #' @param param_model a character. Possible values: boxcox or tdist. Needed only for lables in the plots.
 #' 
 #' @return A list of plots
+#' @export
 plot_transformed_density <- function(data_table,eta_table,param_model) {
   if(param_model=="boxcox") {
     labels=c("Untransformed density","Boxcox transformed density")

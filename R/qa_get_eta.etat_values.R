@@ -7,6 +7,7 @@
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
 #' @return A data frame
+#' @export
 get_eta.etat_values <- function(param_model,theta_values,quiet=F) {
   param_phi_file <- sub("(\\.[^.]+)$",".phi",param_model)
   if(file.exists(param_phi_file)) {

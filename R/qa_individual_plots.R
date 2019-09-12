@@ -1,3 +1,4 @@
+#' @export
 individual_plots <- function(file_name,ID_nr,quiet=F) {
   if(file.exists(file_name) && (length(ID_nr)!=0) ) {
     p <- xpose::xpose_data(file=file_name) %>%

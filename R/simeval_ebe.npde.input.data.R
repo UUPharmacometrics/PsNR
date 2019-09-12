@@ -1,3 +1,4 @@
+#' @export
 input.data <- function(ebe.npde.file,eta.names,show.warning) {
   if(missing(show.warning)){
     show.warning <- TRUE

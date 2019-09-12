@@ -7,6 +7,7 @@
 #' By default skip=NULL.
 #' 
 #' @return A data frame.
+#' @export
 get_structural_overview_table <- function(directory,idv,dvid_name,skip=NULL) {
   if(length(idv)!=0) {
     #check if dvid exist

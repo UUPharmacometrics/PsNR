@@ -1,3 +1,4 @@
+#' @export
 pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
   # create pdf file
   pdf(file=pdf,width=11.69, height=8.27)

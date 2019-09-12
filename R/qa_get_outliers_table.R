@@ -12,6 +12,7 @@
 #' max_outlier_table - A data frame of one most outlying individual. Will be used for summary table.
 #' outlier_ids - A numeric vector with all outlying individual ID numbers.
 #' fig_height_outl - A numeric for idividual plots hight.
+#' @export
 get_outliers_table <- function(simeval_directory,cdd.data,skip=NULL,quiet=F) {
   outlier_ids <- c()
   simeval_files_exist <- file.exists(file.path(simeval_directory, "raw_all_iofv.csv"))

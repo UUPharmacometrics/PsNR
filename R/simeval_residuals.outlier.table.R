@@ -1,3 +1,4 @@
+#' @export
 outlier.table <- function(residual.outliers.file) {
   if(file.exists(residual.outliers.file)) {
     #get residual names

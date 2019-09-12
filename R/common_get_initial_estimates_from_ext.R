@@ -8,6 +8,7 @@
 #' @return A data frame of initial estimates.
 
 #part can be "omega","theta","sigma" or "all"(means thetas, omegas and sigmas)
+#' @export
 get_initial_estimates_from_ext <- function(filename,select="all",iteration=-1000000000,do.stop=TRUE) {
   init.est <- read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration)

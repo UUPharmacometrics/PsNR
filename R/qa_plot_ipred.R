@@ -1,3 +1,4 @@
+#' @export
 plot_ipred <- function(table,idv) {
   table$bin_mean[length(table$bin_mean)] <- Inf
   table$bin_max[length(table$bin_max)] <- Inf

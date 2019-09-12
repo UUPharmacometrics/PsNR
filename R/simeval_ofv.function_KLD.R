@@ -6,6 +6,7 @@
 ###########################################################################
 
 #put KLD function in separate file. Assume this function is tested elsewhere
+#' @export
 KLD <- function(px, py, base=exp(1)){
   ### Initial Checks
   if(!is.vector(px)) px <- as.vector(px)

@@ -11,6 +11,7 @@
 #' eta_transf_table - a data frame of the transformed ETA values
 #' fig_height - hight of the figure which is based on how many ETAs are in the table
 #' make_eta_transf_plot - a logical identifier if eta transformation plot should be created
+#' @export
 get_eta_transf_table <- function(input_table,seq_length.out=1000) {
   fig_height <- 15
   if(any(grepl('ETA',input_table$ETA)) && (any(colnames(input_table)=="Lambda") || any(colnames(input_table)=="Degrees of freedom")))  {

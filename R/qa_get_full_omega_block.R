@@ -9,6 +9,7 @@
 #' @return A list of 2 elements:
 #' full_omega_block_table - a data frame
 #' full_omega_block_error - a logical indicating whether both input files original_max0_model and fullblock_model exist in the folder
+#' @export
 get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=F) {
   full_omega_block_error <- FALSE
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)

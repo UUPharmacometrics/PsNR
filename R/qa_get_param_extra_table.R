@@ -13,6 +13,7 @@
 #' 
 #' Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and 
 #' the dOFV value is not added to this data frame.
+#' @export
 get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) {
   if(grepl("boxcox",param_model)) {
     table_col_name <- "Lambda"

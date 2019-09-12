@@ -1,3 +1,4 @@
+#' @export
 create.data.full <- function(raw.results.file,skipped.id.file) {
   ## read files
   input_cdd.data <- read.csv(raw.results.file)

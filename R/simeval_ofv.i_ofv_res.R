@@ -1,3 +1,4 @@
+#' @export
 i_ofv_res <- function(all.iofv.file,n.subjects,samples,show.warning=TRUE) {
   
   # iOFV RES

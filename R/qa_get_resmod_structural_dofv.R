@@ -5,7 +5,7 @@
 #' @param dvid A dvid value. By default dvid='NA'.
 #' 
 #' @return A numeric resmod structural dofv value. If resmod.csv file does not exist will return string "ERROR".
-
+#' @export
 get_resmod_structural_dofv <- function(directory, idv, dvid="NA") {
   resmod_table_list <- get_resmod_table(directory, idv)
   resmod_file_exists <- resmod_table_list$resmod_file_exists

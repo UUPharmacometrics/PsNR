@@ -11,6 +11,7 @@
 #' covariates_table - a data frames with two rows, one for frem record and one for scm record (for summary section)
 #' covariates_extra_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and 
 #' estimated covariate coefficient, with two extra rows - sum of all scm dofv values and frem dofv value (for covariates section)
+#' @export
 get_covariates_table <- function(frem_table,scm_table,max_scm_table) {
   covariates_table <- rbind(c("FREM",frem_table[,2:3]),max_scm_table,stringsAsFactors=F)
   if(any(c("ERROR","NA","SKIPPED")==scm_table$dOFV[1]) && length(scm_table$dOFV)==1) {

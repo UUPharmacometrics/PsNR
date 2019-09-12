@@ -6,6 +6,7 @@
 #' @param perc A logical if values in the structural tables and plots are presented in percentages.
 #' 
 #' @return A list of the captions for structural plots and tables of specific idv.
+#' @export
 captions_structural <- function(idv_all,idv_name,which_idv,perc) {
   #captions
   #order TIME,TAD,PRED

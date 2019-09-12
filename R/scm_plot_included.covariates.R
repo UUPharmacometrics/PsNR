@@ -1,3 +1,4 @@
+#' @export
 plot_included_covariates <- function(data,sign,n1,name) {
   p <- ggplot(data, aes(x, y)) + 
     geom_line() +

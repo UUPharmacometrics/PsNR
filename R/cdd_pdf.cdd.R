@@ -1,3 +1,4 @@
+#' @export
 pdf.cdd <- function(raw.results.file,skipped.id.file,pdf.filename,
                     min.failed,cov.failed,cov.warnings,boundary,legend,cutoff_delta.ofv,
                     cutoff_cook,outlier_ID) {

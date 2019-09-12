@@ -1,3 +1,4 @@
+#' @export
 keep_symbols <- function(table,type) {
   #add needed symbols for ztable
   for (j in 1:ncol(table)) {

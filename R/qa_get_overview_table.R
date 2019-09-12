@@ -12,6 +12,7 @@
 #' n.rgroup - a numeric vector with number of rows in each group
 #' rgroup_names - a character vector of group names
 #' row_groups - a data frame with group names as well as a cutoff for the first and last row number in the overview_table for each group
+#' @export
 get_overview_table <- function(structural_overview,param_var_overview,covariates_overview,resmod_ruv_overview,infl_indiv_overview,outliers_overview) {
   overview_list <- list(structural_overview,param_var_overview,covariates_overview,resmod_ruv_overview,infl_indiv_overview,outliers_overview)
   rgroup_names <- c("Structural Model","Parameter Variability Model","Covariates","Residual Error Model","Influential Individuals","Outliers")

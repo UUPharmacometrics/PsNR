@@ -1,3 +1,4 @@
+#' @export
 plot_structural_vpc <- function(obs,sim,shift_tab,idv) {
   sim_shifted <- sim %>%
     dplyr::mutate(bin_index = findInterval(unlist(.[[toupper(idv)]]), shift_tab$bin_min),  # in which bin did observation go

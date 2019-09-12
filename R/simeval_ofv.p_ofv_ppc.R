@@ -1,4 +1,5 @@
 # pOFV PPC
+#' @export
 p_ofv_ppc <- function(raw.results.file) {
   # input data 
   rawres_input <- read.csv(raw.results.file)

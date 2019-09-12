@@ -1,3 +1,4 @@
+#' @export
 create.data <- function(input_cdd.data,cdd.inds) {
   # check if exist column method
   if ("method" %in% colnames(input_cdd.data)) {

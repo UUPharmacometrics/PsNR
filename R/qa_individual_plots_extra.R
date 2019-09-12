@@ -4,6 +4,7 @@
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
 #' @return A ggplot object.
+#' @export
 individual_plots_extra <- function(file_name,ID_nr,dvid_name,quiet=F) {
   if(file.exists(file_name) && (length(ID_nr)!=0) ) {
     if(dvid_name=="") {

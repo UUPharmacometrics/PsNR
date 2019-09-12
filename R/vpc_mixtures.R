@@ -3,6 +3,7 @@
 # Adds a "replicate" column with the number of the replicate counting from 1
 # This is not optimized for speed or for memory.
 # Using xpose (again)
+#' @export
 read_nonmem_table <- function(filename) {
     lines <- readLines(filename)
 
@@ -22,6 +23,7 @@ read_nonmem_table <- function(filename) {
 #        This can be read in from for example a .phm file from NONMEM
 # For each replicate for each ID find the SUBPOP with highest PMIX.
 # Create a table with ID, MIXEST, replicate with only one row per ID/replicate
+#' @export
 most_probable_mixture_subpop <- function(df) {
     df %>%
         dplyr::group_by(ID, replicate) %>%
@@ -33,6 +35,7 @@ most_probable_mixture_subpop <- function(df) {
 #        This can be read in from for example a .phm file from NONMEM
 # For each SUBPOP calculate the mean PMIX over all individuals
 # Output is a table with SUBPOP and PMIX where PMIX is now an average
+#' @export
 average_probability_per_mixture_subpops <- function(df) {
     df %>%
         dplyr::group_by(SUBPOP) %>%
@@ -41,6 +44,7 @@ average_probability_per_mixture_subpops <- function(df) {
 
 # The input is a table with ID, SUBPOP, PMIX and replicate columns
 # The function outputs a table with one randomly (given PMIX) selected SUBPOP for each ID, replicate pair
+#' @export
 randomize_mixture_subpops <- function(df) {
     df %>%
         group_by(replicate, ID) %>%
@@ -55,6 +59,7 @@ randomize_mixture_subpops <- function(df) {
 #   randomize - Default is to only use the subpop with maximum probability for each ID
 #               This option randomizes using the probabilities in the input
 # Can return error message instead of plot for a subpopulation
+#' @export
 mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", stratify_on, randomize=FALSE) {
     if (randomize) {
         randomized_sim <- randomize_mixture_subpops(sim_mixture)

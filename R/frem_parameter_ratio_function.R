@@ -6,6 +6,7 @@
 #' @param pardata - parameter data frame with column parname
 #' 
 #' @return Function does all the calculations and the creates a list of plots.
+#' @export
 parameter_ratio <- function(inTable_frem,covdata,pardata) {
 
   # check if there are all 3 input data files

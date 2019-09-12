@@ -2,6 +2,7 @@
 #' 
 #' @param yaml_file Yaml file name
 #' @return A list of three character elements (PsN_version, NONMEM_version and R_version) and one dataframe element (R_packages).
+#' @export
 additional_info <- function(yaml_file) {
   yaml_list <- yaml::yaml.load_file(yaml_file)
 

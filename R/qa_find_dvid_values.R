@@ -5,6 +5,7 @@
 #' @param dvid_name The string of the idv name from the -idv option in the qa run.
 #' 
 #' @return A numeric vector of all DVID values. If no DVIDs then will be set to string 'NA'.
+#' @export
 find_dvid_values <- function(directory,idv,dvid_name) {
   #check if dvid exist
   resmod_table_list <- get_resmod_table(directory, idv)

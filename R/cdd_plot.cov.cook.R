@@ -1,3 +1,4 @@
+#' @export
 plot.cov.cook <- function(cdd.data.all) {
   cdd.data <- cdd.data.all[-1,]
   rownames(cdd.data) <- NULL

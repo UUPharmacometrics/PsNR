@@ -1,3 +1,4 @@
+#' @export
 eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
 
   # rename ETA(n) to ETA.n. because in dataframe names of ETA columns are with dots

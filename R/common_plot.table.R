@@ -1,3 +1,4 @@
+#' @export
 plot.table <- function(table,total_rows_per_page,rotate) {
   # library(gridExtra)
   # draw only 18 rows of table per each page

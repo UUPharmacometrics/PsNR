@@ -1,3 +1,4 @@
+#' @export
 histograms.cwres.iwres <- function(residual.files,residual.names,do_plot=T) {
   n.residuals <- length(residual.files)
   #npde (for each data frame plot a histogram)

@@ -1,3 +1,4 @@
+#' @export
 .calc_and_add_shift_from_cwres <- function(structural_details_table, orig_ext_file, base_dataset, extra_table, extra_table_colnames, idv, dvid, dvid_name){
   # .ext file with the final estimates
   final_estimates <- read.table(orig_ext_file, skip=1, header=T) %>%

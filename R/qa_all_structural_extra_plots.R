@@ -11,6 +11,7 @@
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
 #' 
 #' @return Print kable tables and plots to the report.
+#' @export
 all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_structural_details,
                                        extra_table,idv_all,idv_name,dvid_name,type,nonlinear) {
   if(length(idv_all)!=0) {

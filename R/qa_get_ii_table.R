@@ -18,6 +18,7 @@
 #' ii_table - A data frame of all influential individuals, where max row number is set to max_rows.
 #' infl_id - A numeric vector with all influential individual ID numbers.
 #' fig_height_infl - A numeric for idividual plots hight.
+#' @export
 get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,nonlinear,quiet=F){
   skipped.id.file <- file.path(cdd_directory,"skipped_individuals1.csv")
   if(!nonlinear) {

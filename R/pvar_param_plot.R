@@ -1,3 +1,4 @@
+#' @export
 pvar_parameter_plot <- function(csv_file_directory,plot_title,units) {
   data <- read.csv(csv_file_directory, header=TRUE, na.strings= ".",comment.char="#")
   # find numbers of the columns of Model and OFV (between these two columns are all parameters)

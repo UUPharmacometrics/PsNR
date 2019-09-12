@@ -1,3 +1,4 @@
+#' @export
 delta.ofv.data <- function(cdd.data.all,cutoff_delta.ofv,outlier_ID) {
   # Default for outlier_ID
   if (!missing(outlier_ID)) {

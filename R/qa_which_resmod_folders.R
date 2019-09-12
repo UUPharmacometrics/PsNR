@@ -6,6 +6,7 @@
 #' if some file not found. By default quiet=FALSE.
 #' 
 #' @return Character vector with all idv names.
+#' @export
 which_resmod_folders <- function(directory,idv_name,quiet=F) {
   #get resmod folder suffix
   resmod_suffix <- list.files(directory) %>% 

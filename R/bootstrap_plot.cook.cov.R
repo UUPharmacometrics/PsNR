@@ -1,3 +1,4 @@
+#' @export
 plot_cook_cov <- function(data_plots,failed_cov_ID,samples,estimation_failures) {
   #need ggplot2 and grid libraries
   #create plot object

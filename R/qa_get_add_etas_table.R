@@ -11,6 +11,7 @@
 #' @return A list of 2 arguments:
 #' add_etas_table - a data frame
 #' add_etas_error - a logical indicating whether both ext files original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder
+#' @export
 get_add_etas_table <- function(original_max0_model,add_etas_dir,added_etas,dofv_add.etas,nonlinear,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   if(!nonlinear) {

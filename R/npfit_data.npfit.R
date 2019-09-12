@@ -1,3 +1,4 @@
+#' @export
 data.npfit <- function(raw.nonparametric.file) {
 
   raw_nonparametric_real <- read.csv(raw.nonparametric.file)

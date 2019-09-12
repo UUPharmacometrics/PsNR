@@ -1,3 +1,4 @@
+#' @export
 plot.cov.cook.par <- function(cook.par.data,cov.par.data,parameters) {
   # plot cook score per each parameter/covariance per each parameter
   for (i in 1:length(parameters)) {

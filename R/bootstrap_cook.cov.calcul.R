@@ -1,3 +1,4 @@
+#' @export
 cook_cov_calcul <- function(raw.results.file,included.ids.file,est.param.names,show.warning=TRUE) {
   #read in needed files
   raw.results.data <- read.csv(raw.results.file)

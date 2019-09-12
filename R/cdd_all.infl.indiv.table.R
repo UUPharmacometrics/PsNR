@@ -1,3 +1,4 @@
+#' @export
 all.infl.indiv.table <- function(infl_ofv,infl_cook_data,infl_cov_data,fail_ID,ID_failed_cov) {
   col_amount <- 4
   # ID numbers of all influential individuals if they exist

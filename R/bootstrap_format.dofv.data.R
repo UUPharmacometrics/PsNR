@@ -1,3 +1,4 @@
+#' @export
 format_dofv_data <- function(dofv.raw.results.file,raw.results.file,est.param.names) {
   
   # Read in BOOT results (dOFV)

@@ -2,6 +2,7 @@
 #' 
 #' @param yaml_file A yaml file name
 #' @return A list of three elements: command, run_start, run_finish
+#' @export
 command_start.finish.time <- function(yaml_file) {
   command <- c()
   run_start <- c()

@@ -10,6 +10,7 @@
 #' @return A list of 2 elements:
 #' iov_table - a data frame
 #' iov_error - a logical indicating whether both ext files from models original_max0_model and iov_model exist in the folder
+#' @export
 get_iov_table <- function(original_max0_model,iov_model,iov_etas,dofv_iov,quiet=F) {
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   iov_ext_file <- sub("(\\.[^.]+)$",".ext",iov_model)

@@ -1,3 +1,4 @@
+#' @export
 sd_par_cov <- function(filename) {
   sd_parcov_file_exists <- file.exists(filename)
   if(sd_parcov_file_exists) {

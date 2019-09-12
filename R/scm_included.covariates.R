@@ -1,3 +1,4 @@
+#' @export
 included_covariates <- function(scm.short.log) {
   log_input <- read.delim(scm.short.log,header=F)
   log <- log_input

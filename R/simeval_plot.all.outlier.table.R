@@ -1,3 +1,4 @@
+#' @export
 plot.all.outlier.table <- function(all_outlier_table,total_rows_per_page) {
   # draw only 18 rows of table per each page
   if (missing(total_rows_per_page)) {

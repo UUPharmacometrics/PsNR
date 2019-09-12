@@ -1,3 +1,4 @@
+#' @export
 resmod_structural_details_tables <- function(working.directory,base_dataset,original_max0_model,
                                              extra_table,extra_table_colnames,idv_all,dvid_name,
                                              nonlinear,quiet=F) {

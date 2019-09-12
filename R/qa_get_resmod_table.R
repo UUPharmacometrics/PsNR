@@ -8,6 +8,7 @@
 #' @return The list of two elements:
 #' resmod_file_exists - logical argument indicating whether results.csv file exists in the expected directory
 #' resmod_table - a results.csv data frame
+#' @export
 get_resmod_table <- function(directory, idv,quiet=F){
   resmod_file_exists <- file.exists(file.path(directory, paste0("resmod_", idv), "results.csv"))
   if(resmod_file_exists) {

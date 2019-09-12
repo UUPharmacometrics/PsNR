@@ -25,6 +25,7 @@
 #' In case of missing ext file of the base model all dOFV values will be replaced with the string "ERROR".
 #' In case of missing transformation model file corresponding dOFV value will be replaced with the string "NA".
 #' In case of missing ext file of the transformation model corresponding dOFV value will be replaced with the string "ERROR".
+#' @export
 get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
   #for overview table
   fullblock_mod <- file.exists(file.path(directory,"modelfit_run/fullblock.mod"))

@@ -1,3 +1,4 @@
+#' @export
 warnings.data <- function(cdd.data,min.failed,cov.failed,cov.warnings,boundary) {
   
   # Default for min.failed, cov.warnings and boundary.

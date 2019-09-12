@@ -1,3 +1,4 @@
+#' @export
 plot_dofv <- function(all,df_est,est.param.names) {
   ggplot2::theme_set(ggplot2::theme_bw(base_size=20))
   qdOFV_all <- ggplot2::ggplot(all,ggplot2::aes(x=rownames,y=deltaofv,color=METHOD,linetype=minimization_successful)) + 

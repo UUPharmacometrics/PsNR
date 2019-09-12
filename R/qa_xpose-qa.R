@@ -1,3 +1,4 @@
+#' @export
 qa_data <- function(xpdb, resmod_folder, derivatives_model) {
   
   derivatives_lst <- sub("(\\.[^.]+)$",".lst",derivatives_model)

@@ -1,3 +1,4 @@
+#' @export
 dofv_vs_lin_dofv <- function(cdd_folder,lin_cdd_folder,model_name) {
   #cdd
   rawres_data <- read.csv(paste0(cdd_folder,"/raw_results_",model_name,".csv"),stringsAsFactors = F)

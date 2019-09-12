@@ -6,6 +6,7 @@
 #' otherwise second column will be set to "dOFV" and all other columns will be set to empty strings.
 #' 
 #' @return A data frame with the ERROR records.
+#' @export
 error_table <- function(first_column="",col=2,column_names) {
   if(missing(column_names)) {
     if(col>=2) column_names <- c("","dOFV",rep("",(col-2)))

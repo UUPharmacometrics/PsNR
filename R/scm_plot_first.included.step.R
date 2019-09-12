@@ -1,3 +1,4 @@
+#' @export
 plot_first_included_step <- function(data,base,sign,n1,name) {
   p <- ggplot(data, aes(x, y)) + 
     geom_point(shape="-", size=15) +

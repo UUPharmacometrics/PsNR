@@ -5,6 +5,7 @@
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @param do.stop A logical indicating whether function should stop if argument 'select' is set to something different than allowed string. By default do.stop=TRUE
 #' @return The data frame of initial estimate values.
+#' @export
 get_initial_estimate_values <- function(filename,select="all",iteration=-1000000000,do.stop=TRUE) {
   init.est <- read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration)
@@ -35,6 +36,7 @@ get_initial_estimate_values <- function(filename,select="all",iteration=-1000000
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @param keep_na Count or not to count NA values. By default is FALSE.
 #' @return Number of THETAs.
+#' @export
 count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {
   ext_file <- read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration)
@@ -52,6 +54,7 @@ count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {
 #' @param filename Name of the file.
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @return The OFV value.
+#' @export
 get_ext_ofv <- function(filename,iteration=-1000000000){
   read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration) %>%
@@ -67,6 +70,7 @@ get_ext_ofv <- function(filename,iteration=-1000000000){
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @param keep_zeroes A logical indicating whether function should keep omegas with zeroe values. By default keep_zeroes is FALSE.
 #' @return The data frame of omega values.
+#' @export
 get_omega_values <- function(filename, omegas, iteration=-1000000000, keep_zeroes=FALSE){
   omega_table <- get_initial_estimates_from_ext(filename=filename,select="omega",iteration=iteration)
   omegas_v <- c()

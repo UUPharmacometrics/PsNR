@@ -1,3 +1,4 @@
+#' @export
 data.obj.obsi <- function(obj.data.dir,obsi.data.dir) {
   # read in data tables
   OBJ_data_input <- read.table(obj.data.dir,header = TRUE, skip=1)

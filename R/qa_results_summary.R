@@ -19,7 +19,7 @@
 #' @param idv_all A character vector with all idv names.
 #'
 #' @return A yaml file results_summary.yaml for the specific qa run. 
-
+#' @export
 yaml_summary <- function(model.filename,
                          ofv_table,
                          resmod_structural_details,

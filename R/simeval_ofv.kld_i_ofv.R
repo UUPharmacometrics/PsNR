@@ -1,3 +1,4 @@
+#' @export
 kld_i_ofv <- function(all.iofv.file,n.subjects,samples,n) {
   ###########################################################################
   # Kullback-Leibler Divergence (KLD)                                       #

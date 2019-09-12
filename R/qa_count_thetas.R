@@ -5,6 +5,7 @@
 #' @param keep_na A logical indicating whether thetas with missing values should be counted. By default keep_na=FALSE.
 #' 
 #' @return Number of thetas in the ext file.
+#' @export
 count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {
   ext_file <- read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration)

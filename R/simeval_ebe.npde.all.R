@@ -1,3 +1,4 @@
+#' @export
 ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_criteria,rplots.level,model.filename,make_plot=TRUE) {
   
   if(make_plot) { # make or not to make plot

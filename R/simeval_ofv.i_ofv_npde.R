@@ -1,4 +1,5 @@
 # iOFV NPDE
+#' @export
 i_ofv_npde <- function(iofv.file) {
   iOFV <- read.csv(iofv.file) #input data
   iOFV_npde <- iOFV$NPDE # look only on NPDE column

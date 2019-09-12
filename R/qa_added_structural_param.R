@@ -6,6 +6,7 @@
 #' 
 #' @return A numeric value of added parameters to the idv_varying_theta model. 
 #' If file results.csv does not exist or all parameter values are missing then added_param will be set to empty character.
+#' @export
 added_structural_param <- function(directory, idv, dvid="NA") {
   resmod_table_list <- get_resmod_table(directory, idv)
   resmod_file_exists <- resmod_table_list$resmod_file_exists

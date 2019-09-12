@@ -1,3 +1,4 @@
+#' @export
 get_resmod_structural_details <- function(directory, suffix, dvid) {
   if(!missing("dvid") || dvid!='NA') {
     resmod_structural_table <- get_resmod_table(directory, suffix)$resmod_table

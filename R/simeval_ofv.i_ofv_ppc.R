@@ -1,3 +1,4 @@
+#' @export
 i_ofv_ppc <- function(all.iofv.file,samples,outlier_ID) {
 if (length(outlier_ID) > 0) {
   # iOFV PPC

@@ -1,3 +1,4 @@
+#' @export
 get_resmod_ruv_table <- function(directory, idv_name, dvid_name, skip){
   resmod_table_list <- get_resmod_table(directory=directory, idv=idv_name)
   resmod_file_exists <- resmod_table_list$resmod_file_exists

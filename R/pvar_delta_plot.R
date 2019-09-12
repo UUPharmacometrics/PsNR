@@ -1,3 +1,4 @@
+#' @export
 delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
                        page_title,page_units,palette,model_names){
   if(missing(EPV)){

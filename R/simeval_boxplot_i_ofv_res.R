@@ -1,3 +1,4 @@
+#' @export
 boxplot_i_ofv_res <- function(list_i_ofv_res,n.subjects,add_title=TRUE) {
   # unlist
   iOFV_res_ord <- list_i_ofv_res$iOFV_res_ord

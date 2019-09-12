@@ -1,3 +1,4 @@
+#' @export
 simeval_all_outliers_table <- function(simeval_directory,ebe_npde_outl_crit=-3,quiet=F) {
   if(file.exists(file.path(working.directory,"simeval_run/raw_all_iofv.csv")) && 
      file.exists(file.path(working.directory,"simeval_run/ebe_npde.csv"))) {

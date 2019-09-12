@@ -9,6 +9,7 @@
 #' @return A data frame with OFV values from nonlinear model, linearized model before the estimation, 
 #' linearized model after the estimation and the sum of the individual OFV values (linearized). 
 #' In case of missing ext or phi file instead of OFV value the string "ERROR" will appera in the data frame.
+#' @export
 ofv_summary_table <- function(directory,model.filename,quiet=F) {
   if(file.exists(file.path(directory,"derivatives.ext"))) {
     ofv_nonlin_base_mod <- .get_ext_ofv(file.path(directory,"derivatives.ext"))

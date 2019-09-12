@@ -1,3 +1,4 @@
+#' @export
 plot_1 <- function(ebenpde_tmp,theor_distance,emp_distance_sort,index_emp_distance,
                    out_distance,n.subjects,outlying_criteria,do_outlier_plot,model.filename) {
  

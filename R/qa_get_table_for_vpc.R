@@ -1,3 +1,4 @@
+#' @export
 get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_table,idv_all,dvid,dvid_name,quiet=F) {
   make_vpc <- (file.exists(obs_table) && file.exists(obs_extra_table) && file.exists(sim_table))
   if(dvid!="NA"){

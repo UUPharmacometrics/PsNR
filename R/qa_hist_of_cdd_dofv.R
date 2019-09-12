@@ -4,7 +4,7 @@
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
 #' 
 #' @return A ggplot object.
-
+#' @export
 hist_of_cdd_dofv <- function(values,quiet=F) {
   values <- values[!is.na(values)]
   values_table <- data.frame(dOFV=values,stringsAsFactors = F)

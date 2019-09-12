@@ -1,3 +1,4 @@
+#' @export
 cutoff.cov.cook <- function(raw.results.file,skipped.id.file,cutoff_cook,show.warning=TRUE) {
   if(missing("cutoff_cook")) {
     cutoff_cook <- 0.8

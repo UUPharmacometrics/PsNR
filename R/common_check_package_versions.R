@@ -4,6 +4,7 @@
 #' @param versions A character vector with package versions
 #' @param toolname A string of the tool name
 #' @param do_quit A logical indicating whether function should quit if some package version is too low. By default do_quit=TRUE
+#' @export
 check_package_versions <- function(pkg,versions,toolname,do_quit=T) {
   if(length(pkg)==length(versions)) {
     for(i in 1:length(pkg)) {

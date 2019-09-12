@@ -6,6 +6,7 @@
 #' @param pardata - parameter data frame with column parname
 #' 
 #' @return Function does all the calculations and the creates a list of plots.
+#' @export
 sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
   # check if there are all 3 input data files
   files_exist <- (exists("sd_coef_summary") & exists("covdata") & exists("pardata"))

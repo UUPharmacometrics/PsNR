@@ -1,3 +1,4 @@
+#' @export
 fix_column_names <- function(col_names) {
   for (i in 1:length(col_names)) { # column names can start only with letters and points
     if(!grepl("^[A-z.]",col_names[i])) {

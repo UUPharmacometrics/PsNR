@@ -1,3 +1,4 @@
+#' @export
 empirical.distance <- function(ebenpde_obs,n.subjects) {
   # Calculate empirical distance (emp_distance)
   emp_distance <- array(0,c(n.subjects,1))

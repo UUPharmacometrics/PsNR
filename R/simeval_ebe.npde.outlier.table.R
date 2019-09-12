@@ -1,3 +1,4 @@
+#' @export
 outlier.table.ebe.npde <- function(ebenpde_tmp,eta_names,outlier_id_row) {
 
   #CREATE FINAL TABLE (use function outlier_table to create a table fortable1)

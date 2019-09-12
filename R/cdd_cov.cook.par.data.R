@@ -1,3 +1,4 @@
+#' @export
 cov.cook.par.data <- function(cdd.data.all) {
    # create data frame of the cook.par data
    cook.par.data <- cdd.data.all[ , grepl("^cook.par.", names(cdd.data.all))]

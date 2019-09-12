@@ -1,3 +1,4 @@
+#' @export
 pdf.simeval <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_criteria,
                         residual.files,residual.outliers.file,residual.names,
                         raw.results.file,iofv.file,all.iofv.file,n.subjects,samples,

@@ -5,6 +5,7 @@
 #' "var" - only diagonal omegas will be selected and "cov" - only omegas outside the diagonal will be selected.
 #' 
 #' @return A data frame with non-ziro omega values and omega names as column names.
+#' @export
 get_omega_values <- function(ext_file,omegas){
   omega_table <- get_initial_estimates_from_ext(filename=ext_file,select="omega")
   omegas_v <- c()

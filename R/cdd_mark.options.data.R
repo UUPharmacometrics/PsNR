@@ -1,3 +1,4 @@
+#' @export
 mark.options.data <- function(p1,markeropt) {
   # Choose one option for the markers (create talbe for text and table for points)
   if( markeropt == 1 ) { 

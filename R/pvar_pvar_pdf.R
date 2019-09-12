@@ -1,3 +1,4 @@
+#' @export
 pvar_pdf <- function(csv_file_directory,pvar_file_name,
                      delta_plot=TRUE,param_plot=TRUE,parameter,EPV=TRUE,UPV=TRUE,PV=TRUE,
                      page_title,page_units,palette,model_names,plot_title,units) {

@@ -1,3 +1,4 @@
+#' @export
 summary.table.ofv <- function(iofv.file) {
   # Calculate variance, mean, p-values(mean==0), p-value(var==1) for ofv NPDE
   iOFV <- read.csv(iofv.file) #input data

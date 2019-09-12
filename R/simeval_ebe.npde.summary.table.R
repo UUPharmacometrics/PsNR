@@ -1,3 +1,4 @@
+#' @export
 summary.table.ebe.npde <- function(ebenpde_obs,eta.names) {
   # Calculate variance, mean, p-values(mean==0), p-value(var==1) for each ETA
   variance <- c() 
