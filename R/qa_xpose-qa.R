@@ -121,7 +121,7 @@ calculate_variability_attribution <- function(xpdb, idv, dvid_col_name, dvid_val
     dplyr::left_join(idv_data, by = "ID") %>% 
     dplyr::mutate(RUV = purrr::map(var_matrix, diag)) %>% 
     {if(!resmod){
-      mutate(., name = "original")
+      dplyr::mutate(., name = "original")
     }else{
       .
     }} %>% 
