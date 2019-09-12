@@ -7,8 +7,8 @@ summary.table.ofv <- function(iofv.file) {
     
     variance <- sprintf("%.3f",var(iOFV_npde))
     mymean <- sprintf("%.3f",mean(iOFV_npde))
-    myskewness <- sprintf("%.3f",skewness(iOFV_npde))
-    mykurtosis <- sprintf("%.3f",kurtosis(iOFV_npde))
+    myskewness <- sprintf("%.3f",PerformanceAnalytics::skewness(iOFV_npde))
+    mykurtosis <- sprintf("%.3f",PerformanceAnalytics::kurtosis(iOFV_npde))
     p_mean_not_0 <- wilcox.test(iOFV_npde)$p.value # $p.value (it means that we look only on p-value from this test)
     p_mean_not_0 <- sprintf("%.3f",p_mean_not_0)
     p_var_not_1  <- ks.test(iOFV_npde,"pnorm",mean=mean(iOFV_npde),sd=1)$p.value #sd = standard variatio and $p.value (it means that we look only on p-value from this test)
