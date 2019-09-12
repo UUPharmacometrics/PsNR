@@ -36,7 +36,7 @@ qa_data <- function(xpdb, resmod_folder, derivatives_model) {
   class(xpdb) <- c("xpose_data", "uneval")
   return(xpdb)
 }
-
+#' @export
 add_resmod_xpdbs <- function(xpdb, resmod_folder,  dvid_value) {
   if(dvid_value[1]!="NA") {
     m1_folder_path <- file.path(resmod_folder,paste0("resmod_DVID_",dvid_value),"m1")
@@ -54,7 +54,7 @@ add_resmod_xpdbs <- function(xpdb, resmod_folder,  dvid_value) {
   return(xpdb)
 }
 
-
+#' @export
 resmod_variability_attribution <- function(xpdb, idv = rlang::quo(TIME), dvid_col_name, dvid_value, smooth = F, conditioning_order = NULL){
   idv_name <- dplyr::quo_name(idv)
   
@@ -94,7 +94,7 @@ resmod_variability_attribution <- function(xpdb, idv = rlang::quo(TIME), dvid_co
     ggplot2::theme(legend.position = "bottom")
   
 }
-
+#' @export
 calculate_variability_attribution <- function(xpdb, idv, dvid_col_name, dvid_value, smooth, conditioning_order, resmod = F){
   idv_name <- dplyr::quo_name(idv)
   
@@ -147,7 +147,7 @@ calculate_variability_attribution <- function(xpdb, idv, dvid_col_name, dvid_val
     dplyr::mutate(source = factor(source) %>% 
                     forcats::fct_relevel(names(conditioning_order)))
 }
-
+#' @export
 get_idv_data <- function(xpdb, idv, dvid_col_name, dvid_value){
   qa_data <- get_qa_data(xpdb)
   qa_data$derivatives %>% 
@@ -156,7 +156,7 @@ get_idv_data <- function(xpdb, idv, dvid_col_name, dvid_value){
     dplyr::select(ID, !!idv, dplyr::matches("FREMTYPE")) %>% 
     tidyr::nest(-ID, .key = "idv")
 }
-
+#' @export
 generate_conditioning_order <- function(xpdb, is_frem_model, dvid_col_name, dvid_value) {
   omega_matrix <- get_omega_matrix(xpdb)
   if(is_frem_model){
@@ -170,7 +170,7 @@ generate_conditioning_order <- function(xpdb, is_frem_model, dvid_col_name, dvid
   }
   conditioning_order
 }
-
+#' @export
 get_frem_eta <- function(xpdb,dvid_col_name,dvid_value){
   qa_data <- get_qa_data(xpdb)
   qa_data$derivatives %>% 
@@ -181,7 +181,7 @@ get_frem_eta <- function(xpdb,dvid_col_name,dvid_value){
     purrr::map_lgl(~any(.x!=0)) %>% 
     seq_along(.)[.]
 }
-
+#' @export
 calc_eta_contribution <- function(xpdb, conditioning_order, dvid_col_name, dvid_value){
   qa_data <- get_qa_data(xpdb)
   
@@ -207,23 +207,23 @@ calc_eta_contribution <- function(xpdb, conditioning_order, dvid_col_name, dvid_
                                                   purrr::set_names(col_names) %>% 
                                                   dplyr::bind_cols())) 
 }
-
+#' @export
 var_from_eta_given_eta <- function(df_deta, omega, eta_index, given_index){
   if(length(given_index)==0) return(var_from_eta(df_deta, omega, eta_index))
   
   var_given_eta(df_deta, omega, given_index) - var_given_eta(df_deta, omega, union(eta_index, given_index))
 }
-
+#' @export
 var_given_eta <- function(df_deta, omega, eta_index){
   if(length(eta_index)==NROW(omega)) return(0) 
   apply(df_deta, 1, function(a) t(a[-eta_index]) %*% schur_complement(omega, eta_index) %*% a[-eta_index])
 }
-
+#' @export
 schur_complement <- function(M, block_index){
   MASS::ginv(M)[-block_index, -block_index] %>% MASS::ginv()
   #  M[-block_index, -block_index] - M[block_index, -block_index] %*% MASS::ginv(M[block_index, block_index]) %*% M[-block_index, block_index]
 }
-
+#' @export
 var_from_eta <- function(df_deta, omega, eta_index){
   apply(df_deta, 1, function(a)  {
     x <- a[eta_index]+t(a[-eta_index])%*%omega[-eta_index, eta_index, drop=F]%*%MASS::ginv(omega[eta_index,eta_index, drop=F])
@@ -292,7 +292,7 @@ var_from_eta <- function(df_deta, omega, eta_index){
 #     spread_(names(table)[1],"values")
 #   return(table)
 # }
-
+#' @export
 resmod_shrinkage <- function(xpdb,dvid_col_name,dvid_value){
   eta_density <- get_eta_density(xpdb, dvid_col_name, dvid_value)
   
@@ -338,7 +338,7 @@ resmod_shrinkage <- function(xpdb,dvid_col_name,dvid_value){
   
   return(table)
 }
-
+#' @export
 calc_ruv_contribution <- function(xpdb,dvid_col_name,dvid_value){
   qa_data <- get_qa_data(xpdb)
   sigma_matrix <- get_sigma_matrix(xpdb, problem = 1, subprob = 0)
@@ -359,7 +359,7 @@ calc_ruv_contribution <- function(xpdb,dvid_col_name,dvid_value){
     IPRED = .$CIPREDI
     )
 }
-
+#' @export
 calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
   original_matricies <- calc_ruv_contribution(xpdb, dvid_col_name, dvid_value)
 
@@ -450,7 +450,7 @@ calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
   res_matricies %>% 
     dplyr::select(name, ID, var_matrix = resmod_ruv_var)
 }
-
+#' @export
 calc_iiv_contribution <- function(xpdb, dvid_col_name, dvid_value, per_eta = F){
   qa_data <- get_qa_data(xpdb)
   
@@ -477,7 +477,7 @@ calc_iiv_contribution <- function(xpdb, dvid_col_name, dvid_value, per_eta = F){
     dplyr::select(-df_deta)
   return(iiv_contribution)
 }
-
+#' @export
 calc_percent_eta_contribution <- function(xpdb, dvid_col_name, dvid_value){
   qa_data <- get_qa_data(xpdb)
   
@@ -501,7 +501,7 @@ calc_percent_eta_contribution <- function(xpdb, dvid_col_name, dvid_value){
     dplyr::select(ID, eta, eta_contribution_f)
   return(table)
 }
-
+#' @export
 as_resmod_name_factor <- function(resmod_names){
   rename_tvar <- function(l){
     l[stringr::str_detect(l, "idv_varying_RUV.*")] <-  "time varying"
@@ -513,7 +513,7 @@ as_resmod_name_factor <- function(resmod_names){
     {forcats::fct_relevel(., sort(levels(.)))} %>% 
     forcats::fct_relevel("original")
 }
-
+#' @export
 get_qa_data <- function(xpdb){
   #if(!any(xpdb$special$method == "qa")) stop("The xpdb does not contain the necessary data.")
 
@@ -522,7 +522,7 @@ get_qa_data <- function(xpdb){
   dplyr::filter(special, method == 'qa') %>% 
     purrr::pluck("data", 1)
 }
-
+#' @export
 get_eta_density <- function(xpdb, dvid_col_name, dvid_value){
   eta_values <- get_eta_values(xpdb, dvid_col_name, dvid_value) 
   
@@ -534,7 +534,7 @@ get_eta_density <- function(xpdb, dvid_col_name, dvid_value){
     dplyr::mutate(eta_density = eta_density/sum(eta_density)) %>% 
     dplyr::select(-data)
 }
-
+#' @export
 get_eta_values <- function(xpdb,dvid_col_name, dvid_value){
   qa_data <- get_qa_data(xpdb)
   qa_data$derivatives %>% 
@@ -547,7 +547,7 @@ get_eta_values <- function(xpdb,dvid_col_name, dvid_value){
     tidyr::gather("eta_name", "eta_value", -ID) %>% 
     tidyr::extract(eta_name, "eta", "(\\d+)", convert = T)
 }
-
+#' @export
 get_df_eta <- function(xpdb, dvid_col_name, dvid_value){
   get_qa_data(xpdb)$derivatives %>%
     xpose::fetch_data(filter = only_obs_cwres(., .problem = 1, quiet = T), .problem = 1, .subprob = 0, quiet = T) %>% 
@@ -556,14 +556,14 @@ get_df_eta <- function(xpdb, dvid_col_name, dvid_value){
     tidyr::nest(-ID, .key = "df_deta") %>% 
     dplyr::mutate(df_deta = purrr::map(df_deta, as.matrix))
 }
-
+#' @export
 get_theta_estimates <- function(xpdb){
   xpose::get_file(xpdb, ext = "ext", .problem = 1, .subprob = 0, quiet = T) %>% 
     dplyr::filter(ITERATION==-1000000000) %>% 
     dplyr::select(dplyr::starts_with("THETA")) %>% 
     tidyr::gather("name", "value")
 }
-
+#' @export
 get_sigma_matrix <- function(xpdb, problem = NULL, subprob = NULL,
                             method = NULL){
   xpose::get_file(xpdb, ext = "ext", .problem = problem, .subprob = subprob, .method = method, quiet = T) %>% 
@@ -571,7 +571,7 @@ get_sigma_matrix <- function(xpdb, problem = NULL, subprob = NULL,
     dplyr::select(dplyr::starts_with("SIGMA")) %>% unlist() %>%
     vector_to_matrix()
 }
-
+#' @export
 get_omega_matrix <- function(xpdb, problem = NULL, subprob = NULL,
                              method = NULL){
   xpose::get_file(xpdb, ext = "ext", .problem = problem, .subprob = subprob, .method = method, quiet = T) %>% 
@@ -579,7 +579,7 @@ get_omega_matrix <- function(xpdb, problem = NULL, subprob = NULL,
     dplyr::select(dplyr::starts_with("OMEGA")) %>% unlist() %>%
     vector_to_matrix()
 }
-
+#' @export
 calc_dmu_dtheta <- function(mu_models, xpdb){
   theta_estimates <- get_theta_estimates(xpdb) %>%
     tidyr::spread(name, value) %>% 
@@ -594,7 +594,7 @@ calc_dmu_dtheta <- function(mu_models, xpdb){
     do.call(rbind, .)
 }
 
-
+#' @export
 vector_to_matrix <-  function(vec){
   dim <- (sqrt(1+4*length(vec)*2)-1)/2
   mat <- matrix(0, dim, dim)
@@ -602,7 +602,7 @@ vector_to_matrix <-  function(vec){
   mat[lower.tri(mat, T)] <- t(mat)[lower.tri(mat, T)]
   return(mat)
 }
-
+#' @export
 filter_dvid <- function(data,dvid_name,dvid_value) {
   if(dvid_name != '') {
     dvid_column_name <- rlang::sym(dvid_name)
@@ -611,7 +611,7 @@ filter_dvid <- function(data,dvid_name,dvid_value) {
     return(data)
   }
 }
-
+#' @export
 only_obs_cwres <- function(xpdb, .problem, quiet){
   function(x){
     x[x[,"CWRES"]!= 0, ] %>% 
