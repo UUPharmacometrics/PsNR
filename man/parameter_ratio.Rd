@@ -3,7 +3,7 @@
 \name{parameter_ratio}
 \alias{parameter_ratio}
 \title{Plots of 5th and 95th percentile of each covariate and the size of the effect on parameter (assuming log-normal).
-The bands show 90% confidence interval around the point estimate. Categorical covariates are compared to the other category.}
+The bands show 90\% confidence interval around the point estimate. Categorical covariates are compared to the other category.}
 \usage{
 parameter_ratio(inTable_frem, covdata, pardata)
 }
@@ -19,5 +19,5 @@ Function does all the calculations and the creates a list of plots.
 }
 \description{
 Plots of 5th and 95th percentile of each covariate and the size of the effect on parameter (assuming log-normal).
-The bands show 90% confidence interval around the point estimate. Categorical covariates are compared to the other category.
+The bands show 90\% confidence interval around the point estimate. Categorical covariates are compared to the other category.
 }

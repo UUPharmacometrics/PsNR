@@ -1,5 +1,5 @@
 #' Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal). 
-#' The bands show 90% confidence interval around the point estimate.
+#' The bands show 90\% confidence interval around the point estimate.
 #'
 #' @param frem_id - a data frame 
 #' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
