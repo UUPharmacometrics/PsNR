@@ -16,7 +16,9 @@ Description: d
 Depends: 
     R (>= 3.3.0)
 Imports:
-    tidyverse (>= 1.2.1),
+    dplyr (>= 0.7.4),
+    tidyr (>= 0.7.2),
+    purrr (>= 0.2.4),
     xpose (>= 0.4.3),
     kableExtra (>= 0.9.0),
     devtools (>= 1.13.3),
