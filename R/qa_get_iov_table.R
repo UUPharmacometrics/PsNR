@@ -26,15 +26,15 @@ get_iov_table <- function(original_max0_model,iov_model,iov_etas,dofv_iov,quiet=
     iiv_omegas <- new_omega_values %>%
       dplyr::select((grep(paste(paste0("^OMEGA\\.",iiv_etas_nr,"\\.",iiv_etas_nr,"\\.$"),collapse = "|"),colnames(.)))) %>%
       as.numeric() %>%
-      sqrt()
+      sqrt(.)
     iov_omegas <- new_omega_values %>%
       dplyr::select(grep(paste(paste0("^OMEGA\\.",iov_etas[[1]],"\\.",iov_etas[[1]],"\\.$"),collapse = "|"),colnames(.))) %>%
       as.numeric() %>%
-      sqrt()
+      sqrt(.)
     
     old_omega_values <- get_omega_values(ext_file=original_ext_file,omegas="var") %>%
       as.numeric() %>%
-      sqrt()
+      sqrt(.)
     # make table
     iov_table <- data.frame(etas=paste0("ETA(",c(iiv_etas_nr),")"),stringsAsFactors = F) %>%
       dplyr::mutate(IIV=iiv_omegas,IOV=iov_omegas,Old=old_omega_values)
