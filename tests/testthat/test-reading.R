@@ -17,3 +17,11 @@ test_that("Reading of standard NM tables works", {
   expect_equal(nrow(tab), 744)
   
 })
+
+test_that("Reading of standard NM simulation tables works", {
+  # this a standard NONMEM output table
+  tab <- read_nm_std_sim_table("data/sim_res_table-1.dta")
+  expect_is(tab, "data.frame")
+  expect_equal(colnames(tab), c("ID", "DV", "MDV", "CWRES", "IPRED"))
+  expect_equal(nrow(tab), 9300)
+})

@@ -16,6 +16,6 @@ A data.frame
 }
 \description{
 This function reads a NONMEM output table that was generated with the default format option. 
-The function should only be used for PsN generated tables with known format and not for "user defined" table
+The function should only be used for PsN generated tables with known format and not for "user defined" tables
 that might have particular format options.
 }
