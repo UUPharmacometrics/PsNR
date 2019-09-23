@@ -11,7 +11,7 @@
 #'
 #' @return A data.frame
 read_nm_std_table <- function(path, skip = 1){
-  readr::read_table(path, col_names = TRUE, 
+  readr::read_table2(path, col_names = TRUE, 
                     col_types = readr::cols(.default = readr::col_double()), 
                     skip = skip)
 }
