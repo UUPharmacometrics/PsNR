@@ -9,8 +9,8 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
   }
   
   if(make_vpc) {
-    obs <- as.data.frame(xpose::read_nm_tables(obs_table,quiet = TRUE))
-    extra_obs <- xpose::read_nm_tables(obs_extra_table,quiet = TRUE)
+    obs <- as.data.frame(read_nm_std_table(obs_table,quiet = TRUE))
+    extra_obs <- read_nm_std_table(obs_extra_table)
     
     #choose DVID
     if(dvid!='NA') {
@@ -52,10 +52,10 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
 
     add_cols <- obs %>%
       dplyr::select(!!idv_all)
-    sim <- xpose::read_nm_tables(sim_table,quiet = TRUE)
+    sim <- read_nm_std_table(sim_table)
     if(dvid != "NA") {
       if(all(colnames(sim)!=dvid_name)) {
-        sim_extra <- xpose::read_nm_tables(sim_extra_table,quiet = TRUE)
+        sim_extra <- read_nm_std_table(sim_extra_table)
         dvid_column_nr <- which(colnames(sim_extra)== dvid_name)
         dvid_sim_col <- sim_extra[,dvid_column_nr]
         sim <- cbind(sim,dvid_sim_col)
