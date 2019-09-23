@@ -52,10 +52,10 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
 
     add_cols <- obs %>%
       dplyr::select(!!idv_all)
-    sim <- read_nm_std_table(sim_table)
+    sim <- read_nm_std_sim_table(sim_table)
     if(dvid != "NA") {
       if(all(colnames(sim)!=dvid_name)) {
-        sim_extra <- read_nm_std_table(sim_extra_table)
+        sim_extra <- read_nm_std_sim_table(sim_extra_table)
         dvid_column_nr <- which(colnames(sim_extra)== dvid_name)
         dvid_sim_col <- sim_extra[,dvid_column_nr]
         sim <- cbind(sim,dvid_sim_col)
