@@ -9,7 +9,7 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
   }
   
   if(make_vpc) {
-    obs <- as.data.frame(read_nm_std_table(obs_table,quiet = TRUE))
+    obs <- as.data.frame(read_nm_std_table(obs_table))
     extra_obs <- read_nm_std_table(obs_extra_table)
     
     #choose DVID
