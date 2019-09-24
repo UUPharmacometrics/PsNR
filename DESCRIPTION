@@ -51,7 +51,8 @@ Imports:
     grid,
     MCMCpack,
     plyr,
-    stats4
+    stats4,
+    tibble
 Suggests:
     testthat
 URL: https://github.com/UUPharmacometrics/pmutils
