@@ -25,3 +25,11 @@ test_that("Reading of standard NM simulation tables works", {
   expect_equal(colnames(tab), c("ID", "DV", "MDV", "CWRES", "IPRED"))
   expect_equal(nrow(tab), 9300)
 })
+
+test_that("Reading of ext files works",{
+  ext_lst <- read_nm_ext("data/sim-5.ext")
+  expect_length(ext_lst, 60)
+  expect_equal(names(ext_lst)[1], "TABLE NO.     1: First Order Conditional Estimation with Interaction (Evaluation): Goal Function=MINIMUM VALUE OF OBJECTIVE FUNCTION: Problem=1 Subproblem=1 Superproblem1=0 Iteration1=0 Superproblem2=0 Iteration2=0")
+  expect_equal(colnames(ext_lst[[1]]), c("ITERATION", "SIGMA(1,1)", "OMEGA(1,1)", "OMEGA(2,1)", "OMEGA(2,2)",  "OBJ"))
+  expect_equal(NROW(ext_lst[[1]]), 3)
+})
