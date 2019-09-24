@@ -33,3 +33,11 @@ test_that("Reading of ext files works",{
   expect_equal(colnames(ext_lst[[1]]), c("ITERATION", "SIGMA(1,1)", "OMEGA(1,1)", "OMEGA(2,1)", "OMEGA(2,2)",  "OBJ"))
   expect_equal(NROW(ext_lst[[1]]), 3)
 })
+
+test_that("Reading of phi files works",{
+  lst <- read_nm_phi("data/sim-5.phi")
+  expect_length(lst, 60)
+  expect_equal(names(lst)[1], "TABLE NO.     1: First Order Conditional Estimation with Interaction (Evaluation): Problem=1 Subproblem=1 Superproblem1=0 Iteration1=0 Superproblem2=0 Iteration2=0")
+  expect_equal(colnames(lst[[1]]), c("SUBJECT_NO", "ID", "ETA(1)", "ETA(2)", "ETC(1,1)", "ETC(2,1)",  "ETC(2,2)", "OBJ"))
+  expect_equal(NROW(lst[[1]]), 59)
+})

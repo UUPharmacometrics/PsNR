@@ -2,9 +2,12 @@
 % Please edit documentation in R/common_reading.R
 \name{read_nm_ext}
 \alias{read_nm_ext}
-\title{Read NONMEM ext file}
+\alias{read_nm_phi}
+\title{Read NONMEM ext and phi files}
 \usage{
 read_nm_ext(path)
+
+read_nm_phi(path)
 }
 \arguments{
 \item{path}{}
@@ -13,7 +16,7 @@ read_nm_ext(path)
 A list of data.frame
 }
 \description{
-The function reads a NONMEM ext file and returns a list of data.frame with one data.frame for each 
+The function reads NONMEM ext and phi files and returns a list of data.frame with one data.frame for each 
 table (i.e. estimation). The element names are the intro lines and, hence, can be used to extract 
 problem number etc. The current implementation assumes that all headers are identical.
 }

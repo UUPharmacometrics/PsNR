@@ -40,9 +40,9 @@ read_nm_std_sim_table <- function(path){
   return(dplyr::as_tibble(tab_matrix))
 }
 
-#' Read NONMEM ext file
+#' Read NONMEM ext and phi files
 #' 
-#' The function reads a NONMEM ext file and returns a list of data.frame with one data.frame for each 
+#' The function reads NONMEM ext and phi files and returns a list of data.frame with one data.frame for each 
 #' table (i.e. estimation). The element names are the intro lines and, hence, can be used to extract 
 #' problem number etc. The current implementation assumes that all headers are identical.
 #' 
@@ -54,6 +54,14 @@ read_nm_std_sim_table <- function(path){
 read_nm_ext <- function(path){
   read_nm_tab(path, "ext", "ITERATION")
 }
+
+
+#' @rdname read_nm_ext
+#' @export
+read_nm_phi <- function(path){
+  read_nm_tab(path, "phi", "SUBJECT_NO")  
+}
+
 
 read_nm_tab <- function(path, file_type, header_start){
   if(!file.exists(path)) rlang::cnd_signal(cnd_file_not_found(path))
