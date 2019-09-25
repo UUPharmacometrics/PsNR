@@ -23,7 +23,9 @@ retrieve_qa_results <- function(path, model_filename, settings = qa_settings()){
         # table of OFV values
         ofv_comparison = ofv_df
       ),
-      resmod = NULL,
+      resmod = list(
+        idvs = get_resmod_idvs(path)
+      ),
       frem = NULL,
       cdd = NULL,
       simeval = NULL
@@ -31,6 +33,13 @@ retrieve_qa_results <- function(path, model_filename, settings = qa_settings()){
     )
 }
 
+#' Retrieve OFV summary table
+#'
+#' @param nonlin_ext_path Path to derivatives.ext
+#' @param lin_ext_path Path to linbase.ext
+#' @param lin_phi_path Path to linbase.phi
+#'
+#' @return data.frame(name,ofv,result)
 get_ofv_summary <- function(nonlin_ext_path, 
                             lin_ext_path, 
                             lin_phi_path){
@@ -56,3 +65,7 @@ get_ofv_summary <- function(nonlin_ext_path,
     tibble::as_tibble() 
 }
 
+get_resmod_idvs <- function(path){
+  idvs <- list.files(path, "^resmod_") %>% sub(".*resmod_", "", .)
+  return(idvs)
+}
