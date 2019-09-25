@@ -55,11 +55,30 @@ read_nm_ext <- function(path){
   read_nm_tab(path, "ext", "ITERATION")
 }
 
+#' Return name of .ext or .phi file
+#'
+#' @param path Model or lst file for which to return the file
+#'
+#' @return character
+#' @export
+#'
+#' @examples
+#' ext_file("run4.mod")
+#' phi_file("run4.lst")
+ext_file <- function(path) {
+  return(gsub("\\..+$","\\.ext", path))
+}
 
 #' @rdname read_nm_ext
 #' @export
 read_nm_phi <- function(path){
   read_nm_tab(path, "phi", "SUBJECT_NO")  
+}
+
+#' @export
+#' @rdname ext_file
+phi_file <- function(path) {
+  return(gsub("\\..+$","\\.phi", path))
 }
 
 

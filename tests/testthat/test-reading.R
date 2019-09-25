@@ -41,3 +41,9 @@ test_that("Reading of phi files works",{
   expect_equal(colnames(lst[[1]]), c("SUBJECT_NO", "ID", "ETA(1)", "ETA(2)", "ETC(1,1)", "ETC(2,1)",  "ETC(2,2)", "OBJ"))
   expect_equal(NROW(lst[[1]]), 59)
 })
+
+test_that("obtaining .phi and .lst filename works", {
+  expect_equal(ext_file("run4.mod"), "run4.ext")
+  expect_equal(phi_file("path/to/run4.lst"), "path/to/run4.phi")
+  
+})
