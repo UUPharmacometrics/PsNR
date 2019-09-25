@@ -11,3 +11,11 @@ get_final_ofvs <- function(ext_list, table_selection = 1){
     purrr::map_dbl(~dplyr::filter(.x, ITERATION == -1e+09) %>% dplyr::pull(OBJ)) %>% 
     purrr::set_names(NULL)
 }
+#' @export
+get_initial_ofvs <- function(ext_list, table_selection = 1){
+  ext_list[table_selection] %>% 
+    purrr::map_dbl(~dplyr::filter(.x, ITERATION == 0) %>% dplyr::pull(OBJ)) %>% 
+    purrr::set_names(NULL)
+}
+
+
