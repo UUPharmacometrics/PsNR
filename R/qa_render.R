@@ -19,6 +19,21 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
       OFV = dplyr::if_else(!is.na(.data$ofv), format(.data$ofv), "ERROR")
     )
   
-  kable_table(ofv_table, format="latex", col.names = c("", "OFV"), booktabs=TRUE, longtable=TRUE, align=c("l","l"), linesep="") %>%
+  qa_kable(ofv_table, col.names = c("", "OFV"), booktabs=TRUE, longtable=TRUE, align=c("l","l"), linesep="") %>%
     kableExtra::kable_styling(position="c",full_width = FALSE)
+}
+
+qa_kable <- function(table,...) {
+  table_new <- knitr::kable(table,...)
+  if(knitr::is_latex_output()) {
+    if(!(ncol(table)>1 && all(is.null(colnames(table))))) {
+      table_new <- kableExtra::row_spec(table_new, 0,bold=T)
+    }
+  }
+  if(knitr::is_html_output()) {
+    if(ncol(table)==1 && is.null(colnames(table))) {
+      table_new <- table_new %>% kableExtra::row_spec(1,bold=T)
+    }
+  }
+  return(table_new)  
 }
