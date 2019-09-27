@@ -69,3 +69,4 @@ get_resmod_idvs <- function(path){
   idvs <- list.files(path, "^resmod_") %>% sub(".*resmod_", "", .)
   return(idvs)
 }
+
