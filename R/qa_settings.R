@@ -1,8 +1,8 @@
 qa_settings <- function(){
   list(
     linearize_path = "linearize_run/scm_dir1",
-    derivatives_lst_path = "linearize_run/scm_dir1/derivatives.lst"
-    
+    derivatives_lst_path = "linearize_run/scm_dir1/derivatives.lst",
+    scm_path = "scm_run"
   )
 }
 
@@ -16,6 +16,9 @@ qa_files <- function(path, model_filename, settings){
         # linearized model
         linbase_ext = ext_file(linebase_lst),
         linebase_phi = phi_file(linebase_lst)
+      ),
+      scm = list(
+        raw_results_csv = file.path(path, settings$scm_path, "raw_results_scm.csv")
       )
     )
   )

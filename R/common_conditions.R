@@ -15,6 +15,10 @@ do_safely <- function(expr){
   else return(list(result = res, error = NA))
 }
 
+contains_error <- function(result){
+  return(!is.na(result$error))
+}
+
 cnd_file_not_found <- function(path)
   rlang::error_cnd("file_not_found", path = path,
                    message = paste0("File '",path,"' not found."))
