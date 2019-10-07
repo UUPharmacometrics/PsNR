@@ -32,17 +32,42 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
 #' @describeIn render_qa_table Renders the covariates table
 render_covariates_table <- function(qa_results, settings = qa_settings()){
   if(!has_errors(qa_results$scm)){
-    scm_table <- get_result(qa_results$scm) %>% 
-    dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
-    dplyr::mutate(dofv = round(.data$dofv, 1),
+    scm_table <- get_result(qa_results$scm) 
+    
+    
+    output_table <- scm_table %>% 
+      dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
+      dplyr::mutate(dofv = round(.data$dofv, 1),
                   prm_value = round(.data$prm_value, 3),
                   bin_split = dplyr::if_else(is.na(bin_split), "", as.character(bin_split))) %>% 
-    dplyr::arrange(.data$parameter, .data$covariate, .data$bin_split)
+      dplyr::arrange(.data$parameter, .data$covariate, .data$bin_split) 
     
-    qa_kable(scm_table, col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), align = "lllrr", 
+    extra_rows <- scm_table %>% 
+      dplyr::summarise(dofv = round(sum(dofv, na.rm = TRUE), 3),
+                       covariate = "sum") %>% 
+      dplyr::bind_rows(tibble::tibble(covariate = "FREM", dofv = 12.2)) %>% 
+      to_character_tbl() %>% 
+      add_blank_cols(colnames(output_table))
+
+    to_character_tbl(output_table) %>% 
+      dplyr::bind_rows(extra_rows) %>% 
+      qa_kable(col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), align = "lllrr", 
            booktabs=T,longtable=T,linesep="") %>% 
+      kableExtra::collapse_rows(1:2) %>% 
+      kableExtra::pack_rows("Overall", nrow(output_table)+1, nrow(output_table) + 1) %>% 
       kableExtra::kable_styling(position="c",full_width = F) 
   }
+}
+
+# converts all numeric column to character
+to_character_tbl <- function(df){
+  dplyr::mutate_if(df, is.numeric, as.character)
+}
+
+
+add_blank_cols <- function(df, cols){
+  cols <- setdiff(cols, colnames(df))
+  tibble::add_column(df, !!!purrr::set_names(purrr::rep_along(cols, ""), cols))
 }
 
 qa_kable <- function(table,...) {
