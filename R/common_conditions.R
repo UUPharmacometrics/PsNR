@@ -26,3 +26,9 @@ cnd_file_not_found <- function(path)
 cnd_unexpected_file_format <- function(path)
   rlang::error_cnd("unexpected_file_format", path = path,
                    message = paste0("The file '",path,"' had an unexpected format."))
+
+cnd_nm_run_failed <- function(path = NA, reason = NA)
+  rlang::error_cnd("nm_run_failed", path = path, reason = reason,
+                   message = paste0("The NONMEM run failed"))
+
+is_error <- function(e) return(inherits(e, "error"))

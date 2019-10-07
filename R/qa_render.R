@@ -17,7 +17,7 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
     lin_final = "Linearized base model after estimation",
     lin_final_iofv = "Sum of individual OFV values"
   )
-  ofv_table <- qa_results$linearize$ofv_comparison %>% 
+  ofv_table <- get_result(qa_results$linearize$ofv_comparison) %>% 
     dplyr::transmute(
       label = lbls[.data$name],
       OFV = dplyr::if_else(!is.na(.data$ofv), format(.data$ofv), "ERROR")
@@ -31,16 +31,18 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
 #' @export
 #' @describeIn render_qa_table Renders the covariates table
 render_covariates_table <- function(qa_results, settings = qa_settings()){
-  scm_table <- qa_results$scm %>% 
+  if(!has_errors(qa_results$scm)){
+    scm_table <- get_result(qa_results$scm) %>% 
     dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
     dplyr::mutate(dofv = round(.data$dofv, 1),
                   prm_value = round(.data$prm_value, 3),
                   bin_split = dplyr::if_else(is.na(bin_split), "", as.character(bin_split))) %>% 
     dplyr::arrange(.data$parameter, .data$covariate, .data$bin_split)
-  
-  qa_kable(scm_table, col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), align = "lllrr", 
+    
+    qa_kable(scm_table, col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), align = "lllrr", 
            booktabs=T,longtable=T,linesep="") %>% 
-    kableExtra::kable_styling(position="c",full_width = F)
+      kableExtra::kable_styling(position="c",full_width = F) 
+  }
 }
 
 qa_kable <- function(table,...) {

@@ -13,14 +13,19 @@
 retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa_settings()){
   files <- qa_files(path, model_filename, settings)
   
-  ofv_df <- get_ofv_summary(nonlin_ext_path  = files$linearize$derivatives_ext,
+  ofv_df <- tryCatch(get_ofv_summary(nonlin_ext_path  = files$linearize$derivatives_ext,
                             lin_ext_path = files$linearize$linbase_ext,
-                            lin_phi_path = files$linearize$linebase_phi)
+                            lin_phi_path = files$linearize$linebase_phi), 
+                     error = function(e) return(e)) %>% 
+    as_result()
   
-  scm_df <- retrieve_scm_results(files$scm$raw_results_csv, 
+  scm_df <- tryCatch(retrieve_scm_results(files$scm$raw_results_csv, 
                                  parameters = psn_options$parameters, 
                                  continuous = psn_options$continuous, 
-                                 categorical = psn_options$categorical)
+                                 categorical = psn_options$categorical),
+                     error = function(e) return(e)) %>% 
+    as_result()
+  
   return(
     list(
       model_filename = model_filename,
@@ -50,25 +55,32 @@ get_ofv_summary <- function(nonlin_ext_path,
                             lin_ext_path, 
                             lin_phi_path){
   
-  nonlin <-  do_safely(read_nm_ext(nonlin_ext_path) %>% get_final_ofvs())
-  lin_ext <- do_safely(read_nm_ext(lin_ext_path))
-  if(!is.na(lin_ext$result)){
-    lin_init <- do_safely(get_initial_ofvs(lin_ext$result))
-    lin_final <- do_safely(get_final_ofvs(lin_ext$result)) 
-  }else{
-    lin_init <- lin_ext
-    lin_final <- lin_ext
-  }
-  lin_final_iofv <- do_safely(read_nm_phi(lin_phi_path) %>%  get_iofv_sum())
+  nonlin <-  tryCatch(read_nm_ext(nonlin_ext_path) %>% get_final_ofvs(),
+                      error = function(e) return(e)) %>% 
+    as_result()
   
-  list(nonlin = nonlin, lin_init = lin_init, lin_final = lin_final, lin_final_iofv = lin_final_iofv) %>% 
-    purrr::imap(~purrr::update_list(.x, 
-                                    name = .y, 
-                                    ofv = as.numeric(.x$result),
-                                    result = purrr::zap())) %>% 
-    purrr::transpose() %>%
-    purrr::simplify_all() %>% 
-    tibble::as_tibble() 
+  lin_ext <- tryCatch(read_nm_ext(lin_ext_path),
+                      error = function(e) return(e))
+  if(!is_error(lin_ext)){
+    lin_init <- tryCatch(get_initial_ofvs(lin_ext),
+                         error = function(e) return(e)) %>% 
+      as_result()
+    lin_final <- tryCatch(get_final_ofvs(lin_ext),
+                          error = function(e) return(e)) %>% 
+      as_result()
+  }else{
+    lin_init <- lin_final <- as_result(lin_ext)
+  }
+
+  lin_final_iofv <- tryCatch(read_nm_phi(lin_phi_path) %>%  get_iofv_sum(),
+                             error = function(e) return(e)) %>% 
+    as_result()
+  
+  collect_results(nonlin = nonlin, 
+                  lin_init = lin_init, 
+                  lin_final = lin_final, 
+                  lin_final_iofv = lin_final_iofv,
+                  .id = "name", .result = "ofv")
 }
 
 get_resmod_idvs <- function(path){
@@ -105,7 +117,9 @@ retrieve_scm_results <- function(scm_path, parameters, continuous = NULL, catego
                   bin_split = stringr::str_extract(.data$state_name, "\\d+(?=-\\d+)") %>% as.integer())
  # determine runs that failed
  errors <- dplyr::filter(tab, grepl("run failed", .data$covariance_step_run, fixed = TRUE)) %>% 
-   dplyr::select(state_name = "relation", error = "covariance_step_run") 
+   dplyr::select(state_name = "relation", error = "covariance_step_run") %>% 
+   dplyr::mutate(error = purrr::map(error, ~cnd_nm_run_failed(reason = .)))
+
  tab <- dplyr::filter(tab, !grepl("run failed", .data$covariance_step_run, fixed = TRUE))
  # calculate dOFVs 
   dofvs <- dplyr::transmute(tab, 
@@ -117,7 +131,8 @@ retrieve_scm_results <- function(scm_path, parameters, continuous = NULL, catego
     purrr::set_names(tab$relation) %>%
     tibble::enframe("state_name", "prm_value")
   # combine all results
-  dplyr::left_join(expected_relations, prm_values, by="state_name") %>% 
+  df <- dplyr::left_join(expected_relations, prm_values, by="state_name") %>% 
       dplyr::left_join(errors, by="state_name") %>% 
       dplyr::left_join(dofvs, by="state_name")  
+  return(result_df(df))
 }
