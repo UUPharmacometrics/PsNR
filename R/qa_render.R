@@ -31,9 +31,16 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
 #' @export
 #' @describeIn render_qa_table Renders the covariates table
 render_covariates_table <- function(qa_results, settings = qa_settings()){
+  if(!has_errors(qa_results$frem)){
+    frem_res <- get_result(qa_results$frem)
+    frem_dofv <- tibble::tibble(covariate = "FREM", dofv = round(frem_res$dofv, 1)) %>% 
+      to_character_tbl()
+  }else{
+    frem_dofv <- tibble::tibble(covariate = "FREM", dofv = "ERROR") 
+  }
+  
   if(!has_errors(qa_results$scm)){
     scm_table <- get_result(qa_results$scm) 
-    frem_res <- get_result(qa_results$frem)
     
     output_table <- scm_table %>% 
       dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
@@ -48,12 +55,6 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
                        covariate = "univ. sum") %>% 
       to_character_tbl() 
     
-    if(!has_errors(frem_res)){
-      frem_dofv <- tibble::tibble(covariate = "FREM", dofv = round(frem_res$dofv, 1)) %>% 
-        to_character_tbl()
-    }else{
-      frem_dofv <- tibble::tibble(covariate = "FREM", dofv = "ERROR") 
-    }
       
     extra_rows <- dplyr::bind_rows(scm_sum, frem_dofv) %>% 
       add_blank_cols(colnames(output_table))
@@ -64,6 +65,13 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
            booktabs=T,longtable=T,linesep="") %>% 
       kableExtra::collapse_rows(1:2) %>% 
       kableExtra::pack_rows("Overall", nrow(output_table)+1, nrow(output_table) + 1) %>% 
+      kableExtra::kable_styling(position="c",full_width = F) 
+  }else{
+    scm_error <- tibble::tibble(covariate = "cov. screening", dofv = "ERROR")
+    
+    dplyr::bind_rows(scm_error, frem_dofv) %>%
+      qa_kable(col.names = c("", "dOFV"), align = "lr", 
+               booktabs=T,longtable=T,linesep="") %>% 
       kableExtra::kable_styling(position="c",full_width = F) 
   }
 }
