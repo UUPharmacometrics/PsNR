@@ -31,12 +31,17 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
   dofv_fullblock <- get_result(parvar_res) %>% 
     purrr::pluck("fullblock", "dofv")
   
-  scm_df <- tryCatch(retrieve_scm_results(files$scm$raw_results_csv, 
-                                 parameters = psn_options$parameters, 
-                                 continuous = psn_options$continuous, 
-                                 categorical = psn_options$categorical),
-                     error = function(e) return(e)) %>% 
-    as_result()
+  if(!'scm' %in% psn_options$skip){
+    scm_df <- tryCatch(retrieve_scm_results(files$scm$raw_results_csv, 
+                                   parameters = psn_options$parameters, 
+                                   continuous = psn_options$continuous, 
+                                   categorical = psn_options$categorical),
+                       error = function(e) return(e)) %>% 
+      as_result()
+    
+  }else{
+    scm_df <- NULL
+  }
   
   frem_res <- tryCatch(retrieve_frem_results(files$frem$m2_raw_results_csv,
                                              files$frem$m4_raw_results_csv,
@@ -46,6 +51,7 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
   
   return(
     list(
+      options = psn_options,
       model_filename = model_filename,
       linearize = list(
         # table of OFV values
@@ -61,6 +67,10 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
       simeval = NULL
     )
     )
+}
+
+is_skipped <- function(qa_results, tool){
+  return(tool %in% qa_results$options$skip)
 }
 
 #' Retrieve OFV summary table
