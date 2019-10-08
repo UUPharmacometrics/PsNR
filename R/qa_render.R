@@ -33,7 +33,7 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
 render_covariates_table <- function(qa_results, settings = qa_settings()){
   if(!has_errors(qa_results$scm)){
     scm_table <- get_result(qa_results$scm) 
-    
+    frem_res <- get_result(qa_results$frem)
     
     output_table <- scm_table %>% 
       dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
@@ -42,11 +42,20 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
                   bin_split = dplyr::if_else(is.na(bin_split), "", as.character(bin_split))) %>% 
       dplyr::arrange(.data$parameter, .data$covariate, .data$bin_split) 
     
-    extra_rows <- scm_table %>% 
-      dplyr::summarise(dofv = round(sum(dofv, na.rm = TRUE), 3),
-                       covariate = "sum") %>% 
-      dplyr::bind_rows(tibble::tibble(covariate = "FREM", dofv = 12.2)) %>% 
-      to_character_tbl() %>% 
+    
+    scm_sum <- scm_table %>% 
+      dplyr::summarise(dofv = round(sum(dofv, na.rm = TRUE), 1),
+                       covariate = "univ. sum") %>% 
+      to_character_tbl() 
+    
+    if(!has_errors(frem_res)){
+      frem_dofv <- tibble::tibble(covariate = "FREM", dofv = round(frem_res$dofv, 1)) %>% 
+        to_character_tbl()
+    }else{
+      frem_dofv <- tibble::tibble(covariate = "FREM", dofv = "ERROR") 
+    }
+      
+    extra_rows <- dplyr::bind_rows(scm_sum, frem_dofv) %>% 
       add_blank_cols(colnames(output_table))
 
     to_character_tbl(output_table) %>% 

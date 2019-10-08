@@ -19,11 +19,29 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
                      error = function(e) return(e)) %>% 
     as_result()
   
+  ofv_linebase <- get_result(ofv_df) %>% 
+    dplyr::filter(name == "lin_final") %>% 
+    dplyr::pull("ofv")
+  
+  parvar_res <- tryCatch(retrieve_parvar_results(files$parvar$fullblock_ext,
+                                                 ofv_linebase),
+                         error = function(e) return(e)) %>% 
+    as_result()
+
+  dofv_fullblock <- get_result(parvar_res) %>% 
+    purrr::pluck("fullblock", "dofv")
+  
   scm_df <- tryCatch(retrieve_scm_results(files$scm$raw_results_csv, 
                                  parameters = psn_options$parameters, 
                                  continuous = psn_options$continuous, 
                                  categorical = psn_options$categorical),
                      error = function(e) return(e)) %>% 
+    as_result()
+  
+  frem_res <- tryCatch(retrieve_frem_results(files$frem$m2_raw_results_csv,
+                                             files$frem$m4_raw_results_csv,
+                                             dofv_fullblock),
+                       error = function(e) return(e)) %>% 
     as_result()
   
   return(
@@ -36,8 +54,9 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
       resmod = list(
         idvs = get_resmod_idvs(path)
       ),
+      parvar = parvar_res,
       scm = scm_df,
-      frem = NULL,
+      frem = frem_res,
       cdd = NULL,
       simeval = NULL
     )
@@ -88,6 +107,17 @@ get_resmod_idvs <- function(path){
   return(idvs)
 }
 
+retrieve_parvar_results <- function(fullblock_ext_path, linbase_ofv){
+  fullblock_ofv <- read_nm_ext(fullblock_ext_path) %>%
+    get_final_ofvs()
+  
+  list(
+    fullblock = list(
+      dofv = linbase_ofv - fullblock_ofv
+    )
+  )
+}
+
 #' Retrieve SCM results
 #'
 #' @param scm_path Path to raw_result_scm.csv
@@ -135,4 +165,16 @@ retrieve_scm_results <- function(scm_path, parameters, continuous = NULL, catego
       dplyr::left_join(errors, by="state_name") %>% 
       dplyr::left_join(dofvs, by="state_name")  
   return(result_df(df))
+}
+
+retrieve_frem_results <- function(m2_path, m4_path, dofv_fullblock){
+ 
+  ofv_m2 <- get_rawres_ofv(m2_path)
+  ofv_m4<- get_rawres_ofv(m4_path)
+  dofv_frem <- ofv_m2 - ofv_m4 - dofv_fullblock
+  return(
+    list(
+      dofv = dofv_frem
+    )
+  )
 }
