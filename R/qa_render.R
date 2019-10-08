@@ -38,7 +38,8 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
   }else{
     frem_dofv <- tibble::tibble(covariate = "FREM", dofv = ifelse(is_skipped(qa_results, 'frem'), "SKIPPED", "ERROR")) 
   }
-  
+  caption <- glue::glue("Expected improvement when including covariates, the sum of all univariate improvement (univ. sum)",
+                        ", as well as the joint improvement from all covariates through FREM.")
   if(!is_skipped(qa_results, 'scm') && !has_errors(qa_results$scm)){
     scm_table <- get_result(qa_results$scm) 
     
@@ -61,7 +62,7 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
 
     to_character_tbl(output_table) %>% 
       dplyr::bind_rows(extra_rows) %>% 
-      qa_kable(col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), align = "lllrr", 
+      qa_kable(col.names = c("Parameter", "Covariate", "", "dOFV", "Coefficient"), caption = caption, align = "lllrr", 
            booktabs=T,longtable=T,linesep="") %>% 
       kableExtra::collapse_rows(1:2) %>% 
       kableExtra::pack_rows("Overall", nrow(output_table)+1, nrow(output_table) + 1) %>% 
@@ -70,7 +71,7 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
     scm_error <- tibble::tibble(covariate = "cov. screening", 
                                 dofv = ifelse(is_skipped(qa_results, 'scm'), "SKIPPED", "ERROR"))
     dplyr::bind_rows(scm_error, frem_dofv) %>%
-      qa_kable(col.names = c("", "dOFV"), align = "lr", 
+      qa_kable(col.names = c("", "dOFV"), caption = caption, align = "lr", 
                booktabs=T,longtable=T,linesep="") %>% 
       kableExtra::kable_styling(position="c",full_width = F) 
   }
