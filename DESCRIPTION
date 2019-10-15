@@ -52,10 +52,12 @@ Imports:
     MCMCpack,
     plyr,
     stats4,
-    tibble
+    tibble,
+    vaplot (>= 0.0.0.9000)
 Suggests:
     testthat
-URL: https://github.com/UUPharmacometrics/pmutils
+Remotes: sebastianueckert/vaplot
+URL: https://github.com/UUPharmacometrics/PsNR
 LazyData: true
 Author: Svetlana Freiberga [aut, cre, cph],
   Rikard Nordgren [aut, cph],
@@ -63,3 +65,4 @@ Author: Svetlana Freiberga [aut, cre, cph],
 Maintainer: Rikard Nordgren <rikard.nordgren@farmbio.uu.se>
 RoxygenNote: 6.1.1
 Encoding: UTF-8
+VignetteBuilder: knitr

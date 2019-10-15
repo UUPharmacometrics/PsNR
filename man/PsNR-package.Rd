@@ -11,7 +11,7 @@ d
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/UUPharmacometrics/pmutils}
+  \item \url{https://github.com/UUPharmacometrics/PsNR}
 }
 
 }
