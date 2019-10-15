@@ -18,6 +18,7 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
     lin_final_iofv = "Sum of individual OFV values"
   )
   ofv_table <- get_result(qa_results$linearize$ofv_comparison) %>% 
+    dplyr::filter(.data$name!="lin_final_iofv") %>% 
     dplyr::transmute(
       label = lbls[.data$name],
       OFV = dplyr::if_else(!is.na(.data$ofv), format(.data$ofv), "ERROR")
