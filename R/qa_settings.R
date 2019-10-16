@@ -9,15 +9,17 @@ qa_settings <- function(){
 }
 
 qa_files <- function(path, model_filename, settings){
-  linebase_lst <- file.path(path, sub(".([^.]*)$", "_linbase.lst", model_filename))
+  linbase_lst <- file.path(path, sub(".([^.]*)$", "_linbase.lst", model_filename))
   return(
     list(
       linearize = list(
         # non-linear model used to get derivatives for linearization
         derivatives_ext = file.path(path, ext_file(settings$derivatives_lst_path)),
+        derivatives_lst = file.path(path, settings$derivatives_lst_path),
         # linearized model
-        linbase_ext = ext_file(linebase_lst),
-        linebase_phi = phi_file(linebase_lst)
+        linbase_ext = ext_file(linbase_lst),
+        linbase_phi = phi_file(linbase_lst),
+        linbase_tab = sub_file_ext(linbase_lst, "dta")
       ),
       parvar = list(
         fullblock_ext = file.path(path, ext_file(settings$fullblock_lst_path))
@@ -26,9 +28,10 @@ qa_files <- function(path, model_filename, settings){
         raw_results_csv = file.path(path, settings$scm_path, "raw_results_scm.csv")
       ),
       frem = list(
+        path = file.path(path, settings$frem_path),
         m2_raw_results_csv = file.path(path, settings$frem_path, "model2_modelfit_dir1", "raw_results.csv"),
         m4_raw_results_csv = file.path(path, settings$frem_path, "model4_modelfit_dir1", "raw_results.csv")
       )
-    )
+    ) %>% purrr::map_depth(2, normalizePath, mustWork = FALSE)
   )
 }

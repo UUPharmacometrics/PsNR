@@ -341,10 +341,10 @@
     },
     "dplyr": {
       "Package": "dplyr",
-      "Version": "0.8.0.1",
+      "Version": "0.8.3",
       "Source": "CRAN",
       "Repository": "CRAN",
-      "Hash": "30e02c841d82e1aecafbd080297c2b82"
+      "Hash": "6f5a4e8bdf605cba24dc821dea934dd3"
     },
     "e1071": {
       "Package": "e1071",
@@ -857,10 +857,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.3.3",
+      "Version": "0.4.0",
       "Source": "CRAN",
       "Repository": "CRAN",
-      "Hash": "ce26c85191896eaedbe41a17aa5380b3"
+      "Hash": "e48086a0605a981e1deb719711d4be63"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -1015,6 +1015,18 @@
       "Source": "CRAN",
       "Repository": "CRAN",
       "Hash": "557d1cc1d7b4ff362db5990acc00f2a0"
+    },
+    "vaplot": {
+      "Package": "vaplot",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "sebastianueckert",
+      "RemoteRepo": "vaplot",
+      "RemoteRef": "master",
+      "RemoteSha": "bc5508218fc7952a375b54002984fc356e131be1",
+      "Hash": "aefebaf3dd21ffbe708b81e627bf3c2a"
     },
     "viridis": {
       "Package": "viridis",

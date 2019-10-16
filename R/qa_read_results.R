@@ -15,7 +15,7 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
   
   ofv_df <- tryCatch(get_ofv_summary(nonlin_ext_path  = files$linearize$derivatives_ext,
                             lin_ext_path = files$linearize$linbase_ext,
-                            lin_phi_path = files$linearize$linebase_phi), 
+                            lin_phi_path = files$linearize$linbase_phi), 
                      error = function(e) return(e)) %>% 
     as_result()
   
@@ -52,6 +52,7 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
   return(
     list(
       options = psn_options,
+      files = files,
       model_filename = model_filename,
       linearize = list(
         # table of OFV values

@@ -66,7 +66,7 @@ read_nm_ext <- function(path){
 #' ext_file("run4.mod")
 #' phi_file("run4.lst")
 ext_file <- function(path) {
-  return(gsub("\\..+$","\\.ext", path))
+  sub_file_ext(path, "ext")
 }
 
 #' @rdname read_nm_ext
@@ -78,9 +78,12 @@ read_nm_phi <- function(path){
 #' @export
 #' @rdname ext_file
 phi_file <- function(path) {
-  return(gsub("\\..+$","\\.phi", path))
+  sub_file_ext(path, "phi")
 }
 
+sub_file_ext <- function(path, ext){
+  return(gsub("\\..+$",paste0("\\.", ext), path))
+}
 
 read_nm_tab <- function(path, file_type, header_start){
   if(!file.exists(path)) rlang::cnd_signal(cnd_file_not_found(path))
