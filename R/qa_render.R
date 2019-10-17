@@ -32,16 +32,19 @@ render_ofv_table <- function(qa_results, settings = qa_settings()){
 #' @export
 #' @describeIn render_qa_table Renders the covariates table
 render_covariates_table <- function(qa_results, settings = qa_settings()){
-  if(!is_skipped(qa_results, 'frem')&&!has_errors(qa_results$frem)){
+  if(has_result(qa_results$frem)){
     frem_res <- get_result(qa_results$frem)
     frem_dofv <- tibble::tibble(covariate = "FREM", dofv = round(frem_res$dofv, 1)) %>% 
       to_character_tbl()
   }else{
-    frem_dofv <- tibble::tibble(covariate = "FREM", dofv = ifelse(is_skipped(qa_results, 'frem'), "SKIPPED", "ERROR")) 
+    why <- "ERROR"
+    if(is_skipped(qa_results, 'frem')) why <- "SKIPPED"
+    if(is.null(qa_results$options$continuous)&&is.null(qa_results$options$categorical)) why <- "NA"
+    frem_dofv <- tibble::tibble(covariate = "FREM", dofv = why) 
   }
   caption <- glue::glue("Expected improvement when including covariates, the sum of all univariate improvement (univ. sum)",
                         ", as well as the joint improvement from all covariates through FREM.")
-  if(!is_skipped(qa_results, 'scm') && !has_errors(qa_results$scm)){
+  if(has_result(qa_results$scm)){
     scm_table <- get_result(qa_results$scm) 
     
     output_table <- scm_table %>% 
@@ -69,8 +72,11 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
       kableExtra::pack_rows("Overall", nrow(output_table)+1, nrow(output_table) + 1) %>% 
       kableExtra::kable_styling(position="c",full_width = F) 
   }else{
+    why <- "ERROR"
+    if(is_skipped(qa_results, 'scm')) why <- "SKIPPED"
+    if(is.null(qa_results$options$continuous)&&is.null(qa_results$options$categorical)) why <- "NA"
     scm_error <- tibble::tibble(covariate = "cov. screening", 
-                                dofv = ifelse(is_skipped(qa_results, 'scm'), "SKIPPED", "ERROR"))
+                                dofv = why)
     dplyr::bind_rows(scm_error, frem_dofv) %>%
       qa_kable(col.names = c("", "dOFV"), caption = caption, align = "lr", 
                booktabs=T,longtable=T,linesep="") %>% 
