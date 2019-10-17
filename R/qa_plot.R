@@ -12,7 +12,7 @@ plot_result <- function(r){
     sink(stderr())
     print(e)
     sink()
-    return(invisible(NULL))
+    return(invisible(e))
   }
   else {
     p <- get_result(r)
@@ -20,7 +20,8 @@ plot_result <- function(r){
       print(p)
     }else{
       purrr::walk(r, print)
-    } 
+    }
+    return(invisible(p))
   }
 }
 
