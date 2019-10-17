@@ -16,7 +16,7 @@ plot_result <- function(r){
   }
   else {
     p <- get_result(r)
-    if(!is.list(p)){
+    if(!rlang::is_bare_list(p)){
       print(p)
     }else{
       purrr::walk(r, print)
