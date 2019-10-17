@@ -8,7 +8,14 @@
 #' @export
 plot_result <- function(r){
   if(has_errors(r)) return(invisible(NULL))
-  else print(r$result)
+  else {
+    p <- get_result(r)
+    if(!is.list(p)){
+      print(p)
+    }else{
+      purrr::walk(r, print)
+    } 
+  }
 }
 
 #' Prepare VA plot of FREM results
@@ -27,11 +34,13 @@ prepare_va_cov_plot <- function(qa_results){
     res_base <- vaplot::compute_va(input_base, facets = dvid)
     input_frem <- vaplot::prepare_va_frem(frem_path)
     res_frem <- vaplot::compute_va(input_frem, facets = dvid)
-    vaplot::plot_va_compare(`without covariates` = res_base, 
+    p <- vaplot::plot_va_compare(`without covariates` = res_base, 
                                  `with covariates` = res_frem, 
                                  smooth = TRUE)+
       ggplot2::theme_bw()+
-      ggplot2::theme(legend.position = "top")
+      ggplot2::theme(legend.position = "bottom")
+    #if(!is.null(dvid)) p <- p + ggforce::facet_grid_paginate() 
+    p  
   },
     error = function(e) return(e)
   ) %>% as_result()
