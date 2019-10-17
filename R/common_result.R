@@ -25,6 +25,12 @@ get_result.psn_result <- function(x){
   return(x$result)
 }
 
+get_error <- function(x) UseMethod("get_error")
+
+get_error.psn_result <- function(x){
+  return(x$error)
+}
+
 has_errors <- function(x) UseMethod("has_errors")
 
 has_errors.psn_result <- function(x){

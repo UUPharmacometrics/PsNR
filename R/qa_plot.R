@@ -7,7 +7,13 @@
 #'
 #' @export
 plot_result <- function(r){
-  if(has_errors(r)) return(invisible(NULL))
+  if(has_errors(r)) {
+    e <- get_error(r)
+    sink(stderr())
+    print(e)
+    sink()
+    return(invisible(NULL))
+  }
   else {
     p <- get_result(r)
     if(!is.list(p)){
@@ -28,8 +34,8 @@ prepare_va_cov_plot <- function(qa_results){
   frem_path <- qa_results$files$frem$path
   derivatives_lst <- qa_results$files$linearize$derivatives_lst
   dvid <- NULL
-  if(qa_results$options$dvid_name!='') dvid <- qa_results$options$dvid_name 
   p <- tryCatch({
+    if(qa_results$options$dvid_name!='') dvid <- qa_results$options$dvid_name 
     input_base <- vaplot::prepare_va_nm(derivatives_lst)
     res_base <- vaplot::compute_va(input_base, facets = dvid)
     input_frem <- vaplot::prepare_va_frem(frem_path)
