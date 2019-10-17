@@ -31,4 +31,5 @@ cnd_nm_run_failed <- function(path = NA, reason = NA)
   rlang::error_cnd("nm_run_failed", path = path, reason = reason,
                    message = paste0("The NONMEM run failed"))
 
+#' @export
 is_error <- function(e) return(inherits(e, "error"))
