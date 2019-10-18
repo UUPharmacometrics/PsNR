@@ -56,7 +56,7 @@ Imports:
     vaplot (>= 0.0.0.9000)
 Suggests:
     testthat
-Remotes: sebastianueckert/vaplot
+Remotes: sebastianueckert/vaplot@PsN4.9.3
 URL: https://github.com/UUPharmacometrics/PsNR
 LazyData: true
 Author: Svetlana Freiberga [aut, cre, cph],
