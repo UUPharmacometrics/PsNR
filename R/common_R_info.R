@@ -50,7 +50,8 @@ R_info <- function(directory,only_libPaths=F) {
       if(!exists("R_version",yaml_file)) {
         cat(yaml::as.yaml(list(R_version=strsplit(devtools::session_info()[[1]]$version," ")[[1]][3],
                                R_system=devtools::session_info()[[1]]$system,
-                               R_packages=R_packages),
+                               R_packages=R_packages,
+                               R_LIB_PATHS=.libPaths()),
                           column.major = F,
                           indent.mapping.sequence = TRUE),
             file=file.path(directory,"meta.yaml"),
