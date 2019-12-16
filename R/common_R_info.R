@@ -1,34 +1,8 @@
 #' Add information from R run to the meta.yaml file. Will add R library path as well as loaded R packages and their versions during the run.
 #' 
 #' @param directory A directory name where the meta.yaml file can be found.
-#' @param only_libPaths A logical indicating to add only R library path. By default only_libPaths=FALSE.
 #' @export
-R_info <- function(directory,only_libPaths=F) {
-  if(only_libPaths) {
-    if(file.exists(file.path(directory,"meta.yaml"))) {
-      yaml_file <- yaml::yaml.load_file(file.path(directory,"meta.yaml"))
-      if(!exists("R_LIB_PATHS",yaml_file)) {
-        cat(yaml::as.yaml(list(R_LIB_PATHS=.libPaths()),
-                          column.major = F,
-                          indent.mapping.sequence = TRUE),
-            file=file.path(directory,"meta.yaml"),
-            append = TRUE)
-      } else {
-        yaml_file$R_LIB_PATHS <- NULL
-        yaml_file$R_LIB_PATHS <- .libPaths()
-        cat(yaml::as.yaml(yaml_file,
-                          column.major = F,
-                          indent.mapping.sequence = TRUE),
-            file=file.path(directory,"meta.yaml"))
-      }
-      
-    } else {
-      cat(yaml::as.yaml(list(R_LIB_PATHS=.libPaths()),
-                        column.major = F,
-                        indent.mapping.sequence = TRUE),
-          file=file.path(directory,"meta.yaml"))
-    }
-  } else {
+R_info <- function(directory) {
     #get loaded R packages
     R_packages <- as.data.frame(devtools::session_info()[[2]])
     if(any(colnames(R_packages)=="version")) {
@@ -89,5 +63,4 @@ R_info <- function(directory,only_libPaths=F) {
                         indent.mapping.sequence = TRUE),
           file=file.path(directory,"meta.yaml"))
     }
-  }
 }
