@@ -23,13 +23,12 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
     dplyr::filter(name == "lin_final") %>% 
     dplyr::pull("ofv")
   
-  parvar_res <- tryCatch(retrieve_parvar_results(files$parvar$fullblock_ext,
-                                                 ofv_linebase),
-                         error = function(e) return(e)) %>% 
-    as_result()
+  parvar_res <- retrieve_parvar_results(files$parvar)
 
-  dofv_fullblock <- get_result(parvar_res) %>% 
-    purrr::pluck("fullblock", "dofv")
+  ofv_fullblock <- get_result(parvar_res$fullblock) %>% 
+    purrr::pluck("dofv")
+  
+  dofv_fullblock <- ofv_linebase - ofv_fullblock
   
   scm_df <- tryCatch(retrieve_scm_results(files$scm$raw_results_csv, 
                                    parameters = psn_options$parameters, 
@@ -62,7 +61,7 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
       cdd = NULL,
       simeval = NULL
     )
-    )
+  )
 }
 
 is_skipped <- function(qa_results, tool){
@@ -113,14 +112,41 @@ get_resmod_idvs <- function(path){
   return(idvs)
 }
 
-retrieve_parvar_results <- function(fullblock_ext_path, linbase_ofv){
-  fullblock_ofv <- read_nm_ext(fullblock_ext_path) %>%
-    get_final_ofvs()
+retrieve_parvar_results <- function(parvar_files){
+  fullblock_res <- tryCatch(
+    {
+      ext_list <- read_nm_ext(parvar_files$fullblock_ext)
+      list(
+        ofv = get_final_ofvs(ext_list),
+        omegas = get_final_omegas(ext_list) %>% 
+          assert_one_result()
+      )   
+    },
+    error = function(e) return(e)) %>%
+    as_result()
+ 
+  boxcox_res <- tryCatch(
+    list(
+      omegas = read_nm_ext(parvar_files$boxcox_ext) %>%
+        get_final_omegas() %>%
+        assert_one_result()
+    ),
+  error = function(e) return(e)) %>%
+    as_result()
+  
+  tdist_res <- tryCatch(
+    list(
+      omegas = read_nm_ext(parvar_files$tdist_ext) %>% 
+        get_final_omegas() %>% 
+        assert_one_result()
+      ),
+  error = function(e) return(e)) %>% 
+    as_result()
   
   list(
-    fullblock = list(
-      dofv = linbase_ofv - fullblock_ofv
-    )
+    fullblock = fullblock_res,
+    boxcox = boxcox_res,
+    tdist = tdist_res
   )
 }
 
