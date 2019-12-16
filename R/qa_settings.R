@@ -3,6 +3,8 @@ qa_settings <- function(){
     linearize_path = "linearize_run/scm_dir1",
     derivatives_lst_path = "linearize_run/scm_dir1/derivatives.lst",
     fullblock_lst_path = "modelfit_run/fullblock.lst",
+    boxcox_lst_path = "modelfit_run/boxcox.lst",
+    tdist_lst_path = "modelfit_run/tdist.lst",
     scm_path = "scm_run",
     frem_path = "frem_run"
   )
@@ -22,7 +24,9 @@ qa_files <- function(path, model_filename, settings){
         linbase_tab = sub_file_ext(linbase_lst, "dta")
       ),
       parvar = list(
-        fullblock_ext = file.path(path, ext_file(settings$fullblock_lst_path))
+        fullblock_ext = file.path(path, ext_file(settings$fullblock_lst_path)),
+        boxcox_ext = file.path(path, ext_file(settings$boxcox_lst_path)),
+        tdist_ext = file.path(path, ext_file(settings$tdist_lst_path))
       ),
       scm = list(
         raw_results_csv = file.path(path, settings$scm_path, "raw_results_scm.csv")
