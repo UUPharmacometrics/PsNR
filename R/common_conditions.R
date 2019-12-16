@@ -31,5 +31,8 @@ cnd_nm_run_failed <- function(path = NA, reason = NA)
   rlang::error_cnd("nm_run_failed", path = path, reason = reason,
                    message = paste0("The NONMEM run failed"))
 
+cnd_unexpected_result_structure <- function(msg = "The result had an unexpected format.")
+  rlang::error_cnd("unexpected_result_structure", message = msg)
+
 #' @export
 is_error <- function(e) return(inherits(e, "error"))
