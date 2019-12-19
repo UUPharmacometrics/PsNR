@@ -53,7 +53,9 @@ Imports:
     plyr,
     stats4,
     tibble,
-    vaplot (>= 0.0.0.9000)
+    vaplot (>= 0.0.0.9000),
+    htmltools,
+    glue
 Suggests:
     testthat
 Remotes: sebastianueckert/vaplot@PsN4.9.3
