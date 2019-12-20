@@ -11,9 +11,9 @@ captions_structural <- function(idv_all,idv_name,which_idv,perc) {
   #captions
   #order TIME,TAD,PRED
   order <- c(idv_name,"TAD","PRED")
-  vpc_captions_all <- c(paste0("VPC of observations (DV) vs. binned time (",idv_name,") before and after correcting for the estimated structural bias by ",idv_name," bin."),
-                        "VPC of observations (DV) vs. binned time after dose (TAD) before and after correcting for the estimated structural bias by TAD bin.",
-                        "VPC of observations (DV) vs. binned population predictions (PRED) before and after correcting for the estimated structural bias by PRED bin.")
+  vpc_captions_all <- c(paste0("VPC of observations (DV) vs. binned time (",idv_name,") before correcting for the estimated structural bias by ",idv_name," bin."),
+                        "VPC of observations (DV) vs. binned time after dose (TAD) before correcting for the estimated structural bias by TAD bin.",
+                        "VPC of observations (DV) vs. binned population predictions (PRED) before correcting for the estimated structural bias by PRED bin.")
   
   resmod_dofv_table_captions_all <- c(paste0("Dependent (DV) and independent variable (IDV) used for the structural bias estimation per time (",idv_name,") bin as well expected improvement in OFV from addressing remaining biases."),
                                       "Dependent (DV) and independent variable (IDV) used for the structural bias estimation per time after dose (TAD) bin as well expected improvement in OFV from addressing remaining biases.",
