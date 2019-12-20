@@ -19,7 +19,7 @@ plot_result <- function(r){
     if(!rlang::is_bare_list(p)){
       print(p)
     }else{
-      purrr::walk(r, print)
+      purrr::walk(p, print)
     }
     return(invisible(p))
   }
