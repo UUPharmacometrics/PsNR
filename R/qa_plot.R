@@ -47,7 +47,18 @@ prepare_va_cov_plot <- function(qa_results){
       ggplot2::theme_bw()+
       ggplot2::theme(legend.position = "bottom")
     #if(!is.null(dvid)) p <- p + ggforce::facet_grid_paginate() 
-    p  
+
+    if("TAD" %in% input_base$column_names && "TAD" %in% input_frem$column_names){
+      res_base <- vaplot::compute_va(input_base, facets = dvid, idv = "TAD")
+      res_frem <- vaplot::compute_va(input_frem, facets = dvid, idv = "TAD")
+      p2 <- vaplot::plot_va_compare(`without covariates` = res_base, 
+                                   `with covariates` = res_frem, 
+                                   smooth = TRUE)+
+        ggplot2::theme_bw()+
+        ggplot2::theme(legend.position = "bottom")
+      p <- list(p,p2)  
+    }
+    p
   },
     error = function(e) return(e)
   ) %>% as_result()
