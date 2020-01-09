@@ -1,0 +1,57 @@
+body{
+  padding-top: 70px;  
+  position: relative;
+}
+
+h1{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.panel-heading{
+  padding: 1px 10px;
+}
+
+.qa-details{
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.popover{
+    max-width: 400px; 
+}
+
+.btn-popover{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #000000;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-out;
+}
+
+.btn-popover:hover{
+  color: #000000;
+  opacity: 0.8;
+  
+}
+
+.qa-tutorial-content{
+}
+
+.qa-element-info-button{
+  position: absolute;
+}
+
+.qa-element-highlight{
+  background-color: #e7e7e7;
+}
+
+.table{
+   transition: background 0.3s ease-out;
+}

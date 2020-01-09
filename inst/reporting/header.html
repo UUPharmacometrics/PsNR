@@ -1,5 +1,31 @@
 <script>
 	$(document).ready(function() {
-    	$('[data-toggle="popover"]').popover(); 
+	     $('body').scrollspy({ target: '#navbar' });
+	     $('#overview-table').popover(); 
+	     $('#overview-table-button').click(function(){
+	        $('#overview-table').popover('toggle'); 
+	     });
+	     $('#tutorialToggle').on('click', function () {
+        $('.qa-tutorial-content').collapse('toggle')
+      });
+      
+      $('.qa-element-info-button').on({
+        mouseenter: function(){
+          $("#"+$(this).data("elementId")).addClass("qa-element-highlight");
+          $(this).tooltip({title: "More about this table"}).tooltip("show");
+        },
+        mouseleave: function(){
+          $("#"+$(this).data("elementId")).removeClass("qa-element-highlight");
+          $(this).tooltip("hide");
+        },
+        click: function(){
+          $("#"+$(this).data("elementId")).popover({
+            content: $(this).data("content"),
+            placement: "top"
+          }).popover('toggle');
+        }
+      });
     });
+    
+    
 </script>
