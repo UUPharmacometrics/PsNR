@@ -58,7 +58,7 @@ Imports:
     glue
 Suggests:
     testthat
-Remotes: sebastianueckert/vaplot@PsN4.9.3
+Remotes: sebastianueckert/vaplot
 URL: https://github.com/UUPharmacometrics/PsNR
 LazyData: true
 Author: Svetlana Freiberga [aut, cre, cph],
