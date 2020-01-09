@@ -6,6 +6,7 @@
 #' @name  qa_report_content
 #' @export
 qa_report_content_intro <- function(){
+  if(!knitr::is_html_output()) return(invisible())
   about_report_panel <- qa_ui_manual_panel(
     title = "The QA report", 
     htmltools::tags$p(
@@ -104,6 +105,8 @@ qa_report_content_intro <- function(){
 #' @export
 #' @rdname qa_report_content 
 qa_report_content_overview <- function(){
+  
+  if(!knitr::is_html_output()) return(invisible())
   about_overview_panel <- qa_ui_manual_panel(
     title = "Overview section", 
     htmltools::tags$p(
@@ -132,6 +135,7 @@ qa_report_content_overview <- function(){
 #' @export
 #' @rdname qa_report_content 
 qa_report_content_structural <- function(){
+  if(!knitr::is_html_output()) return(invisible())
   about_structural_panel <- qa_ui_manual_panel(
     title = "Structural section", 
     htmltools::tags$p(
@@ -210,6 +214,8 @@ qa_report_content_structural <- function(){
 #' @export
 #' @rdname qa_report_content 
 qa_report_content_parvar <- function(){
+  
+  if(!knitr::is_html_output()) return(invisible())
   about_parvar_panel <- qa_ui_manual_panel(
     title = "Parameter variability section", 
     htmltools::tags$p(
@@ -246,6 +252,8 @@ qa_report_content_parvar <- function(){
 #' @export
 #' @rdname qa_report_content 
 qa_report_content_covariates <- function(){
+  
+  if(!knitr::is_html_output()) return(invisible())
   about_covar_panel <- qa_ui_manual_panel(
     title = "Covariates section", 
     htmltools::tags$p(
