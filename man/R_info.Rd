@@ -4,12 +4,10 @@
 \alias{R_info}
 \title{Add information from R run to the meta.yaml file. Will add R library path as well as loaded R packages and their versions during the run.}
 \usage{
-R_info(directory, only_libPaths = F)
+R_info(directory)
 }
 \arguments{
 \item{directory}{A directory name where the meta.yaml file can be found.}
-
-\item{only_libPaths}{A logical indicating to add only R library path. By default only_libPaths=FALSE.}
 }
 \description{
 Add information from R run to the meta.yaml file. Will add R library path as well as loaded R packages and their versions during the run.
