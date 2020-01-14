@@ -50,6 +50,7 @@ render_covariates_table <- function(qa_results, settings = qa_settings()){
     output_table <- scm_table %>% 
       dplyr::select("parameter", "covariate", "bin_split", "dofv", "prm_value") %>% 
       dplyr::mutate(dofv = round(.data$dofv, 1),
+                  parameter=paste0("ETA(", substr(.data$parameter, 3, nchar(.data$parameter)), ")"),     # ET1->ETA(1)
                   prm_value = round(.data$prm_value, 3),
                   bin_split = dplyr::if_else(is.na(bin_split), "", as.character(bin_split))) %>% 
       dplyr::arrange(.data$parameter, .data$covariate, .data$bin_split) 
