@@ -6,7 +6,17 @@
 \alias{qa_report_content_overview}
 \alias{qa_report_content_structural}
 \alias{qa_report_content_parvar}
+\alias{qa_report_content_full_block}
+\alias{qa_report_content_box_cox}
+\alias{qa_report_content_tdist}
+\alias{qa_report_content_iov}
+\alias{qa_report_content_add_eta}
+\alias{qa_report_content_residual}
+\alias{qa_report_content_influential}
+\alias{qa_report_content_outliers}
 \alias{qa_report_content_covariates}
+\alias{qa_report_content_vaplot}
+\alias{qa_report_content_frem_plots}
 \title{Content sections for the QA report}
 \usage{
 qa_report_content_intro()
@@ -17,7 +27,27 @@ qa_report_content_structural()
 
 qa_report_content_parvar()
 
+qa_report_content_full_block()
+
+qa_report_content_box_cox()
+
+qa_report_content_tdist()
+
+qa_report_content_iov()
+
+qa_report_content_add_eta()
+
+qa_report_content_residual()
+
+qa_report_content_influential()
+
+qa_report_content_outliers()
+
 qa_report_content_covariates()
+
+qa_report_content_vaplot()
+
+qa_report_content_frem_plots()
 }
 \value{
 Latex/HTML for the section

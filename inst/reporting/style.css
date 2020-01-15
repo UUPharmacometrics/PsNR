@@ -54,4 +54,11 @@ h1{
 
 .table{
    transition: background 0.3s ease-out;
+   min-width: 50%;
+}
+
+@media print {
+  img{
+    page-break-inside: avoid;
+  }
 }

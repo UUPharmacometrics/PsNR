@@ -172,13 +172,13 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
     } else {
       dofv_iov <- "NA"
     }
-    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","Additional ETA","t-distribution","Interoccasion variability"), 
-                                 c(dofv_block,dofv_box,dofv_additional_eta,dofv_tdist,dofv_iov),stringsAsFactors = F)
+    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability", "Additional ETA"), 
+                                 c(dofv_block,dofv_box,dofv_tdist,dofv_iov,dofv_additional_eta),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV")
   }
   # check if transform run was skipped
   if(any(skip=="transform")) {
-    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","Additional ETA","t-distribution","Interoccasion variability"), 
+    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability","Additional ETA"), 
                                  c(rep("SKIPPED",5)),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV")
   }

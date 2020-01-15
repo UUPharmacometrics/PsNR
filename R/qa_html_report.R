@@ -21,6 +21,7 @@ qa_html_report <- function(...){
 
 #' @export
 qa_ui_tmode_content <- function(...){
+  if(!knitr::is_html_output()) return(invisible())
   htmltools::tags$div(class = "qa-tutorial-content collapse", ...)
 }
 
@@ -106,3 +107,11 @@ qa_ui_cite <- function(key, bibliography = qa_references()){
   cite(key, bibliography)
 }
 
+#' @export
+qa_ui_console <- function(command){
+   htmltools::tags$pre(
+    class = "highlight",
+    command
+  )
+  
+}

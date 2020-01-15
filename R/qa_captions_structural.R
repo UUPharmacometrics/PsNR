@@ -15,23 +15,26 @@ captions_structural <- function(idv_all,idv_name,which_idv,perc) {
                         "VPC of observations (DV) vs. binned time after dose (TAD) before correcting for the estimated structural bias by TAD bin.",
                         "VPC of observations (DV) vs. binned population predictions (PRED) before correcting for the estimated structural bias by PRED bin.")
   
-  resmod_dofv_table_captions_all <- c(paste0("Dependent (DV) and independent variable (IDV) used for the structural bias estimation per time (",idv_name,") bin as well expected improvement in OFV from addressing remaining biases."),
-                                      "Dependent (DV) and independent variable (IDV) used for the structural bias estimation per time after dose (TAD) bin as well expected improvement in OFV from addressing remaining biases.",
-                                      "Dependent (DV) and independent variable (IDV) used for the structural bias estimation per population prediction (PRED) bin as well expected improvement in OFV from addressing remaining biases.")
+  resmod_dofv_table_captions_all <- c(paste0("Expected improvement in OFV from addressing structural biases determined as a function of ",idv_name, "."),
+                                      "Expected improvement in OFV from addressing structural biases determined as a function of TAD",
+                                      "Expected improvement in OFV from addressing structural biases determined as a function of PRED.")
+
   if(perc) {
-    structural_bias_tables_captions_all <- c("Estimated structural bias in conditionally weighted residuals (CWRES) by time bin and corresponding bias on the percent conditional model prediction (%CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.",
-                                             "Estimated structural bias in conditionally weighted residuals (CWRES) by time after dose (TAD) bin and corresponding bias on the percent conditional model prediction (%CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.",
-                                             "Estimated structural bias in conditionally weighted residuals (CWRES) by population prediction (PRED) bin and corresponding bias on the percent conditional model prediction (%CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.")
-    structural_bias_plots_captions_all <- c(paste0("Estimated structural bias on the percent population prediction (%CPRED) scale vs. binned time (",idv_name,")."),
-                                            "Estimated structural bias on the percent population prediction (%CPRED) scale vs. binned time after dose (TAD).",
-                                            "Estimated structural bias on the percent population prediction (%CPRED) scale vs. binned population predictions (PRED).")
+    structural_bias_tables_captions_all <- c("Estimated structural bias in CWRES by time bin and corresponding bias on the percent conditional model prediction (\\%CPRED) scale.",
+                                             "Estimated structural bias in CWRES by TAD bin and corresponding bias on the percent conditional model prediction (\\%CPRED) scale.",
+                                             "Estimated structural bias in CWRES by PRED bin and corresponding bias on the percent conditional model prediction (\\%CPRED) scale.")
+
+    structural_bias_plots_captions_all <- c(paste0("Estimated structural bias on the percent CPRED scale vs. binned time (",idv_name,")."),
+                                            "Estimated structural bias on the percent CPRED scale vs. binned TAD.",
+                                            "Estimated structural bias on the percent CPRED scale vs. binned PRED.")
   } else {
-    structural_bias_tables_captions_all <- c("Estimated structural bias in conditionally weighted residuals (CWRES) by time bin and corresponding bias on the conditional model prediction (CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.",
-                                             "Estimated structural bias in conditionally weighted residuals (CWRES) by time after dose (TAD) bin and corresponding bias on the conditional model prediction (CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.",
-                                             "Estimated structural bias in conditionally weighted residuals (CWRES) by population prediction (PRED) bin and corresponding bias on the conditional model prediction (CPRED) scale, obtained by inversion of the FOCE-based CWRES equation.")
-    structural_bias_plots_captions_all <- c(paste0("Estimated structural bias on the population prediction (CPRED) scale vs. binned time (",idv_name,")."),
-                                            "Estimated structural bias on the population prediction (CPRED) scale vs. binned time after dose (TAD).",
-                                            "Estimated structural bias on the population prediction (CPRED) scale vs. binned population predictions (PRED).")
+    structural_bias_tables_captions_all <- c("Estimated structural bias in CWRES by time bin and corresponding bias on the conditional model prediction (CPRED) scale.",
+                                             "Estimated structural bias in CWRES by TAD bin and corresponding bias on the conditional model prediction (CPRED) scale.",
+                                             "Estimated structural bias in CWRES by PRED bin and corresponding bias on the conditional model prediction (CPRED) scale.")
+
+    structural_bias_plots_captions_all <- c(paste0("Estimated structural bias on the CPRED scale vs. binned time (",idv_name,")."),
+                                            "Estimated structural bias on the CPRED scale vs. binned TAD.",
+                                            "Estimated structural bias on the CPRED scale vs. binned PRED.")
   }
   
   idv <- c()
