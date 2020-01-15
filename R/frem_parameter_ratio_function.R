@@ -134,9 +134,9 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       outTable <- cbind(outTable[1],outTablet_proc)
       # add some needed columns for plotting
       if(nrow(inTable_frem)>1) {
-        outTable$EXPECTED<-sprintf("%+.3G %%  [%+.3G, %+.3G]",outTable$mean,outTable$ci_low,outTable$ci_high)
+        outTable$`EXPECTED EFFECT` <- sprintf("%+.3G %%  [%+.3G, %+.3G]", outTable$mean, outTable$ci_low, outTable$ci_high)
       } else {
-        outTable$EXPECTED<-sprintf("%+.3G %%",outTable$mean)
+        outTable$`EXPECTED EFFECT` <- sprintf("%+.3G %%", outTable$mean)
       }
       outTable$points <- point_names
       outTable$group <- point_color
@@ -169,7 +169,7 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       # create table with all needed information
       outTable <- outTable[-1,]
       outTable_text <- data.frame()
-      V1 <- c(colnames(outTable)[9], outTable$COVARIATE, colnames(outTable)[8],outTable$MEAN, colnames(outTable)[5], outTable$EXPECTED)
+      V1 <- c(colnames(outTable)[9], outTable$COVARIATE, colnames(outTable)[8],outTable$MEAN, colnames(outTable)[5], outTable$`EXPECTED EFFECT`)
       V05 <- rep(c(1:3),each = (nrow(outTable) +1) )
       outTable_text <- data.frame(V1,V05,V0 = factor(rep(c(1:(nrow(outTable) +1)),3),levels = c((nrow(outTable) +1):1)))
       outTable_text$group <- rep(c("title",rep("all",nrow(outTable))),3)
