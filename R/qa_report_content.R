@@ -652,7 +652,7 @@ qa_report_content_outliers <- function(){
       together with the improvement in OFV, were these to be excluded from the analysis. Following the table, a graph
       indicates the distribution in 
       this is followed by individual plots showing individual and population predictions together with the data for the 
-      outlying subjects. Finally, a table indicates 
+      outlying subjects. 
       "
     )
   )
