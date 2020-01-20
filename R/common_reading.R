@@ -82,7 +82,7 @@ phi_file <- function(path) {
 }
 
 sub_file_ext <- function(path, ext){
-  return(gsub("\\..+$",paste0("\\.", ext), path))
+  return(gsub("\\.[^.]+$",paste0("\\.", ext), path))
 }
 
 read_nm_tab <- function(path, file_type, header_start){
