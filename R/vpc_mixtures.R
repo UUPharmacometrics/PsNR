@@ -47,8 +47,8 @@ average_probability_per_mixture_subpops <- function(df) {
 #' @export
 randomize_mixture_subpops <- function(df) {
     df %>%
-        group_by(replicate, ID) %>%
-        summarise(SUBPOP=sample(SUBPOP, size=1, prob=PMIX))
+        dplyr::group_by(replicate, ID) %>%
+        dplyr::summarise(SUBPOP=sample(SUBPOP, size=1, prob=PMIX))
 }
 
 # Input is obs - observation table
