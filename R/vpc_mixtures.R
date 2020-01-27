@@ -56,11 +56,12 @@ randomize_mixture_subpops <- function(df) {
 #   obs_mixture - The mixture data for the observations table with ID, SUBPOP, PMIX and replicate
 #   bins - Array of bins for the vpc if needed specifically
 #   dv - name of dv. default DV
+#   idv - name of the independent variable. default TIME
 #   randomize - Default is to only use the subpop with maximum probability for each ID
 #               This option randomizes using the probabilities in the input
 # Can return error message instead of plot for a subpopulation
 #' @export
-mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", stratify_on, randomize=FALSE) {
+mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="TIME", stratify_on, randomize=FALSE) {
     if (randomize) {
         randomized_sim <- randomize_mixture_subpops(sim_mixture)
         sim <- dplyr::full_join(sim, randomized_sim)
@@ -96,15 +97,15 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", strat
         }
         if (missing(bins)) {
             if (missing(stratify_on)) {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv))
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv))
             } else {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), stratify=stratify_on)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), stratify=stratify_on)
             }
         } else {
             if (missing(stratify_on)) {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), bins=bins)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), bins=bins)
             } else {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), stratify=stratify_on, bins=bins)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), stratify=stratify_on, bins=bins)
             }
         }
 
