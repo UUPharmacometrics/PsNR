@@ -124,8 +124,8 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="
         subtitle_text <- sprintf("=%.1f%%  ORIGID=%.1f%%  SIMID=[%.1f%%, %.1f%%]",#  (5%%, 95%% percentiles)",
                             pmix_value, orig_value, lower_quantile, upper_quantile)
         vpc <- vpc + labs(title=title_text, subtitle=bquote(P[mix] ~ .(subtitle_text) ~ "(" ~ 5^th ~ ", " ~ 95^th ~ " percentiles)"))
-        vpc <- vpc + theme(axis.text=element_text(size=13))
-        vpc <- vpc + theme(plot.subtitle=element_text(size=14))
+        vpc <- vpc + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+        vpc <- vpc + theme(plot.subtitle=element_text(size=20), plot.title=element_text(size=20))
         table_list[[i]] <- vpc
     }
     
