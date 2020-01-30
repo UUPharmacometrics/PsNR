@@ -258,7 +258,7 @@ test_that("If function i_ofv_ppc works as expected",{
   expect_equal(exp_sort_iOFV_sim_2,sort_iOFV_sim_2)
   expect_equal(exp_newxlim_2,newxlim_2)
   expect_equal(exp_out_i_ofv_ppc_a,out_i_ofv_ppc_a)
-  
+
 })
 
 #..........................  (6) Test function kld_i_ofv  ...................................

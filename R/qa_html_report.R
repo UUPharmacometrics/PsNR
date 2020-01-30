@@ -28,7 +28,7 @@ qa_ui_tmode_content <- function(...){
 #' @export
 qa_ui_manual_panel <- function(title, ...){
   qa_ui_panel(
-    title = title, 
+    title = title,
     tooltip = "QA user guide",
     icon = "glyphicon-user",
     ... = ...
@@ -58,7 +58,7 @@ qa_ui_advice_panel <- function(title, ...){
 #' @export
 qa_ui_panel <- function(title, tooltip, icon, ...){
   heading <- htmltools::tags$div(
-    class="panel-heading", 
+    class="panel-heading",
     htmltools::tags$h4(
       qa_ui_icon(
         icon = icon,
@@ -66,7 +66,7 @@ qa_ui_panel <- function(title, tooltip, icon, ...){
         style="font-size: 15px;"
       ),
       title
-    )                    
+    )
   )
   body <- htmltools::tags$div(
     class="panel-body",
@@ -84,7 +84,7 @@ qa_ui_element_info <- function(element_id, text){
   htmltools::tags$div(
     style = "position: relative; float:right;",
     htmltools::tags$button(
-      class = "qa-element-info-button", 
+      class = "qa-element-info-button",
       `data-element-id` = element_id,
       `data-content` = text,
       qa_ui_icon("glyphicon-info-sign")
@@ -95,7 +95,7 @@ qa_ui_element_info <- function(element_id, text){
 #' @export
 qa_ui_icon <- function(icon, tooltip = NULL, style = NULL){
   tooltip_opts <- list()
-  if(!is.null(tooltip)) tooltip_opts <- list(`data-toggle`="tooltip", title=tooltip) 
+  if(!is.null(tooltip)) tooltip_opts <- list(`data-toggle`="tooltip", title=tooltip)
   htmltools::tags$span(
     class = glue::glue("glyphicon {icon}"),
     `aria-hidden` = "true",
@@ -113,5 +113,5 @@ qa_ui_console <- function(command){
     class = "highlight",
     command
   )
-  
+
 }

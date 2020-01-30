@@ -6,7 +6,7 @@
 #' @param resmod_ruv_overview a data frame of residual error models, corresponding dofv values and number of added parameters
 #' @param infl_indiv_overview a data frame of most influential individual, corresponding dofv value and number of added parameters
 #' @param outliers_overview a data frame of most outlying individual, corresponding dofv value and number of added parameters
-#' 
+#'
 #' @return A list of 4 arguments.
 #' overview_table - a data frame
 #' n.rgroup - a numeric vector with number of rows in each group
@@ -29,7 +29,7 @@ get_overview_table <- function(structural_overview,param_var_overview,covariates
     n.rgroup[i] <- nrow(overview_list[[i]])
     j <- j + n.rgroup[i]
     row_groups[i,3] <- j - 1
-    
+
     if(i == 1) {
       overview_table <- overview_list[[i]]
     } else {
@@ -58,7 +58,7 @@ get_overview_table <- function(structural_overview,param_var_overview,covariates
       overview_table$dOFV[i] <- dofv_values[j]
     }
   }
-  
+
   return(list(overview_table=overview_table,
               n.rgroup=n.rgroup,
               rgroup_names=rgroup_names,

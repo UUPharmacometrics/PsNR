@@ -1,4 +1,4 @@
-# get all R files from the folder, add the path to each of the files and save them in the vector 
+# get all R files from the folder, add the path to each of the files and save them in the vector
 #' @export
 find_r_files_in_subdir <- function(toolname,topdir) {
   new.folder.directory <- paste0(topdir,"/",toolname)

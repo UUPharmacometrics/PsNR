@@ -15,7 +15,7 @@ empirical.distance <- function(ebenpde_obs,n.subjects) {
     mean_ebenpde <- array(0,c(1,length(eta.names)))
     var_ebenpde <- diag(1,length(eta.names),length(eta.names))
     emp_distance[i]<- (as.matrix(ebenpde_obs_i-mean_ebenpde)%*%as.matrix(solve(var_ebenpde))%*%as.matrix(t(ebenpde_obs_i-mean_ebenpde)))
-    
+
     id_eta.names[[i]] <- eta.names
   }
   out <- list(emp_distance=emp_distance,

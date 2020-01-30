@@ -32,7 +32,7 @@ plot_2 <- function(ebenpde_tmp,emp_distance_sort,theor_distance,index_emp_distan
       noutlier <- noutlier + 1
       outlier_id_row[noutlier] <- index_text # create vector with row numbers of outliers (need for outlier table in the end)
     } else {flag<-0}
-    i <- i+1 
+    i <- i+1
   }
   out <- list(vector_theor_dist=vector_theor_dist,
               noutlier=noutlier,

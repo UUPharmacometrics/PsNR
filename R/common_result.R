@@ -55,16 +55,16 @@ result_df <- function(df){
   df <- tibble::as_tibble(df)
   if(!exists("error", df)) df <- tibble::add_column(df, error = list(NULL))
   if(!exists("warnings", df)) df <- tibble::add_column(df, warnings = list(NULL))
-  structure(df, class = c("psn_result_df", class(df))) 
+  structure(df, class = c("psn_result_df", class(df)))
 }
 
 collect_results <- function(..., .id = "id", .result = "result"){
-  l <- rlang::dots_list(...) 
+  l <- rlang::dots_list(...)
   if(!all(purrr::map_lgl(l, ~inherits(.x, "psn_result")))) rlang::abort("all function arguments need to be psn_result objects.")
   if(rlang::is_named(l)) l <- purrr::imap(l, ~purrr::update_list(.x, !!.id := .y))
-  purrr::transpose(l) %>% 
-    tibble::as_tibble() %>% 
-    dplyr::mutate_if(~rlang::is_atomic(.[[1]]), ~purrr::simplify(.)) %>% 
+  purrr::transpose(l) %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate_if(~rlang::is_atomic(.[[1]]), ~purrr::simplify(.)) %>%
     dplyr::mutate(!!.result:=.data$result)
 }
 

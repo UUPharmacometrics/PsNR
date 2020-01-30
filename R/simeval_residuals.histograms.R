@@ -3,7 +3,7 @@ histograms.cwres.iwres <- function(residual.files,residual.names,do_plot=T) {
   n.residuals <- length(residual.files)
   #npde (for each data frame plot a histogram)
   inf_list <- list()
-  for(j in 1:n.residuals){  
+  for(j in 1:n.residuals){
     RESIDUAL <- read.csv(residual.files[j])
     residual_npde <- RESIDUAL$NPDE
     residual_npde <- residual_npde[!is.na(residual_npde)] # Take away NA values
@@ -16,7 +16,7 @@ histograms.cwres.iwres <- function(residual.files,residual.names,do_plot=T) {
     ylimit=max(c(max(dy1),max(dy)))
     xlimit_min=min(x,min(residual_npde))
     xlimit_max=max(x,max(residual_npde))
-    
+
     if(do_plot) {
       hist(residual_npde,main=paste0("Histogram of ",residual.names[j]," NPDE"),
            xlab=paste0(residual.names[j]," NPDE"),ylim=c(0,ylimit),xlim=c(xlimit_min,xlimit_max))

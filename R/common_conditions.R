@@ -1,7 +1,7 @@
 #' Run expression and retain errors
-#' 
-#' The function allows to evaluates an expression and store eventual errors in the results data structure. 
-#' 
+#'
+#' The function allows to evaluates an expression and store eventual errors in the results data structure.
+#'
 #' @param expr Expression to evaluate
 #'
 #' @return A list with entries results and error (one of them is NA)

@@ -1,9 +1,9 @@
 #' Finds DVID values based on the DVID column name.
-#' 
+#'
 #' @param directory A path to the qa run directory.
 #' @param idv The string of the idv name from the -idv option in the qa run.
 #' @param dvid_name The string of the idv name from the -idv option in the qa run.
-#' 
+#'
 #' @return A numeric vector of all DVID values. If no DVIDs then will be set to string 'NA'.
 #' @export
 find_dvid_values <- function(directory,idv,dvid_name) {

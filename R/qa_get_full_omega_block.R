@@ -1,11 +1,11 @@
-#' Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a 
+#' Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a
 #' full block correlation structure between subject-level random effects.
-#'   
+#'
 #' @param original_max0_model The base model file name.
 #' @param fullblock_model The full omega block model file name.
 #' @param dofv Difference between base and the full omega block transformed model OFV values.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 2 elements:
 #' full_omega_block_table - a data frame
 #' full_omega_block_error - a logical indicating whether both input files original_max0_model and fullblock_model exist in the folder
@@ -14,14 +14,14 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=
   full_omega_block_error <- FALSE
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   fullblock_ext_file <- sub("(\\.[^.]+)$",".ext",fullblock_model)
-  
+
   #get full omega block extra table
   if(file.exists(fullblock_ext_file) && file.exists(original_ext_file)) {
     # omega values from fullblock model
     omega_values <- get_omega_values(ext_file=fullblock_ext_file,omegas="all")
     # omega values from original model
     deriv_omega_values <- get_omega_values(ext_file=original_ext_file,omegas="all")
-    
+
     # create a table
     full_omega_block_table <- as.data.frame(array(0,c(length(omega_values),3)))
     colnames(full_omega_block_table) <- c("","New","Old")
@@ -33,7 +33,7 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=
       if(first==second) {
         full_omega_block_table[i,1] <- paste0("sd(",first,")")
         full_omega_block_table[i,2] <- sqrt(as.numeric(omega_values[i]))
-        
+
         #add original omega values column
         if(any(colnames(deriv_omega_values)==colnames(omega_values)[i])) {
           col_nr <- which(colnames(deriv_omega_values)==colnames(omega_values)[i])
@@ -41,7 +41,7 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=
         } else {
           full_omega_block_table[i,3] <- as.numeric(NA)
         }
-      
+
       } else {
         full_omega_block_table[i,1] <- paste0("corr(",max(first,second),",",min(first,second),")")
         if(any(colnames(omega_values)==paste0("OMEGA.",max(first,second),".",min(first,second),"."))) {
@@ -52,7 +52,7 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=
         var_x <- as.numeric(omega_values[,grep(paste0("OMEGA\\.",min(first,second),"\\.",min(first,second),"\\."),colnames(omega_values))])
         var_y <- as.numeric(omega_values[,grep(paste0("OMEGA\\.",max(first,second),"\\.",max(first,second),"\\."),colnames(omega_values))])
         full_omega_block_table[i,2] <- cov_xy/(sqrt(var_x)*sqrt(var_y))
-        
+
         #add original omega values column
         if(any(colnames(deriv_omega_values)==colnames(omega_values)[i])) {
           col_nr <- which(colnames(deriv_omega_values)==colnames(omega_values)[i])
@@ -68,15 +68,15 @@ get_full_omega_block <- function(original_max0_model,fullblock_model,dofv,quiet=
           full_omega_block_table[i,3] <- as.numeric(NA)
         }
       }
-      
+
     }
     full_omega_block_table[,2] <- format(round(as.numeric(full_omega_block_table[,2]),2),digits=1,trim=T,nsmall=2,scientific = F)
     full_omega_block_table[,3] <- format(round(as.numeric(full_omega_block_table[,3]),2),digits=1,trim=T,nsmall=2,scientific = F)
-    
+
     if(class(dofv)!="character") {
       full_omega_block_table <- rbind(full_omega_block_table,c("dOFV",format(round(dofv,2),digits=1,scientific=F,nsmall=1),""))
     }
-    
+
   } else {
     if(!file.exists(fullblock_ext_file) && !quiet) {
       message("WARNING: File ",fullblock_ext_file," not found!")

@@ -6,7 +6,7 @@ outlier.table <- function(residual.outliers.file) {
       strsplit(.,split=",") %>%
       .[[1]]
     residual_names <- sort(residual_names[grep(paste(paste0("^",c("CWRES","IWRES"),"$"),collapse="|"),residual_names)])
-    
+
     #get outlier table
     outlier_table_input <- read.csv(residual.outliers.file)
     if(nrow(outlier_table_input)<1){
@@ -42,15 +42,15 @@ outlier.table <- function(residual.outliers.file) {
         dplyr::summarize_at(select_col[-1],dplyr::funs(sum(. == 1))) %>%
         dplyr::ungroup() %>%
         as.data.frame()
-      
-      
+
+
     }
   } else {
     outlier_table <- data.frame()
     outliers_count <- data.frame()
     residual_names <- NULL
   }
-  
+
   #output
   out_list <- list(outlier_table=outlier_table,
                    outliers_count=outliers_count,

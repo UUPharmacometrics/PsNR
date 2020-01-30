@@ -7,11 +7,11 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
       message("WARNING: File ",sim_extra_table," not found!")
     }
   }
-  
+
   if(make_vpc) {
     obs <- as.data.frame(read_nm_std_table(obs_table))
     extra_obs <- read_nm_std_table(obs_extra_table)
-    
+
     #choose DVID
     if(dvid!='NA') {
       dvid_column_nr <- which(colnames(obs)== dvid_name)
@@ -21,9 +21,9 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
       extra_obs <- extra_obs[which(extra_obs[,dvid_column_nr] == dvid),]
       rownames(extra_obs) <- NULL
     }
-    
+
     if(all(colnames(obs)!="DV")) {
-      if(any(colnames(extra_obs)=="DV")) {  
+      if(any(colnames(extra_obs)=="DV")) {
         obs <- cbind(obs,"DV"=extra_obs[,"DV"])
       } else {
         if(!quiet) {
@@ -32,7 +32,7 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
         make_vpc <- FALSE # problem with synonyms in PsN, if in model is DV=MYDV, it will produce table with column MYDV, even if in $TABLE is DV
         return(list(make_vpc=make_vpc))
       }
-    } 
+    }
 
 
     if(all(colnames(obs)!="MDV")) {
@@ -40,7 +40,7 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
         obs <- cbind(obs,"MDV"=extra_obs[,"MDV"])
       }
     }
-    
+
     # Filter observations in obs table
     if(any(colnames(obs)=="MDV")) {
       if(any(obs$MDV==1)) {
@@ -65,7 +65,7 @@ get_tables_for_vpc <- function(obs_table,obs_extra_table,sim_table,sim_extra_tab
       rownames(sim) <- NULL
     }
     sim <- cbind(sim,add_cols)
-    
+
     out <- list(obs=obs,
                 sim=sim,
                 make_vpc=make_vpc)

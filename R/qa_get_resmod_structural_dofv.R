@@ -1,9 +1,9 @@
 #' Get dofv value from the resmod.csv file from the idv_varying_theta model for the specific dvid value.
-#'    
+#'
 #' @param directory A path to the qa run directory.
 #' @param idv The string of the idv name.
 #' @param dvid A dvid value. By default dvid='NA'.
-#' 
+#'
 #' @return A numeric resmod structural dofv value. If resmod.csv file does not exist will return string "ERROR".
 #' @export
 get_resmod_structural_dofv <- function(directory, idv, dvid="NA") {

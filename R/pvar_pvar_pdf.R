@@ -17,7 +17,7 @@ pvar_pdf <- function(csv_file_directory,pvar_file_name,
   }
   if (!exists("delta_pl") && exists("ml")) {
    p <- ml
-  } 
+  }
 pdf(file=pvar_file_name, width=11.3, height=8.3) # open pdf file
 final_plot <- gridExtra::marrangeGrob(p, nrow=1, ncol=1,top=NULL) # put list of plots in separate pdf file pages
 print(final_plot) # save plots in pdf file

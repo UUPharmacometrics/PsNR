@@ -6,8 +6,8 @@
 #' @return A numeric vector of length table_selection
 #' @export
 get_iofv_sum <- function(phi_list, table_selection = 1){
-  phi_list[table_selection] %>% 
-    purrr::map_dbl(~sum(.x[["OBJ"]])) %>% 
+  phi_list[table_selection] %>%
+    purrr::map_dbl(~sum(.x[["OBJ"]])) %>%
     purrr::set_names(NULL)
 }
 

@@ -2,7 +2,7 @@
 #'
 #' @param values All cdd dofv values. Missing values will be excluded.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A ggplot object.
 #' @export
 individual_plots_extra <- function(file_name,ID_nr,dvid_name,quiet=F) {
@@ -10,12 +10,12 @@ individual_plots_extra <- function(file_name,ID_nr,dvid_name,quiet=F) {
     if(dvid_name=="") {
       p <- xpose::xpose_data(file=file_name) %>%
         xpose::mutate(IPRED=CIPREDI) %>%
-        xpose::set_var_types(ipred="IPRED") %>% 
+        xpose::set_var_types(ipred="IPRED") %>%
         dplyr::filter(ID %in% !!ID_nr) %>%
         xpose::ind_plots(nrow=4, ncol=3, title="Individual plots",subtitle="",caption="") + labs(color = NULL, linetype = NULL, alpha = NULL) + theme_bw()
     } else {
       p <- xpose::xpose_data(file=file_name) %>%
-        xpose::mutate(IPRED=CIPREDI) %>% 
+        xpose::mutate(IPRED=CIPREDI) %>%
         xpose::set_var_types(ipred="IPRED",dvid=dvid_name) %>%
         dplyr::filter(ID %in% !!ID_nr) %>%
         xpose::ind_plots(nrow=4, ncol=3, facets = c('ID',dvid_name), title="Individual plots",subtitle="",caption="") + labs(color = NULL, linetype = NULL, alpha = NULL) + theme_bw()

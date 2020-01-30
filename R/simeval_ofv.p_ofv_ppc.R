@@ -1,7 +1,7 @@
 # pOFV PPC
 #' @export
 p_ofv_ppc <- function(raw.results.file) {
-  # input data 
+  # input data
   rawres_input <- read.csv(raw.results.file)
   rawres <- rawres_input[!is.na(rawres_input$ofv),] #take away NA values
   rownames(rawres) <- NULL
@@ -14,7 +14,7 @@ p_ofv_ppc <- function(raw.results.file) {
     newxlim <- c(sort_pOFV_sim[1],pOFV_obs)}
   if(pOFV_obs < sort_pOFV_sim[1]){
     newxlim <- c(pOFV_obs,sort_pOFV_sim[len-1])}
-    
+
   # output
   out <- list(rawres_input=rawres_input,
               rawres=rawres,
@@ -22,5 +22,5 @@ p_ofv_ppc <- function(raw.results.file) {
               pOFV_obs=pOFV_obs,
               sort_pOFV_sim=sort_pOFV_sim, # need for testing
               newxlim=newxlim) # need for testing
-  return(out)  
+  return(out)
 }

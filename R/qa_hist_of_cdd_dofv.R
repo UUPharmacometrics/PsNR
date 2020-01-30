@@ -2,7 +2,7 @@
 #'
 #' @param values All cdd dofv values. Missing values will be excluded.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A ggplot object.
 #' @export
 hist_of_cdd_dofv <- function(values,quiet=F) {

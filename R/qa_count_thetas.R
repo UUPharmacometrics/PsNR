@@ -1,9 +1,9 @@
 #' Count number of thetas in the ext file.
-#'   
+#'
 #' @param filename A string of the ext file name.
 #' @param iteration A numeric value from the ITERATION column in the ext file. By default iteration=-1000000000.
 #' @param keep_na A logical indicating whether thetas with missing values should be counted. By default keep_na=FALSE.
-#' 
+#'
 #' @return Number of thetas in the ext file.
 #' @export
 count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {

@@ -6,6 +6,6 @@ failed.values <- function(cdd.data) {
   cw_nr <- length(which(cdd.data$covariance_step_warnings == 1))
   eb_nr <- length(which(cdd.data$estimate_near_boundary == 1))
   fail <- c(ms_nr,cs_nr,cw_nr,eb_nr)
-  
+
   return(fail)
 }

@@ -1,17 +1,17 @@
-#' Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values 
+#' Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values
 #' as well as expected improvement in OFV when estimating a Box-Cox/t-distribution transformation for each subject-level random effect.
-#'   
+#'
 #' @param original_max0_model The base model file name.
 #' @param param_model The parameter model (box-cox or tdist) file name.
 #' @param dofv Difference between base and the boxcox or tdist transformed model OFV values.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 3 elements:
 #' param_extra_table - a data frame
 #' param_extra_table_orig - a data frame
 #' param_extra_table_error - a logical indicating whether both input files original_max0_model and param_model exist in the folder
-#' 
-#' Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and 
+#'
+#' Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and
 #' the dOFV value is not added to this data frame.
 #' @export
 get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) {
@@ -23,17 +23,17 @@ get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) 
   }
   original_ext_file <- sub("(\\.[^.]+)$",".ext",original_max0_model)
   param_model_ext_file <- sub("(\\.[^.]+)$",".ext",param_model)
-  
+
   if(file.exists(param_model_ext_file) && file.exists(original_ext_file)) {
     param_extra_table_error <- FALSE
     new_omega_values <- get_omega_values(ext_file=param_model_ext_file,omegas="var") # get variances only
-    
+
     #get needed numers of var omegas to filter right theta values
     needed_nr <- gsub("(OMEGA\\.\\d+\\.)","",colnames(new_omega_values)) %>% gsub("\\.","",.)
- 
+
     # omega values from original model
     deriv_omega_values <- get_initial_estimates_from_ext(filename=original_ext_file,select="omega")
-    
+
     # in nonlinear run in the file param_model_ext_file there will be old thetas and the new ones will be at the end. We are interessted only in the new ones.
     # get old thetas values (if exist)
     if(!grepl("derivatives.ext$",original_ext_file)) {
@@ -45,7 +45,7 @@ get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) 
     #get new theta values
     THETA_values <- get_initial_estimates_from_ext(filename=param_model_ext_file,select="theta") %>%
       dplyr::select(added_theta_start:(added_theta_start+length(new_omega_values)-1))
-    
+
     #create a table
     param_extra_table <- as.data.frame(array(0,c(length(THETA_values),4)))
     colnames(param_extra_table) <- c("",table_col_name,"New SD","Old SD")
@@ -66,7 +66,7 @@ get_param_extra_table <- function(original_max0_model,param_model,dofv,quiet=F) 
     if(class(dofv)!="character") {
       param_extra_table <- rbind(param_extra_table,c("dOFV",format(round(dofv,2),digits=1,scientific=F,nsmall=1),"",""))
     }
-    
+
   } else {
     if(!file.exists(param_model_ext_file) && !quiet) {
       message("WARNING: File ",param_model_ext_file," not found!")

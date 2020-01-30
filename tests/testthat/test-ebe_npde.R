@@ -76,21 +76,21 @@ test_that("If function all.eta.names works as expected",{
   expect_equal(c('ETA.1. IIV','ETA.2. IIV','ETA.3. IIV'),eta.names_text_1)
   expect_equal("Correlation graph for EBE NPDE IIV:\n(ETA.1.,ETA.2.,ETA.3.)",iiv.eta.names_text_1)
   expect_equal(c(),iov.eta.names_text_1)
-  
+
   expect_equal(c('ETA.2.','ETA.3.'),eta.names_2)
   expect_equal(c('ETA.2.','ETA.3.'),iiv.eta.names_2)
   expect_equal(list(),iov.eta.names_2)
   expect_equal(c('ETA.2. IIV','ETA.3. IIV'),eta.names_text_2)
   expect_equal("Correlation graph for EBE NPDE IIV:\n(ETA.2.,ETA.3.)",iiv.eta.names_text_2)
   expect_equal(c(),iov.eta.names_text_2)
-  
+
   expect_equal(c('ETA.1.','ETA.3.'),eta.names_3)
   expect_equal(c('ETA.1.','ETA.3.'),iiv.eta.names_3)
   expect_equal(list(),iov.eta.names_3)
   expect_equal(c('ETA.1. IIV','ETA.3. IIV'),eta.names_text_3)
   expect_equal(c(),iov.eta.names_text_3)
   expect_equal("Correlation graph for EBE NPDE IIV:\n(ETA.1.,ETA.3.)",iiv.eta.names_text_3)
-  
+
   expect_equal(c('ETA.1.','ETA.2.','ETA.3.','ETA.5.','ETA.6.','ETA.7.','ETA.8.','ETA.10.','ETA.11.'),eta.names_4)
   expect_equal(c('ETA.1.','ETA.2.','ETA.3.'),iiv.eta.names_4)
   expect_equal(list(occ1=c('ETA.5.','ETA.6.'),occ2=c('ETA.7.','ETA.8.'),occ3=c('ETA.10.','ETA.11.')),iov.eta.names_4)
@@ -98,14 +98,14 @@ test_that("If function all.eta.names works as expected",{
                  'ETA.5. IOV occ.1','ETA.6. IOV occ.1','ETA.7. IOV occ.2','ETA.8. IOV occ.2','ETA.10. IOV occ.3','ETA.11. IOV occ.3'),eta.names_text_4)
   expect_equal("Correlation graph for EBE NPDE IIV:\n(ETA.1.,ETA.2.,ETA.3.)",iiv.eta.names_text_4)
   expect_equal("Correlation graph for EBE NPDE IOV:\n(ETA.5.,ETA.6.)\n(ETA.7.,ETA.8.)\n(ETA.10.,ETA.11.)",iov.eta.names_text_4)
-  
+
   expect_equal(c('ETA.1.','ETA.2.','ETA.3.','ETA.5.','ETA.4.'),eta.names_5)
   expect_equal(c('ETA.1.','ETA.2.','ETA.3.'),iiv.eta.names_5)
   expect_equal(list(occ1=c('ETA.5.'),occ2=c('ETA.4.')),iov.eta.names_5)
   expect_equal(c('ETA.1. IIV','ETA.2. IIV','ETA.3. IIV','ETA.5. IOV occ.1','ETA.4. IOV occ.2'),eta.names_text_5)
   expect_equal("Correlation graph for EBE NPDE IIV:\n(ETA.1.,ETA.2.,ETA.3.)",iiv.eta.names_text_5)
   expect_equal("Correlation graph for EBE NPDE IOV:\n(ETA.5.)\n(ETA.4.)",iov.eta.names_text_5)
-  
+
   expect_equal(c('ETA.2.','ETA.1.','ETA.3.','ETA.4.','ETA.5.'),eta.names_6)
   expect_equal(c('ETA.2.'),iiv.eta.names_6)
   expect_equal(list(occ1=c('ETA.1.','ETA.3.'),occ2=c('ETA.4.','ETA.5.')),iov.eta.names_6)
@@ -115,7 +115,7 @@ test_that("If function all.eta.names works as expected",{
 })
 
 
-#..................................  (1) Test input.data .....................................  
+#..................................  (1) Test input.data .....................................
 input_data_1 <- input.data(ebe.npde.file=ebe.npde.file_1,eta.names=iiv.eta.names_1,show.warning=F)
 input_data_2 <- input.data(ebe.npde.file=ebe.npde.file_2,eta.names=iiv.eta.names_1,show.warning=F)
 input_data_3 <- input.data(ebe.npde.file=ebe.npde.file_3,eta.names=iiv.eta.names_1,show.warning=F)
@@ -204,22 +204,22 @@ test_that("If function input.data works as expected",{
     expect_equal(exp_ebenpde_tmp_1,ebenpde_tmp_1)
     expect_equal(exp_n.subjects_1,n.subjects_1)
     expect_equal(exp_ebenpde_obs_1,ebenpde_obs_1)
-    
+
     expect_equal(exp_ebenpde_tmp_input_2,ebenpde_tmp_input_2)
     expect_equal(exp_ebenpde_tmp_2,ebenpde_tmp_2)
     expect_equal(exp_n.subjects_2,n.subjects_2)
     expect_equal(exp_ebenpde_obs_2,ebenpde_obs_2)
-    
+
     expect_equal(exp_ebenpde_tmp_input_3,ebenpde_tmp_input_3)
     expect_equal(exp_ebenpde_tmp_3,ebenpde_tmp_3)
     expect_equal(exp_n.subjects_3,n.subjects_3)
     expect_equal(exp_ebenpde_obs_3,ebenpde_obs_3)
-    
+
     expect_equal(exp_ebenpde_tmp_input_4,ebenpde_tmp_input_4)
     expect_equal(exp_ebenpde_tmp_4,ebenpde_tmp_4)
     expect_equal(exp_n.subjects_4,n.subjects_4)
     expect_equal(exp_ebenpde_obs_4,ebenpde_obs_4)
-  
+
     expect_equal(exp_ebenpde_tmp_input_5,ebenpde_tmp_input_5)
     expect_equal(exp_ebenpde_tmp_5,ebenpde_tmp_5)
     expect_equal(exp_n.subjects_5,n.subjects_5)
@@ -232,7 +232,7 @@ test_that("Expect warnings from function input.data",{
   expect_message(input.data(ebe.npde.file=ebe.npde.file_3,eta.names=iiv.eta.names_3))
 })
 
-# .................................  (2) Test summary.table.ebe.npde ...............................   
+# .................................  (2) Test summary.table.ebe.npde ...............................
 mydataframe_1 <- summary.table.ebe.npde(ebenpde_obs_1,eta.names=eta.names_text_1)
 mydataframe_2 <- summary.table.ebe.npde(ebenpde_obs_2,eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.1'))
 mydataframe_3 <- summary.table.ebe.npde(rbind(ebenpde_obs_3,c(0.92,0.42,-0.78)),eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.2'))
@@ -296,7 +296,7 @@ test_that("If function summary.table.ebe.npde works as expected",{
   expect_equal(exp_mydataframe_4,mydataframe_4)
 })
 
-#.................................  (3) Test empirical.distance  ....................................    
+#.................................  (3) Test empirical.distance  ....................................
 list_emp_1 <- empirical.distance(ebenpde_obs_1,n.subjects_1)
 list_emp_2 <- empirical.distance(ebenpde_obs_2,n.subjects_2)
 list_emp_3 <- empirical.distance(ebenpde_obs_3,n.subjects_3)
@@ -385,13 +385,13 @@ test_that("If function data.for.plots works as expected",{
   expect_equal(exp_theor_distance_1,theor_distance_1)
   expect_equal(exp_out_distance_1,out_distance_1)
   expect_equal(exp_ebe_npde_quant_1,ebe_npde_quant_1)
-  
+
   expect_equal(exp_index_emp_distance_2,index_emp_distance_2)
   expect_equal(exp_emp_distance_sort_2,emp_distance_sort_2)
   expect_equal(exp_theor_distance_2,theor_distance_2)
   expect_equal(exp_out_distance_2,out_distance_2)
   expect_equal(exp_ebe_npde_quant_2,ebe_npde_quant_2)
-  
+
   expect_equal(exp_index_emp_distance_3,index_emp_distance_3)
   expect_equal(exp_emp_distance_sort_3,emp_distance_sort_3)
   expect_equal(exp_theor_distance_3,theor_distance_3)
@@ -399,7 +399,7 @@ test_that("If function data.for.plots works as expected",{
   expect_equal(exp_ebe_npde_quant_3,ebe_npde_quant_3)
 })
 
-#.....................................   (5) Test plot_1   .................................    
+#.....................................   (5) Test plot_1   .................................
 list_plot_1_1 <- plot_1(ebenpde_tmp_1,theor_distance_1,emp_distance_sort_1,index_emp_distance_1,
                  out_distance_1,n.subjects_1,outlying_criteria=-2.7,do_outlier_plot=FALSE,model.filename)
 list_plot_1_2 <- plot_1(ebenpde_tmp_2,theor_distance_2,emp_distance_sort_2,index_emp_distance_2,
@@ -455,14 +455,14 @@ test_that("If function plot_1 works as expected",{
   expect_equal(exp_outlier_ID_1,outlier_ID_1)
   expect_equal(exp_identityline_1,identityline_1)
   expect_equal(exp_vector_text_1,vector_text_1)
-  
+
   expect_equal(exp_noutlier_2,noutlier_2)
   expect_equal(exp_flag_2,flag_2)
   expect_equal(exp_outlier_id_row_2,outlier_id_row_2)
   expect_equal(exp_outlier_ID_2,outlier_ID_2)
   expect_equal(exp_identityline_2,identityline_2)
   expect_equal(exp_vector_text_2,vector_text_2)
-  
+
   expect_equal(exp_noutlier_3,noutlier_3)
   expect_equal(exp_flag_3,flag_3)
   expect_equal(exp_outlier_id_row_3,outlier_id_row_3)
@@ -526,13 +526,13 @@ test_that("If function plot_2 works as expected",{
   expect_equal(exp_outlier_id_row_2_1,outlier_id_row_2_1)
   expect_equal(exp_flag1_2_1,flag1_2_1)
   expect_equal(exp_out_distance_2_1,out_distance_2_1)
-  
+
   expect_equal(exp_vector_theor_dist_2_2,vector_theor_dist_2_2)
   expect_equal(exp_noutlier_2_2,noutlier_2_2)
   expect_equal(exp_outlier_id_row_2_2,outlier_id_row_2_2)
   expect_equal(exp_flag1_2_2,flag1_2_2)
   expect_equal(exp_out_distance_2_2,out_distance_2_2)
-  
+
   expect_equal(exp_vector_theor_dist_2_3,vector_theor_dist_2_3)
   expect_equal(exp_noutlier_2_3,noutlier_2_3)
   expect_equal(exp_outlier_id_row_2_3,outlier_id_row_2_3)

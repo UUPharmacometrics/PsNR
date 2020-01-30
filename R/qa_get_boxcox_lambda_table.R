@@ -1,10 +1,10 @@
-#' A dataframe of the estimated shape parameters (Lambda) as well as expected improvement in OFV 
+#' A dataframe of the estimated shape parameters (Lambda) as well as expected improvement in OFV
 #' when estimating a Box-Cox transformation for each subject-level random effect.
 #'
-#' @param directory A path of the qa run directory. Will search for the boxcox.ext file in the modelfit_run folder 
+#' @param directory A path of the qa run directory. Will search for the boxcox.ext file in the modelfit_run folder
 #' and derivatives.ext file in the linearize_run/scm_dir1 folder.
 #' @param dofv_boxcox A dofv value of the boxcox model.
-#' 
+#'
 #' @return A list of two elements:
 #' boxcox_lambdas_orig - A data frame with lambda and sd values from the boxcox and derivatives models.
 #' boxcox_lambdas_table - A data frame with rounded lambda and sd values from the boxcox and derivatives models values, and added boxcox dofv value.
@@ -17,13 +17,13 @@ get_boxcox_lambda_table <- function(directory,dofv_boxcox) {
     lambdas <- ext_file[grep("^THETA[0-9]+$",colnames(ext_file))]
     new_omega_values <- ext_file[,grep("^OMEGA",colnames(ext_file))]
     #new_omega_values <- new_omega_values[,which(new_omega_values!=0)]
-    
+
     # omega values from original model
     derivatives_table <-read.table((file.path(directory,"linearize_run/scm_dir1/derivatives.ext")),header=TRUE,skip=1,stringsAsFactors = F) %>%
       dplyr::filter(ITERATION==-1000000000)
     deriv_omega_values <- derivatives_table[,grep("^OMEGA",colnames(derivatives_table))]
     #deriv_omega_values <- deriv_omega_values[,which(deriv_omega_values!=0)]
-    
+
     boxcox_lambdas_table <- as.data.frame(array(0,c(length(lambdas),4)))
     colnames(boxcox_lambdas_table) <- c("","Lambda","New SD","Old SD")
     for(i in 1:length(lambdas)) {
@@ -41,7 +41,7 @@ get_boxcox_lambda_table <- function(directory,dofv_boxcox) {
     if(class(dofv_boxcox)!="character") {
       boxcox_lambdas_table <- rbind(boxcox_lambdas_table,c("dOFV",format(dofv_boxcox,digits=1,scientific=F,nsmall=1),"",""))
     }
-    
+
   } else {
     boxcox_lambdas_table <- error_table(col=1)
     boxcox_lambdas_orig <- boxcox_lambdas_table

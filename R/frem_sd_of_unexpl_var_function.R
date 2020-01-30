@@ -1,10 +1,10 @@
-#' Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates, 
+#' Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates,
 #' each covariate separately and all covariates simultaneously.
 #'
 #' @param sd_coef_summary - a data frame
 #' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
 #' @param pardata - parameter data frame with column parname
-#' 
+#'
 #' @return Function does all the calculations and the creates a list of plots.
 #' @export
 sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
@@ -15,7 +15,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
     # library(gridExtra)
     # library(dplyr)
     # library(ggplot2)
-    
+
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
     # parameter_names <- make.names(parameter_names)
@@ -23,27 +23,27 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
     # names of covariate (names of first column in covdata input table, header = FALSE)
     covariate <- as.character(covdata[[1]])
     covariate <- c("none",covariate,"allcov")
-    
+
     # delete "LN" prefixes (if they exist) from any of covariates
     for (i in 1:length(covariate)) {
       if (grepl("^LN", covariate[i])) {
         covariate[i] <- gsub("\\LN","",covariate[i])
       }
     }
-    
+
     #check if uncertanty exists
     uncertainty <- TRUE
     if(all(is.na(sd_coef_summary$sd.5th))) {
       uncertainty <- FALSE
     }
-    
+
     # delete "LN" prefixes (if they exist) in the sd_coeficient_summary table
     for (i in 1:nrow(sd_coef_summary)) {
       if (grepl("\\.LN",sd_coef_summary[i,1])) {
         sd_coef_summary[i,1] <- gsub("\\.LN",".",sd_coef_summary[i,1])
       }
     }
-    
+
     # SORT NEEDED DATA FOR EACH PARAMETER -------------------------------------
     sd_unexpl_var_plots <- list()
     param <- list()
@@ -54,7 +54,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
       DF[,3] <- as.numeric(DF[,3])
       DF[,4] <- as.numeric(DF[,4])
       DF[,1] <- sub(paste0("^",Hmisc::escapeRegex(parameter_names[j]),"\\."),'',DF[,1])
-      
+
       if(uncertainty) {
         DF$expected <- sprintf("%.3G [%.3G, %.3G]",DF$observed.sd,DF$sd.5th,DF$sd.95th)
       } else {
@@ -66,7 +66,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
       empty_row <- c(rep(NA,ncol(DF)))
       DF <-rbind(empty_row,DF)
       DF$y <- factor(c(1:nrow(DF)), levels=c(nrow(DF):1))
-      
+
       # MAKE FOREST PLOT --------------------------------------------------------
       p <- ggplot(DF, aes(observed.sd,y)) +
         geom_point(aes(color = group),size = 2) +
@@ -84,7 +84,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
               axis.ticks = element_blank(),
               axis.text.y = element_blank(),
               plot.margin = unit(c(1,0.1,1,1), "cm"))
-      
+
       # create table with all needed information
       DF <- DF[-1,]
       DF_text <- data.frame()
@@ -92,7 +92,7 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
       V05 <- rep(c(1:2),each = (nrow(DF) +1) )
       DF_text <- data.frame(V1,V05,V0 = factor(rep(c(1:(nrow(DF) +1)),2),levels = c((nrow(DF) +1):1)))
       DF_text$group <- rep(c("title",rep("all",nrow(DF))),2)
-      
+
       # create plot of text table
       data_table <- ggplot(DF_text,aes(x = V05, y = V0, label = format(V1, nsmall = 1))) +
         scale_colour_manual(values = c("title" = "black", "all" = "gray30")) +
@@ -107,16 +107,16 @@ sd_unexpl_var <- function(sd_coef_summary,covdata,pardata) {
               plot.margin = unit(c(1,1,1,0), "cm")) +
         labs(x="",y="") +
         coord_cartesian(xlim = c(1,3))
-      
+
       # Create title in the plot
       title <- paste0("Unexplained variability on ",parameter_names[j])
-      
+
       # print out forest plot with table text
       sd_unexpl_var_plots[[j]] <- gridExtra::arrangeGrob(p, data_table, ncol=2, top = grid::textGrob(title,gp=grid::gpar(fontsize=20)))
-      
+
       # Save each plot with different names in different pdg files (based on each parameter j)
       param[[j]] <- paste0("SD.OF.UNEXPL.VAR.",parameter_names[j])
-      
+
     }
     return(list(plots=sd_unexpl_var_plots,
                 param=param))

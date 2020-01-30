@@ -1,15 +1,15 @@
 #' Get command line text, start and finish time of the run
-#' 
+#'
 #' @param yaml_file A yaml file name
 #' @return A list of three elements: command, run_start, run_finish
 #' @export
 command_start.finish.time <- function(yaml_file) {
   command <- c()
   run_start <- c()
-  run_finish <- c() 
+  run_finish <- c()
   if(file.exists(yaml_file)) {
     yaml_file <- yaml::yaml.load_file(yaml_file)
-    
+
     if(exists("command_line",yaml_file) && yaml_file$command_line!="") {
       full_command <- strsplit(yaml_file$command_line," ")
       for (i in 1:length(full_command[[1]])) {
@@ -21,7 +21,7 @@ command_start.finish.time <- function(yaml_file) {
         }
       }
     }
-   
+
     if(exists("start_time",yaml_file) && yaml_file$start_time!="") {
       run_start <- paste("Run started:",yaml_file$start_time)
     }
@@ -33,7 +33,7 @@ command_start.finish.time <- function(yaml_file) {
       run_finish <- paste(run_finish[[1]][1],run_finish[[1]][2])
     }
     run_finish <- paste("Run finished:",run_finish)
-    
+
   }
   out <- list(command=command,
               run_start=run_start,

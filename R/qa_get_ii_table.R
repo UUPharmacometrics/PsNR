@@ -1,6 +1,6 @@
 #' Get influential individuals table.
 #'
-#' @param cdd_directory Cdd run directory. Will search for the files skipped_individuals1.csv and 
+#' @param cdd_directory Cdd run directory. Will search for the files skipped_individuals1.csv and
 #' raw_results_"model name"_linbase.csv (if nonlinear=F) or raw_results_"model name".csv (if nonlinear=T)
 #' @param model.filename The base model file name.
 #' @param cutoff The dOFV cutoff value for influential individual identification.
@@ -9,7 +9,7 @@
 #' By default skip=NULL.
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 7 arguments.
 #' cdd_files_exist - a logical indicating whether needed files exist in the input directory.
 #' cdd.data - a data frame of all id numbers and dOFV values for each id.
@@ -26,7 +26,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
   } else {
     raw.results.file <- file.path(cdd_directory,paste0("raw_results_",sub('.([^.]*)$','',model.filename),".csv"))
   }
-  
+
   cdd_files_exist <- TRUE
   infl_id <- c()
   all_dofv <- c()
@@ -38,7 +38,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
         all_dofv <- cdd.data.all$cdd.delta.ofv[-1]
         cdd.data.all <- cdd.data.all %>% dplyr::select(c(ID,cdd.delta.ofv)) %>% dplyr::slice(-1)
         colnames(cdd.data.all) <- c("id", "dOFV")
-        
+
         #find negative delta ofv values, if exist
         fail_ID <- c()
         if(!all(is.na(cdd.data.all$dOFV))) {
@@ -58,15 +58,15 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
           }
           cdd.data <- data.frame()
         }
-        
+
         if(nrow(cdd.data)!=0) {
           #get individual with the highest dofv
           cdd_highest_dofv <- cdd.data[which.max(cdd.data$dOFV),]
           cdd_highest_dofv <- cdd_highest_dofv %>%
             dplyr::mutate(id=paste("Subject",id))
           colnames(cdd_highest_dofv) <- c("","dOFV")
-          
-          
+
+
           # find influential individuals, where delta ofv values are bigger than cutoffs
           if(any(cdd.data$dOFV > cutoff)) {
             ii_table <- as.data.frame(subset(cdd.data,dOFV > cutoff))
@@ -76,7 +76,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
             ii_table <- ii_table %>%
               dplyr::mutate(id=paste("Subject",id))
             colnames(ii_table)[which(colnames(ii_table)=="id")] <- "Subjects"
-            
+
             # only cdd max rows
             if(nrow(ii_table) > max_rows) {
               ii_table <- ii_table[1:max_rows,]
@@ -128,7 +128,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
     }
     ii_table <- error_table(col=1)
   }
-  
+
   if(length(infl_id)<=3) {
     fig_height_infl <- 5
   } else if(length(infl_id)<=6) {
@@ -136,7 +136,7 @@ get_ii_table <- function(cdd_directory,model.filename,cutoff,max_rows,skip=NULL,
   } else {
     fig_height_infl <- 15
   }
-  
+
   return(list(cdd_files_exist=cdd_files_exist,
               all_dofv=all_dofv,
               cdd.data=cdd.data,

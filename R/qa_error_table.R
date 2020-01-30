@@ -1,10 +1,10 @@
 #' Creates a data frame with ERROR records
-#'     
+#'
 #' @param first_column A string of the first column name in the output data frame. By default is empty string.
 #' @param col Number of needed columns of the output data frame. By default is set to 2.
-#' @param column_names A string vector of the column names. If missing and number of columns are less than 2 then will be set to NULL, 
+#' @param column_names A string vector of the column names. If missing and number of columns are less than 2 then will be set to NULL,
 #' otherwise second column will be set to "dOFV" and all other columns will be set to empty strings.
-#' 
+#'
 #' @return A data frame with the ERROR records.
 #' @export
 error_table <- function(first_column="",col=2,column_names) {

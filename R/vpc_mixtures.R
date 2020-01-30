@@ -77,9 +77,9 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="
         mixcol <- 'MIXEST'
         method_name <- 'MIXEST Mixture'
     }
-    
+
     colnames(sim)[colnames(sim)=="replicate"] <- "sim"  # Rename replicate column to sim for vpc
-    
+
     num_ids <- length(unique(obs$ID))
     unique_subpops <- sort(unique(c(obs[[mixcol]], sim[[mixcol]])))
     table_list <- list()
@@ -128,6 +128,6 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="
         vpc <- vpc + theme(plot.subtitle=element_text(size=20), plot.title=element_text(size=20))
         table_list[[i]] <- vpc
     }
-    
+
     return(table_list)
 }

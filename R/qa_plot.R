@@ -1,7 +1,7 @@
 
-#' Plot result 
-#' 
-#' Print result if the provided result does not contain an error. 
+#' Plot result
+#'
+#' Print result if the provided result does not contain an error.
 #'
 #' @param r A result data structure
 #'
@@ -36,32 +36,32 @@ prepare_va_cov_plot <- function(qa_results){
   derivatives_lst <- qa_results$files$linearize$derivatives_lst
   dvid <- NULL
   p <- tryCatch({
-    if(qa_results$options$dvid_name!='') dvid <- qa_results$options$dvid_name 
+    if(qa_results$options$dvid_name!='') dvid <- qa_results$options$dvid_name
     input_base <- vaplot::prepare_va_nm(derivatives_lst)
     res_base <- vaplot::compute_va(input_base, facets = dvid)
     input_frem <- vaplot::prepare_va_frem(frem_path)
     res_frem <- vaplot::compute_va(input_frem, facets = dvid)
-    p <- vaplot::plot_va_compare(`without covariates` = res_base, 
-                                 `with covariates` = res_frem, 
+    p <- vaplot::plot_va_compare(`without covariates` = res_base,
+                                 `with covariates` = res_frem,
                                  smooth = TRUE)+
       ggplot2::theme_bw()+
       ggplot2::theme(legend.position = "bottom")
-    #if(!is.null(dvid)) p <- p + ggforce::facet_grid_paginate() 
+    #if(!is.null(dvid)) p <- p + ggforce::facet_grid_paginate()
 
     if("TAD" %in% input_base$column_names && "TAD" %in% input_frem$column_names){
       res_base <- vaplot::compute_va(input_base, facets = dvid, idv = "TAD")
       res_frem <- vaplot::compute_va(input_frem, facets = dvid, idv = "TAD")
-      p2 <- vaplot::plot_va_compare(`without covariates` = res_base, 
-                                   `with covariates` = res_frem, 
+      p2 <- vaplot::plot_va_compare(`without covariates` = res_base,
+                                   `with covariates` = res_frem,
                                    smooth = TRUE)+
         ggplot2::theme_bw()+
         ggplot2::theme(legend.position = "bottom")
-      p <- list(p,p2)  
+      p <- list(p,p2)
     }
     p
   },
     error = function(e) return(e)
   ) %>% as_result()
   return(p)
-} 
+}
 

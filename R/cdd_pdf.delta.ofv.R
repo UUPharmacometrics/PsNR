@@ -2,7 +2,7 @@
 pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
   # create pdf file
   pdf(file=pdf,width=11.69, height=8.27)
-  
+
   # read in input data
   out_cdd.data.all <- create.data.full(raw.results.file,skipped.id.file)
   cdd.data.all <- out_cdd.data.all$cdd.data.all
@@ -28,7 +28,7 @@ pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
     # create a plot
     plot.delta.ofv(delta.ofv,model,ID,row_infl,row_outl,row_outl_infl)
   }
-  
+
 #close pdf
 dev.off()
 }

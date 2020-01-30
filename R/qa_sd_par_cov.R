@@ -18,6 +18,6 @@ sd_par_cov <- function(filename) {
   } else {
     out <- list(sd_parcov_file_exists=sd_parcov_file_exists)
   }
-  
+
   return(out)
 }

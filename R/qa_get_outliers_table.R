@@ -5,7 +5,7 @@
 #' @param skip A character vector with names of the skipped parts in the qa run. Will check if "simeval" is one of the vector elements.
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 5 arguments.
 #' simeval_files_exist - a logical indicating whether needed files exist in the input directory.
 #' outliers_table - A data frame of all outlying individuals. Max 10 rows.
@@ -62,7 +62,7 @@ get_outliers_table <- function(simeval_directory,cdd.data,skip=NULL,quiet=F) {
       max_outlier_table <- data.frame("No outliers detected","",stringsAsFactors = F)
       colnames(max_outlier_table) <- c("","dOFV")
     }
-    
+
   } else {
     if(any(skip=="simeval")) {
       max_outlier_table <- data.frame("SIMEVAL","SKIPPED",stringsAsFactors = F)
@@ -75,7 +75,7 @@ get_outliers_table <- function(simeval_directory,cdd.data,skip=NULL,quiet=F) {
     }
     outliers_table <- error_table(col=1)
   }
-  
+
   if(length(outlier_ids)<=3) {
     fig_height_outl <- 5
   } else if (length(outlier_ids)<=6){
@@ -83,7 +83,7 @@ get_outliers_table <- function(simeval_directory,cdd.data,skip=NULL,quiet=F) {
   } else {
     fig_height_outl <- 15
   }
-  
+
   return(list(simeval_files_exist=simeval_files_exist,
               outliers_table=outliers_table,
               max_outlier_table=max_outlier_table,

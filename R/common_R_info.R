@@ -1,5 +1,5 @@
 #' Add information from R run to the meta.yaml file. Will add R library path as well as loaded R packages and their versions during the run.
-#' 
+#'
 #' @param directory A directory name where the meta.yaml file can be found.
 #' @export
 R_info <- function(directory) {
@@ -11,13 +11,13 @@ R_info <- function(directory) {
       R_packages <- R_packages[,c("package","loadedversion","source")] %>%
         dplyr::rename(version=loadedversion)
     }
-    
+
     R_packages_vec <- paste0(R_packages$package[1],"-",R_packages$version[1]," from ",R_packages$source[1])
     for(i in 2:nrow(R_packages)) {
       R_packages_vec <- c(R_packages_vec,paste0(R_packages$package[i],"-",R_packages$version[i]," from ",R_packages$source[i]))
     }
     R_packages <- R_packages_vec
-    
+
     #write in to the yaml file
     if(file.exists(file.path(directory,"meta.yaml"))) {
       yaml_file <- yaml::yaml.load_file(file.path(directory,"meta.yaml"))
@@ -41,7 +41,7 @@ R_info <- function(directory) {
           yaml_file$R_LIB_PATHS <- NULL
           yaml_file$R_LIB_PATHS <- .libPaths()
         }
-        
+
         # sort
         tag_names <-  sort(names(yaml_file))
         new_yaml_file <- list()

@@ -4,13 +4,13 @@ eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
   # rename ETA(n) to ETA.n. because in dataframe names of ETA columns are with dots
   iiv.eta.names <- gsub("\\(",".",iiv.eta.names)
   iiv.eta.names <- gsub("\\)",".",iiv.eta.names)
-  
+
   # add text iiv to eta names
   eta.names_text <- c()
   for (i in 1:length(iiv.eta.names)) {
     eta.names_text[i] <- paste0(iiv.eta.names[i]," IIV")
   }
-  
+
   # add text to iov eta names
   k <- length(iiv.eta.names)
   if(length(iov.eta.names) > 0) {
@@ -23,7 +23,7 @@ eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
       }
     }
   }
-  
+
   #all eta names
   eta.names <- iiv.eta.names
   if(length(iov.eta.names) > 0) {
@@ -31,7 +31,7 @@ eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
       eta.names <- c(eta.names,iov.eta.names[[i]])
     }
   }
-  
+
   # explanation (correlation graph iiv)
   iiv.eta.names_text <- c()
   for (n in 1:length(iiv.eta.names)) {
@@ -43,8 +43,8 @@ eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
   }
   iiv.eta.names_text <- paste0("(",iiv.eta.names_text,")")
   iiv.eta.names_text <- paste0("Correlation graph for EBE NPDE IIV:\n",iiv.eta.names_text)
-  
-  
+
+
   # explanation (correlation graph iov)
   iov.eta.names_text <- c()
   if(length(iov.eta.names)>0) {
@@ -63,7 +63,7 @@ eta_iiv_iov <- function(iiv.eta.names,iov.eta.names) {
     }
     iov.eta.names_text <- paste0("Correlation graph for EBE NPDE IOV:",iov.eta.names_text)
   }
-  
+
   out <- list(eta.names=eta.names,
               iiv.eta.names=iiv.eta.names,
               iov.eta.names=iov.eta.names,
