@@ -40,9 +40,9 @@ pdf.cdd <- function(raw.results.file,skipped.id.file,pdf.filename,
 
     # 5. Create a plot
     if (exists("cdd.warn")) {
-      plot.cdd(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail,cdd.warn)
+      plot_cdd(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail,cdd.warn)
     } else {
-      plot.cdd(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail)
+      plot_cdd(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail)
     }
 
     # create cutoff tables
@@ -53,13 +53,13 @@ pdf.cdd <- function(raw.results.file,skipped.id.file,pdf.filename,
     cook_outliers_data <- list_out$cook_outliers_data
     infl_cook_data <- list_out$infl_cook_data
     # draw a table
-    plot.table(cook_outliers_data,rotate=rotate)
+    plot_table(cook_outliers_data,rotate=rotate)
 
 
     cov_outliers_data <- list_out$cov_outliers_data
     infl_cov_data <- list_out$infl_cov_data
     # draw a table
-    plot.table(cov_outliers_data,rotate=rotate)
+    plot_table(cov_outliers_data,rotate=rotate)
 
     # 8. influential indivifuals
     if (missing(outlier_ID)) {
@@ -70,7 +70,7 @@ pdf.cdd <- function(raw.results.file,skipped.id.file,pdf.filename,
       fail_ID <- list.delta.ofv$fail_ID
       infl_ofv <- list.delta.ofv$infl_ofv
       # create a plot
-      plot.delta.ofv(data_plot,row_infl,fail_ID,cutoff_delta.ofv=cutoff_delta.ofv)
+      plot_delta_ofv(data_plot,row_infl,fail_ID,cutoff_delta.ofv=cutoff_delta.ofv)
     } else {
       # create needed data for plotting
       list.delta.ofv <- delta.ofv.data(cdd.data.all,cutoff_delta.ofv=cutoff_delta.ofv,outlier_ID)
@@ -81,12 +81,12 @@ pdf.cdd <- function(raw.results.file,skipped.id.file,pdf.filename,
       fail_ID <- list.delta.ofv$fail_ID
       infl_ofv <- list.delta.ofv$infl_ofv
       # create a plot
-      plot.delta.ofv(data_plot,row_infl,fail_ID,row_outl,row_outl_infl,cutoff_delta.ofv=cutoff_delta.ofv)
+      plot_delta_ofv(data_plot,row_infl,fail_ID,row_outl,row_outl_infl,cutoff_delta.ofv=cutoff_delta.ofv)
     }
 
     # influential summary table
-    all_infl_indiv_table <- all.infl.indiv.table(infl_ofv,infl_cook_data,infl_cov_data,fail_ID,ID_failed_cov)
-    plot.table(all_infl_indiv_table)
+    all_table <- all_infl_indiv_table(infl_ofv,infl_cook_data,infl_cov_data,fail_ID,ID_failed_cov)
+    plot_table(all_table)
 
     #close pdf
     dev.off()

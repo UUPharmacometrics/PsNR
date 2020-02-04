@@ -18,39 +18,39 @@ cwres.iwres_outliers_4 <- data.frame(ID=c(14,2,21),OUTLIERS.IWRES=c(2,"",1),OUTL
 cwres.iwres_outliers_5 <- data.frame(ID=c(14,2,21),OUTLIERS.CWRES=c(2,4,1),stringsAsFactors = F)
 
 # use function
-all_outlier_table_1 <- all.outlier.report.table(ofv_outliers=ofv_outliers_1,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_1 <- all_outlier_report_table(ofv_outliers=ofv_outliers_1,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_1,ID_deleted_ebe=c(),
                                                 residual_names=c("CWRES","IWRES"),ID_deleted_ofv=c())
-all_outlier_table_2 <- all.outlier.report.table(ofv_outliers=ofv_outliers_1,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_2 <- all_outlier_report_table(ofv_outliers=ofv_outliers_1,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_2,ID_deleted_ebe=c(1),
                                                 residual_names=c("CWRES","IWRES"),ID_deleted_ofv=c(42))
-all_outlier_table_3 <- all.outlier.report.table(ofv_outliers=ofv_outliers_2,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_3 <- all_outlier_report_table(ofv_outliers=ofv_outliers_2,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_2,ID_deleted_ebe=c(),
                                                 residual_names=c("CWRES","IWRES"),ID_deleted_ofv=c())
-all_outlier_table_4 <- all.outlier.report.table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_4 <- all_outlier_report_table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_3,ID_deleted_ebe=c(4),
                                                 residual_names=c("CWRES","IWRES"),ID_deleted_ofv=c())
-all_outlier_table_5 <- all.outlier.report.table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
+all_outlier_table_5 <- all_outlier_report_table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_3,ID_deleted_ebe=c(),
                                                 residual_names=c("CWRES","IWRES"),ID_deleted_ofv=c())
-all_outlier_table_6 <- all.outlier.report.table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_6 <- all_outlier_report_table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_3,residual_names=c(),
                                                 ID_deleted_ebe=c(4),ID_deleted_ofv=c())
-all_outlier_table_7 <- all.outlier.report.table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_7 <- all_outlier_report_table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_4,residual_names=c("CWRES","IWRES"),
                                                 ID_deleted_ebe=c(2,13),ID_deleted_ofv=c(9))
-all_outlier_table_8 <- all.outlier.report.table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_8 <- all_outlier_report_table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_5,residual_names=c("CWRES"),ID_deleted_ebe=c(2,13),
                                                 ID_deleted_ofv=c(9))
-all_outlier_table_9 <- all.outlier.report.table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
+all_outlier_table_9 <- all_outlier_report_table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_1,
                                                 cwres.iwres_outliers=cwres.iwres_outliers_3,residual_names=c("CWRES"))
-all_outlier_table_10 <- all.outlier.report.table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_2,
+all_outlier_table_10 <- all_outlier_report_table(ofv_outliers=ofv_outliers_4,ebe.npde_outliers=ebe.npde_outliers_2,
                                                  cwres.iwres_outliers=cwres.iwres_outliers_3,residual_names=c(),
                                                  ID_deleted_ebe=c(12),ID_deleted_ofv=c(9))
-all_outlier_table_11 <- all.outlier.report.table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
+all_outlier_table_11 <- all_outlier_report_table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
                                                  cwres.iwres_outliers=cwres.iwres_outliers_5,residual_names=c("CWRES"),ID_deleted_ebe=c(12),
                                                  ID_deleted_ofv=c(9))
-all_outlier_table_12 <- all.outlier.report.table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
+all_outlier_table_12 <- all_outlier_report_table(ofv_outliers=ofv_outliers_3,ebe.npde_outliers=ebe.npde_outliers_2,
                                                  cwres.iwres_outliers=cwres.iwres_outliers_4,residual_names=c("CWRES","IWRES"),ID_deleted_ebe=c(21),
                                                  ID_deleted_ofv=c(2))
 # expected data
@@ -106,8 +106,8 @@ exp_all_outlier_table_12 <- data.frame(id=as.character(c(2,14,21)),ofv=c("NA",""
 colnames(exp_all_outlier_table_12) <- c("ID","OFV outliers (SD)","EBE NPDE outliers (ETA numbers)","CWRES outliers","IWRES outliers")
 
 # Compare expected data with real data
-context("simeval, summary, function all.outlier.report.table")
-test_that("If function all.outlier.report.table works as expected",{
+context("simeval, summary, function all_outlier_report_table")
+test_that("If function all_outlier_report_table works as expected",{
   expect_equal(exp_all_outlier_table_1,all_outlier_table_1) # all exist and not epmty, no deleted ids (no NA created,equal IDs)
   expect_equal(exp_all_outlier_table_2,all_outlier_table_2) # all exist and not empty, one deleted ofv, one deleted ebenpde (will create NA)
   expect_equal(exp_all_outlier_table_3,all_outlier_table_3) # all exist and not epmty, no deleted ids (no NA created, no equal IDs)

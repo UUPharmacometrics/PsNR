@@ -4,8 +4,12 @@
 \alias{get_initial_estimate_values}
 \title{Get initial estimate values from specifick iteration row.}
 \usage{
-get_initial_estimate_values(filename, select = "all",
-  iteration = -1e+09, do.stop = TRUE)
+get_initial_estimate_values(
+  filename,
+  select = "all",
+  iteration = -1e+09,
+  do.stop = TRUE
+)
 }
 \arguments{
 \item{filename}{Name of the file.}

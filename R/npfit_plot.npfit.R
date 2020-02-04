@@ -1,5 +1,5 @@
 #' @export
-plot.npsupp.nofv <- function(raw_nonparametric,n.indiv,n.eta) {
+plot_npsupp_nofv <- function(raw_nonparametric, n.indiv, n.eta) {
 
   ofv <- paste0("Parametric OFV value = ",round(raw_nonparametric$ofv[1],3))
   plot.title <- "NONPARAMETRIC ESTIMATION"

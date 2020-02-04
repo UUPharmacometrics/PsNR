@@ -2,7 +2,7 @@
 % Please edit documentation in R/frem_sd_of_unexpl_var_function.R
 \name{sd_unexpl_var}
 \alias{sd_unexpl_var}
-\title{Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates, 
+\title{Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates,
 each covariate separately and all covariates simultaneously.}
 \usage{
 sd_unexpl_var(sd_coef_summary, covdata, pardata)
@@ -18,6 +18,6 @@ sd_unexpl_var(sd_coef_summary, covdata, pardata)
 Function does all the calculations and the creates a list of plots.
 }
 \description{
-Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates, 
+Plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates,
 each covariate separately and all covariates simultaneously.
 }

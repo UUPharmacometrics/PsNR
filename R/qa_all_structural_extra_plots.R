@@ -2,7 +2,7 @@
 #'
 #' @param simeval_directory A path to the simeval run directory.
 #' @param base_dataset A path of the linbase.dta (if nonlinear=TRUE) or to the original input data file (if nonlinear=FALSE).
-#' @param resmod_structural_details
+#' @param resmod_structural_details From resmod
 #' @param extra_table A path of the extra table with all derivatives columns.
 #' @param idv_all A string vector of all possible idv names for specific run.
 #' @param idv_name The string of the idv name from the -idv option in the qa run.

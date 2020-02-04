@@ -2,26 +2,26 @@
 % Please edit documentation in R/qa_ofv_summary_table.R
 \name{ofv_summary_table}
 \alias{ofv_summary_table}
-\title{Creates a data frame with OFV values from nonlinear model, linearized model before the estimation, 
+\title{Creates a data frame with OFV values from nonlinear model, linearized model before the estimation,
 linearized model after the estimation and the sum of the individual OFV values (linearized).}
 \usage{
 ofv_summary_table(directory, model.filename, quiet = F)
 }
 \arguments{
-\item{directory}{A string of the directory name where derivatives.ext, "model.filename"_linbase.ext 
+\item{directory}{A string of the directory name where derivatives.ext, "model.filename"_linbase.ext
 and "model.filename"_linbase.phi files can be found.}
 
 \item{model.filename}{The original model file name.}
 
-\item{quiet}{A logical indicating whether function should not write the warning message 
+\item{quiet}{A logical indicating whether function should not write the warning message
 if some file not found. By default quiet=FALSE.}
 }
 \value{
-A data frame with OFV values from nonlinear model, linearized model before the estimation, 
-linearized model after the estimation and the sum of the individual OFV values (linearized). 
+A data frame with OFV values from nonlinear model, linearized model before the estimation,
+linearized model after the estimation and the sum of the individual OFV values (linearized).
 In case of missing ext or phi file instead of OFV value the string "ERROR" will appera in the data frame.
 }
 \description{
-Creates a data frame with OFV values from nonlinear model, linearized model before the estimation, 
+Creates a data frame with OFV values from nonlinear model, linearized model before the estimation,
 linearized model after the estimation and the sum of the individual OFV values (linearized).
 }

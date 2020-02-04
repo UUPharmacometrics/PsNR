@@ -4,11 +4,18 @@
 \alias{get_ii_table}
 \title{Get influential individuals table.}
 \usage{
-get_ii_table(cdd_directory, model.filename, cutoff, max_rows,
-  skip = NULL, nonlinear, quiet = F)
+get_ii_table(
+  cdd_directory,
+  model.filename,
+  cutoff,
+  max_rows,
+  skip = NULL,
+  nonlinear,
+  quiet = F
+)
 }
 \arguments{
-\item{cdd_directory}{Cdd run directory. Will search for the files skipped_individuals1.csv and 
+\item{cdd_directory}{Cdd run directory. Will search for the files skipped_individuals1.csv and
 raw_results_"model name"_linbase.csv (if nonlinear=F) or raw_results_"model name".csv (if nonlinear=T)}
 
 \item{model.filename}{The base model file name.}

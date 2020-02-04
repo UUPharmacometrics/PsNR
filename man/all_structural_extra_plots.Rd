@@ -4,16 +4,24 @@
 \alias{all_structural_extra_plots}
 \title{Print all structural part plots and tables.}
 \usage{
-all_structural_extra_plots(simeval_directory, base_dataset,
-  resmod_structural_details, extra_table, idv_all, idv_name, dvid_name,
-  type, nonlinear)
+all_structural_extra_plots(
+  simeval_directory,
+  base_dataset,
+  resmod_structural_details,
+  extra_table,
+  idv_all,
+  idv_name,
+  dvid_name,
+  type,
+  nonlinear
+)
 }
 \arguments{
 \item{simeval_directory}{A path to the simeval run directory.}
 
 \item{base_dataset}{A path of the linbase.dta (if nonlinear=TRUE) or to the original input data file (if nonlinear=FALSE).}
 
-\item{resmod_structural_details}{}
+\item{resmod_structural_details}{From resmod}
 
 \item{extra_table}{A path of the extra table with all derivatives columns.}
 

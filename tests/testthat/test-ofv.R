@@ -69,9 +69,9 @@ test_that("If function i_ofv_npde works as expected",{
   expect_equal(exp_xlimit_max,xlimit_max)
 })
 
-#..........................  (3) Test summary.table.ofv  ...................................
-mydataframe <- summary.table.ofv(iofv.file=iofv.file)
-mydataframe_1 <- summary.table.ofv(iofv.file=iofv.file_1)
+#..........................  (3) Test summary_table_ofv  ...................................
+mydataframe <- summary_table_ofv(iofv.file=iofv.file)
+mydataframe_1 <- summary_table_ofv(iofv.file=iofv.file_1)
 
 # Create expected data
 exp_mydataframe <- data.frame(C1 = c('iOFV'), C2 = c("-0.677"),C3=c("0.789"),
@@ -83,8 +83,8 @@ names(exp_mydataframe_1) <- c("NPDE","mean","p-value\n(H_0: mean==0)","variance"
 
 
 # Compare expected data with real data
-context("Simeval, ofv, function summary.table.ofv")
-test_that("If function summary.table.ofv works as expected",{
+context("Simeval, ofv, function summary_table_ofv")
+test_that("If function summary_table_ofv works as expected",{
   expect_equal(exp_mydataframe,mydataframe)
   expect_equal(exp_mydataframe_1,mydataframe_1)
 })

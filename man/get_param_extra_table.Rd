@@ -2,7 +2,7 @@
 % Please edit documentation in R/qa_get_param_extra_table.R
 \name{get_param_extra_table}
 \alias{get_param_extra_table}
-\title{Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values 
+\title{Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values
 as well as expected improvement in OFV when estimating a Box-Cox/t-distribution transformation for each subject-level random effect.}
 \usage{
 get_param_extra_table(original_max0_model, param_model, dofv, quiet = F)
@@ -22,10 +22,10 @@ param_extra_table - a data frame
 param_extra_table_orig - a data frame
 param_extra_table_error - a logical indicating whether both input files original_max0_model and param_model exist in the folder
 
-Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and 
+Difference between param_extra_table and param_extra_table_orig data frames are that values are not formated or rounded in the param_extra_table_orig and
 the dOFV value is not added to this data frame.
 }
 \description{
-Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values 
+Get table of estimated shape parameters (Lambda)/degrees of freedom, estimated standard deviation (sd) values
 as well as expected improvement in OFV when estimating a Box-Cox/t-distribution transformation for each subject-level random effect.
 }

@@ -4,9 +4,14 @@
 \alias{get_overview_table}
 \title{Get overview table.}
 \usage{
-get_overview_table(structural_overview, param_var_overview,
-  covariates_overview, resmod_ruv_overview, infl_indiv_overview,
-  outliers_overview)
+get_overview_table(
+  structural_overview,
+  param_var_overview,
+  covariates_overview,
+  resmod_ruv_overview,
+  infl_indiv_overview,
+  outliers_overview
+)
 }
 \arguments{
 \item{structural_overview}{a data frame of structural models, corresponding dofv values and number of added parameters}

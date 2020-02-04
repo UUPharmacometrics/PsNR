@@ -2,7 +2,7 @@
 % Please edit documentation in R/frem_ID_ratio_function.R
 \name{ID_ratio}
 \alias{ID_ratio}
-\title{Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal). 
+\title{Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal).
 The bands show 90\% confidence interval around the point estimate.}
 \usage{
 ID_ratio(frem_id, covdata, pardata)
@@ -18,6 +18,6 @@ ID_ratio(frem_id, covdata, pardata)
 Function does all the calculations and the creates a list of plots.
 }
 \description{
-Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal). 
+Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal).
 The bands show 90\% confidence interval around the point estimate.
 }

@@ -1,5 +1,5 @@
 #' @export
-plot.cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail,cdd.warn) {
+plot_cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,fail,cdd.warn) {
 
   #find rows of data which are influential(cutoffs)
   row_red <- c()

@@ -1,5 +1,5 @@
 #' @export
-plot.cov.cook <- function(cdd.data.all) {
+plot_cov_cook <- function(cdd.data.all) {
   cdd.data <- cdd.data.all[-1,]
   rownames(cdd.data) <- NULL
   plot (cdd.data$cov.ratios, cdd.data$cook.scores,

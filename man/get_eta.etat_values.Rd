@@ -2,7 +2,7 @@
 % Please edit documentation in R/qa_get_eta.etat_values.R
 \name{get_eta.etat_values}
 \alias{get_eta.etat_values}
-\title{Calculate ETAT values for each eta in the phi file of the parameter model based on the formula: 
+\title{Calculate ETAT values for each eta in the phi file of the parameter model based on the formula:
 If have boxcox model: (exp(eta)^lambda -1)/lambda
 If have tdist model: eta(1+((eta^2 + 1)/(4deg_of_freedom))+((5eta^4 + 16eta^2 + 3)/(96deg_of_freedom^2))+((3eta^6 + 19eta^4 + 17eta^2 - 15)/(384deg_of_freedom^3)))}
 \usage{
@@ -19,7 +19,7 @@ get_eta.etat_values(param_model, theta_values, quiet = F)
 A data frame
 }
 \description{
-Calculate ETAT values for each eta in the phi file of the parameter model based on the formula: 
+Calculate ETAT values for each eta in the phi file of the parameter model based on the formula:
 If have boxcox model: (exp(eta)^lambda -1)/lambda
 If have tdist model: eta(1+((eta^2 + 1)/(4deg_of_freedom))+((5eta^4 + 16eta^2 + 3)/(96deg_of_freedom^2))+((3eta^6 + 19eta^4 + 17eta^2 - 15)/(384deg_of_freedom^3)))
 }

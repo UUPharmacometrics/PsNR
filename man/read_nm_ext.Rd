@@ -16,7 +16,7 @@ read_nm_phi(path)
 A list of data.frame
 }
 \description{
-The function reads NONMEM ext and phi files and returns a list of data.frame with one data.frame for each 
-table (i.e. estimation). The element names are the intro lines and, hence, can be used to extract 
+The function reads NONMEM ext and phi files and returns a list of data.frame with one data.frame for each
+table (i.e. estimation). The element names are the intro lines and, hence, can be used to extract
 problem number etc. The current implementation assumes that all headers are identical.
 }

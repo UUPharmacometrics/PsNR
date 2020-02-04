@@ -31,9 +31,9 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
   #.........................................(2)ebe_npde_summary.........................
   if(make_plot) { # make or not to make plot
     # create EBE npde summary statistics table
-    mydataframe <- summary.table.ebe.npde(ebenpde_obs,eta.names_text)
+    mydataframe <- summary_table_ebe_npde(ebenpde_obs,eta.names_text)
     # draw a table
-    plot.table(mydataframe)
+    plot_table(mydataframe)
   }
 
   # ..........................................EBE-NPDE correlation graph iiv.............................................
@@ -135,10 +135,10 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     #CREATE FINAL TABLE (use function outlier_table to create a table fortable1)
     fortable1 <- outlier.table.ebe.npde(ebenpde_tmp,eta.names,outlier_id_row)
 
-    #............................................(8)plot.table......................................................
+    #............................................(8)plot_table......................................................
     #draw the table
     if(make_plot) { # make or not to make plot
-      plot.table(fortable1)
+      plot_table(fortable1)
     }
 
     #for ebe.npde.outliers

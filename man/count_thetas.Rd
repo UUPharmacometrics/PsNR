@@ -10,12 +10,6 @@ count_thetas(filename, iteration = -1e+09, keep_na = FALSE)
 count_thetas(filename, iteration = -1e+09, keep_na = FALSE)
 }
 \arguments{
-\item{filename}{Name of the file.}
-
-\item{iteration}{The value of iteration. By default is -1000000000.}
-
-\item{keep_na}{Count or not to count NA values. By default is FALSE.}
-
 \item{filename}{A string of the ext file name.}
 
 \item{iteration}{A numeric value from the ITERATION column in the ext file. By default iteration=-1000000000.}

@@ -2,11 +2,17 @@
 % Please edit documentation in R/qa_get_all_covariates.R
 \name{get_all_covariates}
 \alias{get_all_covariates}
-\title{Table of difference between model 2 and model 4 OFV values and number of added parameters. In case of non-missing dofv value of the full omega block, 
+\title{Table of difference between model 2 and model 4 OFV values and number of added parameters. In case of non-missing dofv value of the full omega block,
 frem dofv value will be calculated as difference between model 2 and model 4 OFV values and dofv value of the full omega block.}
 \usage{
-get_all_covariates(frem_directory, nr_cov, nr_param, dofv_full_block,
-  skip = NULL, quiet = F)
+get_all_covariates(
+  frem_directory,
+  nr_cov,
+  nr_param,
+  dofv_full_block,
+  skip = NULL,
+  quiet = F
+)
 }
 \arguments{
 \item{frem_directory}{Frem run directory. Will search for the file raw_results.csv in the subdirectories model2_modelfit_dir1 and model4_modelfit_dir1.}
@@ -28,6 +34,6 @@ frem_table - a data frame with joint improvement in OFV when taking correlations
 frem_files_exists - logical argument indicating whether needed files exist in the input directory and there is at least one covariate
 }
 \description{
-Table of difference between model 2 and model 4 OFV values and number of added parameters. In case of non-missing dofv value of the full omega block, 
+Table of difference between model 2 and model 4 OFV values and number of added parameters. In case of non-missing dofv value of the full omega block,
 frem dofv value will be calculated as difference between model 2 and model 4 OFV values and dofv value of the full omega block.
 }

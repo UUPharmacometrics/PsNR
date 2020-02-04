@@ -2,11 +2,10 @@
 % Please edit documentation in R/qa_get_iov_table.R
 \name{get_iov_table}
 \alias{get_iov_table}
-\title{Consequences of including inter-occasion variability in terms of estimated standard deviation (SD) for inter-individual (IIV) 
+\title{Consequences of including inter-occasion variability in terms of estimated standard deviation (SD) for inter-individual (IIV)
 and inter-occasion variability (IOV) as well as expected improvement in OFV.}
 \usage{
-get_iov_table(original_max0_model, iov_model, iov_etas, dofv_iov,
-  quiet = F)
+get_iov_table(original_max0_model, iov_model, iov_etas, dofv_iov, quiet = F)
 }
 \arguments{
 \item{original_max0_model}{The base model file name.}
@@ -25,6 +24,6 @@ iov_table - a data frame
 iov_error - a logical indicating whether both ext files from models original_max0_model and iov_model exist in the folder
 }
 \description{
-Consequences of including inter-occasion variability in terms of estimated standard deviation (SD) for inter-individual (IIV) 
+Consequences of including inter-occasion variability in terms of estimated standard deviation (SD) for inter-individual (IIV)
 and inter-occasion variability (IOV) as well as expected improvement in OFV.
 }

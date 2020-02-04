@@ -56,7 +56,7 @@ simeval_all_outliers_table <- function(simeval_directory,ebe_npde_outl_crit=-3,q
     residual_names <- list_residuals$residual_names
 
     #all outlier table
-    all_outlier_table <- all.outlier.report.table(ofv_outliers,ebe.npde_outliers,cwres.iwres_outliers,
+    all_outlier_table <- all_outlier_report_table(ofv_outliers,ebe.npde_outliers,cwres.iwres_outliers,
                                                   residual_names,ID_deleted_ebe,ID_deleted_ofv)
 
     add_header_above <- c(" "=1,"Individual level"=2)

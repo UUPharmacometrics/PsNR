@@ -1,5 +1,5 @@
 #' @export
-summary.table <- function(residual.files,residual.names) {
+summary_table <- function(residual.files,residual.names) {
   # number of data frames
   n.residuals <- length(residual.files)
   variance <- c(1:n.residuals)

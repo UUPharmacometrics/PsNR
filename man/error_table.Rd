@@ -11,7 +11,7 @@ error_table(first_column = "", col = 2, column_names)
 
 \item{col}{Number of needed columns of the output data frame. By default is set to 2.}
 
-\item{column_names}{A string vector of the column names. If missing and number of columns are less than 2 then will be set to NULL, 
+\item{column_names}{A string vector of the column names. If missing and number of columns are less than 2 then will be set to NULL,
 otherwise second column will be set to "dOFV" and all other columns will be set to empty strings.}
 }
 \value{

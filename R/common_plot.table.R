@@ -1,5 +1,5 @@
 #' @export
-plot.table <- function(table,total_rows_per_page,rotate) {
+plot_table <- function(table,total_rows_per_page,rotate) {
   # library(gridExtra)
   # draw only 18 rows of table per each page
   if (missing(total_rows_per_page)) {

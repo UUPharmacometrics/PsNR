@@ -2,8 +2,8 @@
 % Please edit documentation in R/qa_get_covariates_table.R
 \name{get_covariates_table}
 \alias{get_covariates_table}
-\title{Create covariate table for the summary part and the table of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient. 
-Furthermore, the sum of all univariate improvements in OFV ignoring between covariate correlations (sum(SCMu)), as well as joint improvement in OFV 
+\title{Create covariate table for the summary part and the table of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient.
+Furthermore, the sum of all univariate improvements in OFV ignoring between covariate correlations (sum(SCMu)), as well as joint improvement in OFV
 when taking correlations into account (FREM).}
 \usage{
 get_covariates_table(frem_table, scm_table, max_scm_table)
@@ -11,7 +11,7 @@ get_covariates_table(frem_table, scm_table, max_scm_table)
 \arguments{
 \item{frem_table}{A data frame of one row with column names c("","dOFV","Add.params") or c("","dOFV") if frem model run crash or was not run.}
 
-\item{scm_table}{A data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient. 
+\item{scm_table}{A data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient.
 Column names c("","dOFV","Coef").}
 
 \item{max_scm_table}{A data frame of one row with column names c("","dOFV","Add.params") or c("","dOFV") if scm model run crash or was not run.}
@@ -19,11 +19,11 @@ Column names c("","dOFV","Coef").}
 \value{
 A list of 2 elements:
 covariates_table - a data frames with two rows, one for frem record and one for scm record (for summary section)
-covariates_extra_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and 
+covariates_extra_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and
 estimated covariate coefficient, with two extra rows - sum of all scm dofv values and frem dofv value (for covariates section)
 }
 \description{
-Create covariate table for the summary part and the table of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient. 
-Furthermore, the sum of all univariate improvements in OFV ignoring between covariate correlations (sum(SCMu)), as well as joint improvement in OFV 
+Create covariate table for the summary part and the table of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient.
+Furthermore, the sum of all univariate improvements in OFV ignoring between covariate correlations (sum(SCMu)), as well as joint improvement in OFV
 when taking correlations into account (FREM).
 }

@@ -1,5 +1,5 @@
 #' @export
-plot.delta.ofv <- function(data_plot,row_infl,fail_ID,row_outl,row_outl_infl,cutoff_delta.ofv) {
+plot_delta_ofv <- function(data_plot,row_infl,fail_ID,row_outl,row_outl_infl,cutoff_delta.ofv) {
   # Default for outlier_ID
   if (!missing(row_outl)) {
     outl_legend <- TRUE

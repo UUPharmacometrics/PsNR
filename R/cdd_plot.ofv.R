@@ -1,5 +1,5 @@
 #' @export
-plot.ofv <- function(cdd.data.all) {
+plot_ofv <- function(cdd.data.all) {
   cdd.data <- cdd.data.all[-1,]
   plot ((cdd.data$ofv+cdd.data$cdd.delta.ofv), cdd.data$ofv,
         type="p",

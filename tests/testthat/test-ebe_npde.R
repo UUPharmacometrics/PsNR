@@ -232,11 +232,11 @@ test_that("Expect warnings from function input.data",{
   expect_message(input.data(ebe.npde.file=ebe.npde.file_3,eta.names=iiv.eta.names_3))
 })
 
-# .................................  (2) Test summary.table.ebe.npde ...............................
-mydataframe_1 <- summary.table.ebe.npde(ebenpde_obs_1,eta.names=eta.names_text_1)
-mydataframe_2 <- summary.table.ebe.npde(ebenpde_obs_2,eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.1'))
-mydataframe_3 <- summary.table.ebe.npde(rbind(ebenpde_obs_3,c(0.92,0.42,-0.78)),eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.2'))
-mydataframe_4 <- summary.table.ebe.npde(ebenpde_obs_6,eta.names=c('ETA.2. IIV','ETA.1. IOV occ.1','ETA.3. IOV occ.1','ETA.4. IOV occ.2','ETA.5. IOV occ.2'))
+# .................................  (2) Test summary_table_ebe_npde ...............................
+mydataframe_1 <- summary_table_ebe_npde(ebenpde_obs_1,eta.names=eta.names_text_1)
+mydataframe_2 <- summary_table_ebe_npde(ebenpde_obs_2,eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.1'))
+mydataframe_3 <- summary_table_ebe_npde(rbind(ebenpde_obs_3,c(0.92,0.42,-0.78)),eta.names=c('ETA.1. IIV','ETA.2. IOV occ.1','ETA.3. IOV occ.2'))
+mydataframe_4 <- summary_table_ebe_npde(ebenpde_obs_6,eta.names=c('ETA.2. IIV','ETA.1. IOV occ.1','ETA.3. IOV occ.1','ETA.4. IOV occ.2','ETA.5. IOV occ.2'))
 
 # Create expected data
 exp_mydataframe_1 <- data.frame(c("ETA.1. IIV","ETA.2. IIV","ETA.3. IIV"),
@@ -288,8 +288,8 @@ colnames(exp_mydataframe_4) <- c("EBE NPDE","Number\nof ID","mean","p-value\n(H_
 
 
 # Compare expected data with real data
-context("Simeval, ebe npde, function summary.table.ebe.npde")
-test_that("If function summary.table.ebe.npde works as expected",{
+context("Simeval, ebe npde, function summary_table_ebe_npde")
+test_that("If function summary_table_ebe_npde works as expected",{
   expect_equal(exp_mydataframe_1,mydataframe_1)
   expect_equal(exp_mydataframe_2,mydataframe_2)
   expect_equal(exp_mydataframe_3,mydataframe_3)

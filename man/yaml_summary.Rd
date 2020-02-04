@@ -4,10 +4,25 @@
 \alias{yaml_summary}
 \title{Creates a yaml file with all results of the qa run.}
 \usage{
-yaml_summary(model.filename, ofv_table, resmod_structural_details,
-  full_omega_block_list, boxcox_lambdas_list, tdist_list, add_etas_list,
-  iov_list, frem_table_list, scm_table_list, resmod_table_list, ii_list,
-  outlier_table_list, overview_table_list, dvid_name, skip, idv_all)
+yaml_summary(
+  model.filename,
+  ofv_table,
+  resmod_structural_details,
+  full_omega_block_list,
+  boxcox_lambdas_list,
+  tdist_list,
+  add_etas_list,
+  iov_list,
+  frem_table_list,
+  scm_table_list,
+  resmod_table_list,
+  ii_list,
+  outlier_table_list,
+  overview_table_list,
+  dvid_name,
+  skip,
+  idv_all
+)
 }
 \arguments{
 \item{model.filename}{The original model file name.}

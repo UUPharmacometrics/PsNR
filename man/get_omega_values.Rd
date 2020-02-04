@@ -12,16 +12,14 @@ get_omega_values(ext_file, omegas)
 \arguments{
 \item{ext_file}{A string of the ext file name.}
 
-\item{omegas}{Can be set to "var" (only variances will be filtered out),"cov" (only covariances will be filtered out) or "all". By default is "all".}
+\item{omegas}{A string "all", "var" or "cov", where "all" means that all omegas will be selected,
+"var" - only diagonal omegas will be selected and "cov" - only omegas outside the diagonal will be selected.}
 
 \item{filename}{Name of the file.}
 
 \item{iteration}{The value of iteration. By default is -1000000000.}
 
 \item{keep_zeroes}{A logical indicating whether function should keep omegas with zeroe values. By default keep_zeroes is FALSE.}
-
-\item{omegas}{A string "all", "var" or "cov", where "all" means that all omegas will be selected, 
-"var" - only diagonal omegas will be selected and "cov" - only omegas outside the diagonal will be selected.}
 }
 \value{
 The data frame of omega values.

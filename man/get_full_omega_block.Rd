@@ -2,11 +2,10 @@
 % Please edit documentation in R/qa_get_full_omega_block.R
 \name{get_full_omega_block}
 \alias{get_full_omega_block}
-\title{Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a 
+\title{Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a
 full block correlation structure between subject-level random effects.}
 \usage{
-get_full_omega_block(original_max0_model, fullblock_model, dofv,
-  quiet = F)
+get_full_omega_block(original_max0_model, fullblock_model, dofv, quiet = F)
 }
 \arguments{
 \item{original_max0_model}{The base model file name.}
@@ -23,6 +22,6 @@ full_omega_block_table - a data frame
 full_omega_block_error - a logical indicating whether both input files original_max0_model and fullblock_model exist in the folder
 }
 \description{
-Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a 
+Get table of estimated standard deviation (sd) and correlation (corr) values as well as expected improvement in OFV when allowing for a
 full block correlation structure between subject-level random effects.
 }

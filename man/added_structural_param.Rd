@@ -14,7 +14,7 @@ added_structural_param(directory, idv, dvid = "NA")
 \item{dvid}{A dvid value. By default="NA"}
 }
 \value{
-A numeric value of added parameters to the idv_varying_theta model. 
+A numeric value of added parameters to the idv_varying_theta model.
 If file results.csv does not exist or all parameter values are missing then added_param will be set to empty character.
 }
 \description{

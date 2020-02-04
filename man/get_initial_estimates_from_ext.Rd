@@ -4,8 +4,12 @@
 \alias{get_initial_estimates_from_ext}
 \title{Get initial estimates from the ext file.}
 \usage{
-get_initial_estimates_from_ext(filename, select = "all",
-  iteration = -1e+09, do.stop = TRUE)
+get_initial_estimates_from_ext(
+  filename,
+  select = "all",
+  iteration = -1e+09,
+  do.stop = TRUE
+)
 }
 \arguments{
 \item{filename}{A string of the ext file name.}

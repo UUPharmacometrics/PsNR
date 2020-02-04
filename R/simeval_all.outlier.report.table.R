@@ -1,5 +1,5 @@
 #' @export
-all.outlier.report.table <- function(ofv_outliers,ebe.npde_outliers,cwres.iwres_outliers,residual_names,ID_deleted_ebe=NULL,ID_deleted_ofv=NULL) {
+all_outlier_report_table <- function(ofv_outliers,ebe.npde_outliers,cwres.iwres_outliers,residual_names,ID_deleted_ebe=NULL,ID_deleted_ofv=NULL) {
   if(ncol(cwres.iwres_outliers)>0 && length(residual_names)>0) {
     #organize data so that CWRES would always be first
     residual_names <- sort(residual_names)

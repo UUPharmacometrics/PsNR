@@ -1,5 +1,5 @@
 #' @export
-plot.obj.obsi <- function(OBJ_data,OBSi_vector,OBJ_vector) {
+plot_obj_obsi <- function(OBJ_data,OBSi_vector,OBJ_vector) {
   # plot values
   plot(OBSi_vector,OBJ_vector,
        type="n",

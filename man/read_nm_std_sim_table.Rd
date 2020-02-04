@@ -13,7 +13,7 @@ read_nm_std_sim_table(path)
 A data.frame
 }
 \description{
-This function reads $TABLE output from a simulation step (with possibly repeating headers). This function can 
-can in general be used instead of \code{\link{read_nm_std_table}} but will be slightly slower due to the 
+This function reads $TABLE output from a simulation step (with possibly repeating headers). This function can
+can in general be used instead of \code{\link{read_nm_std_table}} but will be slightly slower due to the
 processing of the intermediate header rows.
 }

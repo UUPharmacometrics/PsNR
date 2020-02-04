@@ -4,8 +4,12 @@
 \alias{retrieve_scm_results}
 \title{Retrieve SCM results}
 \usage{
-retrieve_scm_results(scm_path, parameters, continuous = NULL,
-  categorical = NULL)
+retrieve_scm_results(
+  scm_path,
+  parameters,
+  continuous = NULL,
+  categorical = NULL
+)
 }
 \arguments{
 \item{scm_path}{Path to raw_result_scm.csv}

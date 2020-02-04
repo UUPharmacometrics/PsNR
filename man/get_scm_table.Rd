@@ -7,7 +7,7 @@
 get_scm_table(scm_directory, nr_cov, nr_param, skip = NULL, quiet = F)
 }
 \arguments{
-\item{scm_directory}{Scm run directory. Will search for the file raw_results_scm.csv. Columns relation, ofv, step.number 
+\item{scm_directory}{Scm run directory. Will search for the file raw_results_scm.csv. Columns relation, ofv, step.number
 and all columns with estimated covariate coefficient values (like, CLWGT.4.1) will be used in the function.}
 
 \item{nr_cov}{Number of covariates from the scm point of view, because categorical covariates can be binarized.}

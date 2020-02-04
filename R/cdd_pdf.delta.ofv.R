@@ -1,5 +1,5 @@
 #' @export
-pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
+pdf_delta_ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
   # create pdf file
   pdf(file=pdf,width=11.69, height=8.27)
 
@@ -15,7 +15,7 @@ pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
     row_infl <- list.delta.ofv$row_infl
     ID <- list.delta.ofv$ID
     # create a plot
-    plot.delta.ofv(delta.ofv,model,ID,row_infl)
+    plot_delta_ofv(delta.ofv,model,ID,row_infl)
   } else {
     # create needed data for plotting
     list.delta.ofv <- delta.ofv.data(cdd.data.all,outlier_ID)
@@ -26,7 +26,7 @@ pdf.delta.ofv <- function(raw.results.file,skipped.id.file,pdf,outlier_ID) {
     row_infl <- list.delta.ofv$row_infl
     ID <- list.delta.ofv$ID
     # create a plot
-    plot.delta.ofv(delta.ofv,model,ID,row_infl,row_outl,row_outl_infl)
+    plot_delta_ofv(delta.ofv,model,ID,row_infl,row_outl,row_outl_infl)
   }
 
 #close pdf

@@ -49,10 +49,10 @@ pdf.simeval <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crite
   }
 
   #3. iOFV NPDE summary table
-  iofv_summary_table <- summary.table.ofv(iofv.file)
+  iofv_summary_table <- summary_table_ofv(iofv.file)
 
   # plot summary table
-  plot.table(iofv_summary_table)
+  plot_table(iofv_summary_table)
 
   #3. iOFV RES
   list_i_ofv_res <- i_ofv_res(all.iofv.file,n.subjects,samples)# calculation
@@ -160,10 +160,10 @@ pdf.simeval <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crite
 
     #------------------------------------------(2)summary_table plot----------------------------------
     # Summary table
-    mydataframe <- summary.table(residual.files,residual.names)
+    mydataframe <- summary_table(residual.files,residual.names)
 
     # plot summary table "mydataframe" on the new page
-    plot.table(mydataframe)
+    plot_table(mydataframe)
 
     #------------------------------------------(3)outliertable plot----------------------------------
     # Use outliertable function to plot outlier tabel
@@ -172,21 +172,21 @@ pdf.simeval <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crite
     cwres.iwres_outliers <- list$outliers_count
 
     # Plot created outlier table on the next page
-    plot.table(outlierframe)
+    plot_table(outlierframe)
 
     ########################################   ALL OUTLIERS REPORT TABLE   ##################################################
-    all_outlier_table <- all.outlier.report.table(ofv_outliers,ebe.npde_outliers=ebe.npde_outliers,cwres.iwres_outliers,
+    all_outlier_table <- all_outlier_report_table(ofv_outliers,ebe.npde_outliers=ebe.npde_outliers,cwres.iwres_outliers,
                                                   ID_deleted_ebe,ID_deleted_ofv)
 
     # draw the table
-    plot.all.outlier.table(all_outlier_table)
+    plot_all_outlier_table(all_outlier_table)
   } else {
     ########################################   ALL OUTLIERS REPORT TABLE   ##################################################
-    all_outlier_table <- all.outlier.report.table(ofv_outliers,ebe.npde_outliers=ebe.npde_outliers,
+    all_outlier_table <- all_outlier_report_table(ofv_outliers,ebe.npde_outliers=ebe.npde_outliers,
                                                   ID_deleted_ebe=ID_deleted_ebe,ID_deleted_ofv=ID_deleted_ofv)
 
     # draw the table
-    plot.table(all_outlier_table)
+    plot_table(all_outlier_table)
   }
 
   dev.off()

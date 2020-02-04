@@ -2,7 +2,7 @@
 % Please edit documentation in R/qa_plot_transformed_density.R
 \name{plot_transformed_density}
 \alias{plot_transformed_density}
-\title{Density of the Box-Cox/t-distribution transformed random effect in comparison with the density of the original (untransformed) random effect. 
+\title{Density of the Box-Cox/t-distribution transformed random effect in comparison with the density of the original (untransformed) random effect.
 The rug below the densities indicates the empirical Bayes estimates for the transformed random effect.}
 \usage{
 plot_transformed_density(data_table, eta_table, param_model)
@@ -20,6 +20,6 @@ If have tdist model: eta(1+((eta^2 + 1)/(4deg_of_freedom))+((5eta^4 + 16eta^2 + 
 A list of plots
 }
 \description{
-Density of the Box-Cox/t-distribution transformed random effect in comparison with the density of the original (untransformed) random effect. 
+Density of the Box-Cox/t-distribution transformed random effect in comparison with the density of the original (untransformed) random effect.
 The rug below the densities indicates the empirical Bayes estimates for the transformed random effect.
 }

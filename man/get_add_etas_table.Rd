@@ -2,11 +2,17 @@
 % Please edit documentation in R/qa_get_add_etas_table.R
 \name{get_add_etas_table}
 \alias{get_add_etas_table}
-\title{Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new 
+\title{Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new
 and existing random effect parameters as well as expected improvement in OFV.}
 \usage{
-get_add_etas_table(original_max0_model, add_etas_dir, added_etas,
-  dofv_add.etas, nonlinear, quiet = F)
+get_add_etas_table(
+  original_max0_model,
+  add_etas_dir,
+  added_etas,
+  dofv_add.etas,
+  nonlinear,
+  quiet = F
+)
 }
 \arguments{
 \item{original_max0_model}{The base model file name.}
@@ -27,6 +33,6 @@ add_etas_table - a data frame
 add_etas_error - a logical indicating whether both ext files original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder
 }
 \description{
-Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new 
+Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new
 and existing random effect parameters as well as expected improvement in OFV.
 }

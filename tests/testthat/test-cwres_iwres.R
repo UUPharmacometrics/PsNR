@@ -58,9 +58,9 @@ test_that("If function histograms.cwres.iwres works as expected",{
   expect_equal(exp_xlimit_max_2,xlimit_max_2)
 })
 
-#...............................  (2) Test function summary.table  ...............................
-mydataframe <- summary.table(residual.files,residual.names)
-mydataframe_1 <- summary.table(residual.files_1,residual.names)
+#...............................  (2) Test function summary_table  ...............................
+mydataframe <- summary_table(residual.files,residual.names)
+mydataframe_1 <- summary_table(residual.files_1,residual.names)
 
 # Create expected data set
 exp_mydataframe <- data.frame(C1 = c('CWRES','IWRES'), C2 = c(0.402,-0.032),C3=c(0.75,1.00),
@@ -70,8 +70,8 @@ exp_mydataframe_1 <- data.frame(C1 = c('CWRES','IWRES'), C2 = c(-0.424,-0.032),C
 names(exp_mydataframe) <- c("NPDE","mean","p-value\n(H_0: mean==0)","variance","p-value\n(H_0: var==1)","skewness","kurtosis","p-value\n(normality)")
 names(exp_mydataframe_1) <- c("NPDE","mean","p-value\n(H_0: mean==0)","variance","p-value\n(H_0: var==1)","skewness","kurtosis","p-value\n(normality)")
 # Compare expected data with real data
-context("Simeval, residuals, function summary.table")
-test_that("If function summary.table works as expected",{
+context("Simeval, residuals, function summary_table")
+test_that("If function summary_table works as expected",{
   expect_equal(exp_mydataframe,mydataframe)
   expect_equal(exp_mydataframe_1,mydataframe_1)
 })

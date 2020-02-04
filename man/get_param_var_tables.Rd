@@ -7,8 +7,8 @@
 get_param_var_tables(directory, base_model, skip = NULL, quiet = F)
 }
 \arguments{
-\item{directory}{A string of the directory name where modelfit_run, add_etas_run folders and base model ext file can be found. 
-In modelfit_run folder expecting to have mod and ext files from fullblock, boxcox, tdist and iov runs. 
+\item{directory}{A string of the directory name where modelfit_run, add_etas_run folders and base model ext file can be found.
+In modelfit_run folder expecting to have mod and ext files from fullblock, boxcox, tdist and iov runs.
 In add_etas_run expecting to have mod and ext files from the add_etas_linbase.}
 
 \item{base_model}{A string of the model file name that was transformed.}

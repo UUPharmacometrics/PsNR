@@ -8,7 +8,7 @@ pdf.cov.cook <- function(raw.results.file,skipped.id.file,pdf) {
   cdd.data.all <- out_cdd.data.all$cdd.data.all
 
   # 1. plot cook/cov
-  plot.cov.cook(cdd.data.all)
+  plot_cov_cook(cdd.data.all)
 
   # use function for calsulating cov.ratio per parameter and identifying cook score per parameter
   out <- cov.cook.par.data(cdd.data.all)
@@ -18,7 +18,7 @@ pdf.cov.cook <- function(raw.results.file,skipped.id.file,pdf) {
   cov.par.data <- out$cov.par.data
 
   # 2. Plot cook(parameter)/cov(parameter)
-  plot.cov.cook.par(cook.par.data,cov.par.data,parameters)
+  plot_cov_cook_par(cook.par.data,cov.par.data,parameters)
 
   #close pdf
   dev.off()

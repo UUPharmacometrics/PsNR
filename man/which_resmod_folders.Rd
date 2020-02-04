@@ -11,7 +11,7 @@ which_resmod_folders(directory, idv_name, quiet = F)
 
 \item{idv_name}{The string of the idv name from the -idv option in the qa run.}
 
-\item{quiet}{A logical indicating whether function should not write the warning message 
+\item{quiet}{A logical indicating whether function should not write the warning message
 if some file not found. By default quiet=FALSE.}
 }
 \value{

@@ -11,7 +11,7 @@ get_resmod_table(directory, idv, quiet = F)
 
 \item{idv}{The string of the idv name.}
 
-\item{quiet}{A logical indicating whether function should not write the warning message 
+\item{quiet}{A logical indicating whether function should not write the warning message
 if some file not found. By default quiet=FALSE.}
 }
 \value{
