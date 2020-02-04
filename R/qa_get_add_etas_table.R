@@ -1,13 +1,13 @@
-#' Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new 
+#' Consequences of including additional subject-level random effects on selected parameters in terms of estimated standard deviation (SD) of new
 #' and existing random effect parameters as well as expected improvement in OFV.
-#'   
+#'
 #' @param original_max0_model The base model file name.
 #' @param add_etas_dir A name of the directory where add_etas_linbase.ext (nonlinear=FALSE) or add_etas.ext (nonlinear=TRUE) can be found.
 #' @param added_etas A list of additional etas and their numeric position in the model. (added_etas <- list(TPEN=6, SIND=5))
 #' @param dofv_add.etas Difference between base model and the model with additional etas OFV values.
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 2 arguments:
 #' add_etas_table - a data frame
 #' add_etas_error - a logical indicating whether both ext files original_max0_model and add_etas_linbase.ext/add_etas.ext exist in the folder
@@ -26,7 +26,7 @@ get_add_etas_table <- function(original_max0_model,add_etas_dir,added_etas,dofv_
     eta_nr <- strsplit(colnames(old_omega_values),"[.]")
     #new SD
     new_omega_values <- get_omega_values(ext_file=add_etas_ext_file,omegas="var")
-    
+
     #create a table
     add_etas_table <- as.data.frame(array(0,c(length(eta_nr),4)))
     colnames(add_etas_table) <- c("","Added","New SD","Old SD")
@@ -40,7 +40,7 @@ get_add_etas_table <- function(original_max0_model,add_etas_dir,added_etas,dofv_
     # order added_eta values
     added_etas[sapply(added_etas,is.null)] <- NA
     added_etas <- added_etas[order(unlist(added_etas))]
-    
+
     #which omegas goes to added etas on parameters
     j <- nrow(add_etas_table)
     n <- 1

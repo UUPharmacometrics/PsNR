@@ -1,5 +1,5 @@
 #' Get initial estimate values from specifick iteration row.
-#' 
+#'
 #' @param filename Name of the file.
 #' @param select Can be set to "omega","theta","sigma" or "all"(means thetas, omegas and sigmas). By default is "all".
 #' @param iteration The value of iteration. By default is -1000000000.
@@ -26,12 +26,12 @@ get_initial_estimate_values <- function(filename,select="all",iteration=-1000000
   if(ncol(init.est)==0) {
     init.est <- data.frame()
   }
-  return(init.est)  
+  return(init.est)
 }
 
 
 #' Count number of THETAs.
-#' 
+#'
 #' @param filename Name of the file.
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @param keep_na Count or not to count NA values. By default is FALSE.
@@ -50,7 +50,7 @@ count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {
 
 
 #' Get ofv value from specific iteration row
-#' 
+#'
 #' @param filename Name of the file.
 #' @param iteration The value of iteration. By default is -1000000000.
 #' @return The OFV value.
@@ -58,13 +58,13 @@ count_thetas <- function(filename,iteration=-1000000000,keep_na=FALSE) {
 get_ext_ofv <- function(filename,iteration=-1000000000){
   read.table(filename,header=TRUE,skip=1,stringsAsFactors = F) %>%
     dplyr::filter(ITERATION==iteration) %>%
-    dplyr::select(OBJ) %>% 
+    dplyr::select(OBJ) %>%
     as.numeric()
 }
 
 
 #' Get omega values
-#' 
+#'
 #' @param filename Name of the file.
 #' @param omegas Can be set to "var" (only variances will be filtered out),"cov" (only covariances will be filtered out) or "all". By default is "all".
 #' @param iteration The value of iteration. By default is -1000000000.
@@ -101,7 +101,7 @@ get_omega_values <- function(filename, omegas, iteration=-1000000000, keep_zeroe
           omegas_v <- c(omegas_v,omega_table[i])
           col.names_v <- c(col.names_v,colnames(omega_table[i]))
         }
-      } 
+      }
       if(first!=second) { # get omega values outside of the diagonals
         if(!keep_zeroes) {
           if(omega_table[i]!=0) {
@@ -113,12 +113,12 @@ get_omega_values <- function(filename, omegas, iteration=-1000000000, keep_zeroe
           col.names_c <- c(col.names_c,colnames(omega_table[i]))
         }
       }
-      
+
     }
   } else {
     omega_table <- data.frame()
   }
-  
+
   if(length(omegas_v)>0) {
     omegas_var <- data.frame(omegas_v,stringsAsFactors = F)
     colnames(omegas_var) <- col.names_v
@@ -131,7 +131,7 @@ get_omega_values <- function(filename, omegas, iteration=-1000000000, keep_zeroe
   } else {
     omegas_cov <- data.frame()
   }
-  
+
   #what to print out
   if(omegas=="all") {
     omega_values <- omega_table
@@ -140,6 +140,6 @@ get_omega_values <- function(filename, omegas, iteration=-1000000000, keep_zeroe
   } else if(omegas=="cov"){
     omega_values <- omegas_cov
   }
-  
+
   return(omega_values)
 }

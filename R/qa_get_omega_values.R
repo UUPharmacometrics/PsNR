@@ -1,9 +1,9 @@
 #' Get non-ziro omega values.
-#'   
+#'
 #' @param ext_file A string of the ext file name.
-#' @param omegas A string "all", "var" or "cov", where "all" means that all omegas will be selected, 
+#' @param omegas A string "all", "var" or "cov", where "all" means that all omegas will be selected,
 #' "var" - only diagonal omegas will be selected and "cov" - only omegas outside the diagonal will be selected.
-#' 
+#'
 #' @return A data frame with non-ziro omega values and omega names as column names.
 #' @export
 get_omega_values <- function(ext_file,omegas){
@@ -24,17 +24,17 @@ get_omega_values <- function(ext_file,omegas){
       if(first==second && omega_table[i]!=0) { #get omega values from the diagonals (which are not 0)
         omegas_v <- c(omegas_v,omega_table[i])
         col.names_v <- c(col.names_v,colnames(omega_table[i]))
-      } 
+      }
       if(first!=second && omega_table[i]!=0){ #get omega values outside of the diagonals (which are not 0)
         omegas_c <- c(omegas_c,omega_table[i])
         col.names_c <- c(col.names_c,colnames(omega_table[i]))
       }
-      
+
     }
   } else {
     omega_table <- data.frame()
   }
-  
+
   if(length(omegas_v)>0) {
     omegas_var <- data.frame(omegas_v,stringsAsFactors = F)
     colnames(omegas_var) <- col.names_v
@@ -47,7 +47,7 @@ get_omega_values <- function(ext_file,omegas){
   } else {
     omegas_cov <- data.frame()
   }
-  
+
   #what to print out
   if(omegas=="all") {
     omega_values <- omega_table
@@ -56,6 +56,6 @@ get_omega_values <- function(ext_file,omegas){
   } else if(omegas=="cov"){
     omega_values <- omegas_cov
   }
-  
+
   return(omega_values)
 }

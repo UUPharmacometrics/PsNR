@@ -1,10 +1,10 @@
 #' Open results.csv file and save output in the dataframe readable for R
-#'    
+#'
 #' @param directory The qa run directory path. Will search for the results.csv file in the resmod_'idv' folder.
 #' @param idv The string of the idv name.
-#' @param quiet A logical indicating whether function should not write the warning message 
+#' @param quiet A logical indicating whether function should not write the warning message
 #' if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return The list of two elements:
 #' resmod_file_exists - logical argument indicating whether results.csv file exists in the expected directory
 #' resmod_table - a results.csv data frame
@@ -12,7 +12,7 @@
 get_resmod_table <- function(directory, idv,quiet=F){
   resmod_file_exists <- file.exists(file.path(directory, paste0("resmod_", idv), "results.csv"))
   if(resmod_file_exists) {
-    path <- file.path(directory, paste0("resmod_", idv), "results.csv") 
+    path <- file.path(directory, paste0("resmod_", idv), "results.csv")
     con <- file(path)
     lines <- readLines(con)
     close(con)
@@ -25,13 +25,13 @@ get_resmod_table <- function(directory, idv,quiet=F){
     }
     header <- fields[[1]]
     fields[[1]] <- NULL
-  
+
     for(i in 1:length(fields)) {
       if(length(fields[[i]])<length(header)) {
         fields[[i]] <- c(fields[[i]],rep("NA",(length(header)-length(fields[[i]]))))
       }
     }
-    
+
     save_each_list_element_to_one_row <- function(l){
       fields_with_header <- l[seq_along(header)]
       names(fields_with_header) <- tolower(header)
@@ -49,7 +49,7 @@ get_resmod_table <- function(directory, idv,quiet=F){
     }
     resmod_table <- resmod_table %>%
       dplyr::rename(dOFV=dofv)
-    
+
     new_dofv <- c()
     for(i in 1:nrow(resmod_table)) {
       #if have "NA" in dOFV
@@ -61,7 +61,7 @@ get_resmod_table <- function(directory, idv,quiet=F){
       # if have DVID values
       if(resmod_table$dvid[i]!="sum" && resmod_table$dvid[i]!="NA") {
         resmod_table$dvid[i] <- as.character(as.numeric(resmod_table$dvid[i]))
-      } 
+      }
     }
     resmod_table$dOFV <- new_dofv
     return(list(resmod_file_exists=resmod_file_exists,

@@ -4,18 +4,18 @@ test_that("Reading of standard NM tables works", {
   # this a standard NONMEM output table
   tab <- read_nm_std_table("data/run7_linbase.dta")
   expect_is(tab, "data.frame")
-  expect_equal(colnames(tab), c("ID", "DV", "MDV", "OPRED", "H011", "TIME", "AMT", 
-                                "WGT", "APGR",  "G011", "G021", "ETA1", "ETA2", 
+  expect_equal(colnames(tab), c("ID", "DV", "MDV", "OPRED", "H011", "TIME", "AMT",
+                                "WGT", "APGR",  "G011", "G021", "ETA1", "ETA2",
                                 "D_EPSETA1_1", "D_EPSETA1_2"))
   expect_equal(nrow(tab), 744)
-  
+
   #this is a table where the headers have been manipulated by PsN
-  
+
   tab <- read_nm_std_table("data/extra_table")
   expect_is(tab, "data.frame")
   expect_equal(colnames(tab), c("ID", "CWRES", "PRED", "CIPREDI", "CPRED", "TIME", "TAD", "MDV" ))
   expect_equal(nrow(tab), 744)
-  
+
 })
 
 test_that("Reading of standard NM simulation tables works", {
@@ -45,5 +45,5 @@ test_that("Reading of phi files works",{
 test_that("obtaining .phi and .lst filename works", {
   expect_equal(ext_file("run4.mod"), "run4.ext")
   expect_equal(phi_file("path/to/run4.lst"), "path/to/run4.phi")
-  
+
 })

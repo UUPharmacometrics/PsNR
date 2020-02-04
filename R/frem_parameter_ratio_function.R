@@ -4,7 +4,7 @@
 #' @param inTable_frem - ratio data frame of 5th and 95th percentile of each covariate and the size of the effect on parameter
 #' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
 #' @param pardata - parameter data frame with column parname
-#' 
+#'
 #' @return Function does all the calculations and the creates a list of plots.
 #' @export
 parameter_ratio <- function(inTable_frem,covdata,pardata) {
@@ -122,7 +122,7 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
       DF_melt <- tidyr::gather(DF, variable, value)
 
       # summaryze dataframe and calculate mean, quantile for each group (for each column in DF)
-      outTable <- DF_melt %>% 
+      outTable <- DF_melt %>%
         dplyr::group_by(variable) %>%
         dplyr::summarise(mean = mean(value),
                   ci_low = quantile(value, probs=c(0.05),type=2),

@@ -14,7 +14,7 @@ i_ofv_npde <- function(iofv.file) {
   ylimit <- max(c(max(dy1),max(dy)))
   xlimit_min <- min(x,min(iOFV_npde))
   xlimit_max <- max(x,max(iOFV_npde))
-  
+
   #output
   out <- list(iOFV=iOFV,
               iOFV_npde=iOFV_npde,
@@ -23,5 +23,5 @@ i_ofv_npde <- function(iofv.file) {
               xlimit_max=xlimit_max,
               x=x,
               dy=dy)
-  return(out)   
+  return(out)
 }

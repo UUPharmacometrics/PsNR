@@ -6,7 +6,7 @@ cov.cook.par.data <- function(cdd.data.all) {
    row.names(cook.par.data) <- NULL
    # get names of all parameters
    parameters <- gsub("\\cook.par.", "",names(cook.par.data))
-   
+
    # create data frame of the cov.par data
    cov.par.data.col <- array(0,c(nrow(cdd.data.all),length(parameters)))
    names.cov.par.data <- c()
@@ -20,7 +20,7 @@ cov.cook.par.data <- function(cdd.data.all) {
    cov.par.data <- subset(as.data.frame(cov.par.data.col)[-1,])
    row.names(cov.par.data) <- NULL
    colnames(cov.par.data) <- c(names.cov.par.data)
-   
-return(list(cook.par.data=cook.par.data,cov.par.data=cov.par.data,parameters=parameters)) 
+
+return(list(cook.par.data=cook.par.data,cov.par.data=cov.par.data,parameters=parameters))
 }
 

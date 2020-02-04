@@ -6,7 +6,7 @@ input.data <- function(ebe.npde.file,eta.names,show.warning) {
 
   # read in data
   ebenpde_tmp_input <- read.csv(ebe.npde.file) # load csv file
-  
+
   if(missing(eta.names)) {
     eta.names <- colnames(ebenpde_tmp_input)[grep("^ETA.\\d+.$",colnames(ebenpde_tmp_input))]
   }
@@ -45,14 +45,14 @@ input.data <- function(ebe.npde.file,eta.names,show.warning) {
     ebenpde_tmp <- ebenpde_tmp_input
   }
   n.subjects <- nrow(ebenpde_tmp)
-  
+
   # save needed ETA columns in separate data frame ebenpde_obs
   ebenpde_obs <- ebenpde_tmp[,eta.names]
   if(class(ebenpde_obs) == "numeric") {
     ebenpde_obs <- as.data.frame(ebenpde_obs)
     colnames(ebenpde_obs) <- eta.names
   }
-  
+
   #create ebenpde_tmp data frame
   ebenpde_tmp <- ebenpde_tmp[,-grep("ETA.",colnames(ebenpde_tmp))]
   ebenpde_tmp <- cbind(ebenpde_tmp,ebenpde_obs)

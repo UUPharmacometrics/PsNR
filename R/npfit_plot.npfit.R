@@ -5,7 +5,7 @@ plot.npsupp.nofv <- function(raw_nonparametric,n.indiv,n.eta) {
   plot.title <- "NONPARAMETRIC ESTIMATION"
   plot.subtitle <- paste0("Parametric OFV value = ",round(raw_nonparametric$ofv[1],3),
                             ". Number of ETAs = ",n.eta)
-    
+
   # Construct plot
   p <- ggplot(raw_nonparametric, aes(npsupp,npofv)) +
     geom_point(aes(size = 1),show.legend = FALSE) +

@@ -47,8 +47,8 @@ average_probability_per_mixture_subpops <- function(df) {
 #' @export
 randomize_mixture_subpops <- function(df) {
     df %>%
-        group_by(replicate, ID) %>%
-        summarise(SUBPOP=sample(SUBPOP, size=1, prob=PMIX))
+        dplyr::group_by(replicate, ID) %>%
+        dplyr::summarise(SUBPOP=sample(SUBPOP, size=1, prob=PMIX))
 }
 
 # Input is obs - observation table
@@ -56,11 +56,12 @@ randomize_mixture_subpops <- function(df) {
 #   obs_mixture - The mixture data for the observations table with ID, SUBPOP, PMIX and replicate
 #   bins - Array of bins for the vpc if needed specifically
 #   dv - name of dv. default DV
+#   idv - name of the independent variable. default TIME
 #   randomize - Default is to only use the subpop with maximum probability for each ID
 #               This option randomizes using the probabilities in the input
 # Can return error message instead of plot for a subpopulation
 #' @export
-mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", stratify_on, randomize=FALSE) {
+mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="TIME", stratify_on, randomize=FALSE) {
     if (randomize) {
         randomized_sim <- randomize_mixture_subpops(sim_mixture)
         sim <- dplyr::full_join(sim, randomized_sim)
@@ -76,9 +77,9 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", strat
         mixcol <- 'MIXEST'
         method_name <- 'MIXEST Mixture'
     }
-    
+
     colnames(sim)[colnames(sim)=="replicate"] <- "sim"  # Rename replicate column to sim for vpc
-    
+
     num_ids <- length(unique(obs$ID))
     unique_subpops <- sort(unique(c(obs[[mixcol]], sim[[mixcol]])))
     table_list <- list()
@@ -96,15 +97,15 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", strat
         }
         if (missing(bins)) {
             if (missing(stratify_on)) {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv))
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv))
             } else {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), stratify=stratify_on)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), stratify=stratify_on)
             }
         } else {
             if (missing(stratify_on)) {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), bins=bins)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), bins=bins)
             } else {
-                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv), sim_cols=list(dv=dv), stratify=stratify_on, bins=bins)
+                vpc <- vpc::vpc(obs=subobs, sim=subsim, obs_cols=list(dv=dv, idv=idv), sim_cols=list(dv=dv, idv=idv), stratify=stratify_on, bins=bins)
             }
         }
 
@@ -123,10 +124,10 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", strat
         subtitle_text <- sprintf("=%.1f%%  ORIGID=%.1f%%  SIMID=[%.1f%%, %.1f%%]",#  (5%%, 95%% percentiles)",
                             pmix_value, orig_value, lower_quantile, upper_quantile)
         vpc <- vpc + labs(title=title_text, subtitle=bquote(P[mix] ~ .(subtitle_text) ~ "(" ~ 5^th ~ ", " ~ 95^th ~ " percentiles)"))
-        vpc <- vpc + theme(axis.text=element_text(size=13))
-        vpc <- vpc + theme(plot.subtitle=element_text(size=14))
+        vpc <- vpc + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+        vpc <- vpc + theme(plot.subtitle=element_text(size=20), plot.title=element_text(size=20))
         table_list[[i]] <- vpc
     }
-    
+
     return(table_list)
 }

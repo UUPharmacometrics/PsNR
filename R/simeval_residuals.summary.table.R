@@ -9,7 +9,7 @@ summary.table <- function(residual.files,residual.names) {
   myskewness <- c(1:n.residuals)
   mykurtosis <- c(1:n.residuals)
   p_shap.wilks <- c()
-  for(j in 1:n.residuals){  
+  for(j in 1:n.residuals){
     RESIDUAL <- read.csv(residual.files[j]) # Opec csv data frame
     residual_npde <- RESIDUAL$NPDE
     residual_npde <- residual_npde[!is.na(residual_npde)] # Take away NA values

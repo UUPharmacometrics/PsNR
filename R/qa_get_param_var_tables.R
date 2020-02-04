@@ -1,13 +1,13 @@
 #' Summary of the transformed models dOFV values and added parameters.
-#'   
-#' @param directory A string of the directory name where modelfit_run, add_etas_run folders and base model ext file can be found. 
-#' In modelfit_run folder expecting to have mod and ext files from fullblock, boxcox, tdist and iov runs. 
-#' In add_etas_run expecting to have mod and ext files from the add_etas_linbase. 
+#'
+#' @param directory A string of the directory name where modelfit_run, add_etas_run folders and base model ext file can be found.
+#' In modelfit_run folder expecting to have mod and ext files from fullblock, boxcox, tdist and iov runs.
+#' In add_etas_run expecting to have mod and ext files from the add_etas_linbase.
 #' @param base_model A string of the model file name that was transformed.
 #' @param skip A character vector with names of the skipped parts in the qa run. Will check if "transform" is one of the vector elements.
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 11 elements:
 #' par_var_models - a data frame with dOFV values of the transformed models and number of added parameters to each of the transformed models
 #' dofv_block - dofv values of full omega block transformed model
@@ -20,7 +20,7 @@
 #' add_etas_mod - a logical indicating whether transformed model (add_etas_linbase.mod) exist in the folder
 #' tdist_mod - a logical indicating whether transformed model (tdist.mod) exist in the folder
 #' iov_mod - a logical indicating whether transformed model (iov.mod) exist in the folder
-#' 
+#'
 #' In case if string "transform" is one of the 'skip' vector elements, all dOFV values of the output data frame will be replaced with the string "SKIPPED".
 #' In case of missing ext file of the base model all dOFV values will be replaced with the string "ERROR".
 #' In case of missing transformation model file corresponding dOFV value will be replaced with the string "NA".
@@ -33,10 +33,10 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
   add_etas_mod <- file.exists(file.path(directory,"add_etas_run/add_etas_linbase.mod"))
   tdist_mod <- file.exists(file.path(directory,"modelfit_run/tdist.mod"))
   iov_mod <- file.exists(file.path(directory,"modelfit_run/iov.mod"))
-  
+
   #base model ext filename
   base_ext_file <- sub("(\\.[^.]+)$",".ext",base_model)
-  
+
   if(file.exists(base_ext_file)) {
     base_ofv <- .get_ext_ofv(base_ext_file)
 
@@ -101,7 +101,7 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
       dofv_additional_eta <- "NA"
       add.par_additional_eta <- ''
     }
-    
+
     # t-distribution (the model file should always exist if transform is not skipped)
     if (tdist_mod) {
        if (file.exists(file.path(directory,"modelfit_run/tdist.ext"))) {
@@ -122,13 +122,13 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
         dofv_tdist <- "NA"
         add.par_tdist <- ''
     }
-    
+
     # iov
     if(iov_mod) {
       if(file.exists(file.path(directory,"modelfit_run/iov.ext"))) {
         iov_ofv <- .get_ext_ofv(file.path(directory,"modelfit_run/iov.ext"))
         dofv_iov <- as.numeric(base_ofv - iov_ofv)
-        #get nr of var omegas in linearizes model because iov will add same amount of omegas ass it was in the beginning 
+        #get nr of var omegas in linearizes model because iov will add same amount of omegas ass it was in the beginning
         #BLOCK SAME should not be included
         add.par_iov <- ncol(get_omega_values(base_ext_file,"var"))
       } else {
@@ -143,12 +143,12 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
       add.par_iov <- ''
     }
 
-    
-    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","Additional ETA","t-distribution","Interoccasion variability"), 
+
+    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","Additional ETA","t-distribution","Interoccasion variability"),
                                  c(dofv_block,dofv_box,dofv_additional_eta,dofv_tdist,dofv_iov),
                                  c(add.par_block, add.par_box, add.par_additional_eta,add.par_tdist,add.par_iov),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV","Add.params")
-    
+
   } else {
     if(!quiet) {
       message("WARNING: File ",base_ext_file," not found!")
@@ -161,7 +161,7 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
     # because boxcox and tdist models should always exist
     dofv_box <- "ERROR"
     dofv_tdist <- "ERROR"
-    
+
     if(add_etas_mod) {
       dofv_additional_eta <- "ERROR"
     } else {
@@ -172,17 +172,17 @@ get_param_var_tables <- function(directory,base_model,skip=NULL,quiet=F) {
     } else {
       dofv_iov <- "NA"
     }
-    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability", "Additional ETA"), 
+    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability", "Additional ETA"),
                                  c(dofv_block,dofv_box,dofv_tdist,dofv_iov,dofv_additional_eta),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV")
   }
   # check if transform run was skipped
   if(any(skip=="transform")) {
-    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability","Additional ETA"), 
+    par_var_models <- data.frame(c("Full OMEGA Block", "Box-Cox Transformation","t-distribution","Interoccasion variability","Additional ETA"),
                                  c(rep("SKIPPED",5)),stringsAsFactors = F)
     colnames(par_var_models) <- c("","dOFV")
   }
-  
+
   return(list(par_var_models=par_var_models,
               dofv_block=dofv_block,
               dofv_box=dofv_box,

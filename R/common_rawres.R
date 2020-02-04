@@ -6,7 +6,7 @@ read_psn_rawres <- function(path){
 }
 
 #' Get a ofv value from the csv file.
-#' 
+#'
 #' @param path Name of the file.
 #' @param row The row number from which ofv value will be taken. By default is 1.
 #' @return A ofv value of specific row.
@@ -14,6 +14,6 @@ read_psn_rawres <- function(path){
 get_rawres_ofv <- function(path, row = 1){
   read_psn_rawres(path) %>%
     dplyr::slice(row) %>%
-    dplyr::select(ofv) %>% 
+    dplyr::select(ofv) %>%
     as.numeric()
 }

@@ -1,22 +1,22 @@
 #' Get all idv names. Idv name will be collected from the resmod_'idv' folder name.
-#'    
+#'
 #' @param directory The qa run directory path.
 #' @param idv_name The string of the idv name from the -idv option in the qa run.
-#' @param quiet A logical indicating whether function should not write the warning message 
+#' @param quiet A logical indicating whether function should not write the warning message
 #' if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return Character vector with all idv names.
 #' @export
 which_resmod_folders <- function(directory,idv_name,quiet=F) {
   #get resmod folder suffix
-  resmod_suffix <- list.files(directory) %>% 
+  resmod_suffix <- list.files(directory) %>%
     .[grep("^resmod_",.)] %>%
     sub('.*resmod_','',.)
-  
+
   #order TIME,TAD,PRED
   order <- c(idv_name,"TAD","PRED")
   order <- unique(order)
-  
+
   all_idvs <- c()
   j <- 1
   for (i in 1:length(order)) {

@@ -1,7 +1,7 @@
 #' @export
 plot_1 <- function(ebenpde_tmp,theor_distance,emp_distance_sort,index_emp_distance,
                    out_distance,n.subjects,outlying_criteria,do_outlier_plot,model.filename) {
- 
+
   noutlier <- 0
   flag <- 0
   identityline <- seq(1,n.subjects,by=1) #only for plot
@@ -16,18 +16,18 @@ plot_1 <- function(ebenpde_tmp,theor_distance,emp_distance_sort,index_emp_distan
       plot(emp_distance_sort,theor_distance, xlab = "Ordered robust empirical MD^2" ,
            ylab= "Theoretical ChiSq MD^2", main=paste('ChiSq Q-Q plot ',model.filename))
       text(emp_distance_sort,theor_distance,vector_text,col="red",pos=1) # plot the ID of the outlying individual
-      matplot(identityline,identityline,type="l",col="red",add=T) 
+      matplot(identityline,identityline,type="l",col="red",add=T)
     }
     noutlier <- noutlier + 1
     outlier_id_row[noutlier] <- index_text # create vector with row numbers of outliers (need for outlier table in the end)
-    
+
     out <- list(noutlier=noutlier,
                 flag=flag,
                 outlier_id_row=outlier_id_row,
                 outlier_ID=outlier_ID,
                 identityline=identityline,
                 vector_text=vector_text)
-  return(out)  
+  return(out)
   } else {
     if (do_outlier_plot){
       plot(emp_distance_sort,theor_distance, xlab = "Ordered robust empirical MD^2" ,

@@ -17,7 +17,7 @@ plot_ipred <- function(table,idv) {
         coord_cartesian(ylim=c(-100,100))
     }
   }
-  
+
   vertik_lines <- table$bin_max[-length(table$bin_max)]
   ipred_plot <- ipred_plot +
     geom_vline(xintercept=vertik_lines, color="darkgray")+
@@ -26,7 +26,7 @@ plot_ipred <- function(table,idv) {
     geom_point(aes(size=nobs),color="blue",show.legend = F)+
     scale_size_identity()+
     xlab(toupper(idv))+
-    theme_bw() 
-  
+    theme_bw()
+
   return(ipred_plot)
 }

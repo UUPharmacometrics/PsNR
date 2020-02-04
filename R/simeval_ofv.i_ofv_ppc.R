@@ -15,7 +15,7 @@ if (length(outlier_ID) > 0) {
     len <- length(list_data$iOFV_sim)
     list_data$sort_iOFV_sim <- sort(list_data$iOFV_sim)
     # max and min values on the x axes
-    list_data$newxlim <- c(list_data$sort_iOFV_sim[1],list_data$sort_iOFV_sim[len]) 
+    list_data$newxlim <- c(list_data$sort_iOFV_sim[1],list_data$sort_iOFV_sim[len])
     if(list_data$iOFV_obs > list_data$sort_iOFV_sim[len]){
       list_data$newxlim <- c(list_data$sort_iOFV_sim[1],list_data$iOFV_obs)
       }
@@ -27,7 +27,7 @@ if (length(outlier_ID) > 0) {
   list_i_ofv_ppc$outlier_data <- outlier_data
   list_i_ofv_ppc$all.iOFV_sim <- all.iOFV_sim
   #output
-  return(list_i_ofv_ppc)  
+  return(list_i_ofv_ppc)
   }
 }
 

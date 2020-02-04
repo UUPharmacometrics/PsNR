@@ -1,5 +1,5 @@
 #' Break command text in reasonable places so it can fit in a pdf report.
-#' 
+#'
 #' @param text A sting
 #' @param max_symb A number of elements per row. By default max_symb=100.
 #' @return A string
@@ -21,7 +21,7 @@ break_text <- function(text,max_symb=100) {
     start_ch <- end_ch + 1
     end_ch <- start_ch + max_symb - 1
     left <- nchar(substr(text,start_ch,nr_symb))
-  }  
+  }
   one_row <- substr(text,start_ch,nr_symb)
   new_text <- paste0(new_text,one_row)
   return(new_text)

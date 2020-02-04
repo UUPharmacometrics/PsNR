@@ -1,10 +1,10 @@
-#' Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal). 
+#' Plots of most extreme individuals (in both directions) in terms of expected effect size of their covariate sets, on parameter (assuming log-normal).
 #' The bands show 90\% confidence interval around the point estimate.
 #'
-#' @param frem_id - a data frame 
+#' @param frem_id - a data frame
 #' @param covdata - covariate data frame with columns covname, perc5th, mean, perc95th, reference, is.categorical, unit, category.reference and category.other
 #' @param pardata - parameter data frame with column parname
-#' 
+#'
 #' @return Function does all the calculations and the creates a list of plots.
 #' @export
 ID_ratio <- function(frem_id,covdata,pardata) {
@@ -26,7 +26,7 @@ ID_ratio <- function(frem_id,covdata,pardata) {
     # parameter_names <- make.names(parameter_names)
     # names of covariate (names of first column in covdata input table,header = FALSE)
     covariate <- as.character(covdata[[1]])
-    
+
     # delete "LN" prefixes (if they exist) from any of covariates
     for (i in 1:length(covariate)) {
       if (grepl("^LN", covariate[i])) {
@@ -34,7 +34,7 @@ ID_ratio <- function(frem_id,covdata,pardata) {
         covdata[i,2:5] <- exp(covdata[i,2:5])
       }
     }
-    
+
     # delete "LN" prefixes (if they exist) from any of colnames in frem_id data frame
     col_names <- colnames(frem_id)
     for (i in 1:length(col_names)) {
@@ -135,7 +135,7 @@ ID_ratio <- function(frem_id,covdata,pardata) {
 
       # Create table for table output
       DF_text <- data.frame()
-      
+
       # Remember that we might have sampled the original data
       selected_rows <- which(frem_id$ID %in% DF$id, arr.ind=TRUE)
       frem_id_subset <- frem_id[selected_rows,]
@@ -202,13 +202,13 @@ ID_ratio <- function(frem_id,covdata,pardata) {
 
       # Save each plot with different names in different pdf files (based on each parameter j)
       param[[j]] <- paste0("ID.",parameter_names[j])
-      
+
     }
     return(list(plots=indiv_for_param_plots,
                 param=param))
-    
+
   } else {
     cat("Input data files are not found! Make sore that input data files are in your working directory!")
   }
-  
+
 }

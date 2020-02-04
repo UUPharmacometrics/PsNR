@@ -10,7 +10,7 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
   if(missing(PV)){
     PV <- TRUE
   }
-  
+
   data <- read.csv(csv_file_directory, header=TRUE, na.strings= ".",comment.char="#")
   # create type vector with values of type if they are TRUE in the input
   type <- as.character(unique(data$Type))
@@ -21,7 +21,7 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
     }
   }
   type <- type[!is.na(type)]
-  
+
   # find numbers of the columns of Model and OFV (between these two columns are all parameters)
   col_model <- which(colnames(data) == "Run.number")
   col_ofv <- which(colnames(data) == "OFV")
@@ -42,14 +42,14 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
       page_units[i] <- paste0("(",page_units[i],")")
     }
   }
-  
+
   # if in Model name column names are with ".mod", than delete ".mod"
   if (grepl(".mod", data$Model.name[1])) {
     mod_names <- as.character(data$Model.name)
     mod_names <- gsub("\\.mod", "",mod_names)
     data$Model.name <- as.factor(mod_names)
   }
-  
+
   # save each data based on Type to the separate data frame and calculate delta values for each parameter and ofv
   list_data <- list()
   for (n in 1:length(type)) {
@@ -63,13 +63,13 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
         }
       }
   }
-  
+
   # set default colors (if there are not more than 20 models)
   colors_for_palette <- c("#000000","#FF3300", "#0066CC", "#006600", "#FF9900", "#330099","#999999","#003366","#339900","#FF6600","#8B008B","#00FFFF","#8B4513","#FF1493","#FFFF00","#C6E2FF","#8B0000","#FFB6C1","#FFEC8D","#191970")
   if(missing(palette) && (nrow(list_data[[1]]) <= length(colors_for_palette))){
     palette <- colors_for_palette
   }
-  
+
   # make a plots
   plot_full <- list()
   for (j in 1:length(parameter_names)) {
@@ -89,7 +89,7 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
               legend.title = element_text(size=12, face="bold"),
               panel.background=element_blank(),
               panel.border = element_rect(colour = "black", fill=NA),
-              axis.line.y=element_line(color="black"), 
+              axis.line.y=element_line(color="black"),
               axis.line.x=element_line(color="black"),
               plot.title=element_text(size=14,face="bold"),
               plot.margin=unit(c(1,1,1,1),"cm"))+
@@ -101,15 +101,15 @@ delta_plot <- function(csv_file_directory,parameter,EPV,UPV,PV,
       }
       if (!missing(model_names) && missing(palette)) {
         p[[i]] <- p[[i]] + scale_color_discrete(labels=model_names,breaks=data$Model.name)
-      } 
+      }
       if (!missing(model_names) && !missing(palette)) {
         p[[i]] <- p[[i]] + scale_color_manual(values=palette,labels=model_names,breaks=data$Model.name)
-      }  
+      }
       #---------------------------------------------------------------------
       if (length(type) == 1) {
         plot_full[[j]] <- do.call(gridExtra::arrangeGrob,p)
         plot_full[[j]] <- gridExtra::arrangeGrob(plot_full[[j]],top=textGrob((paste(page_title[j]," ",page_units[j])),gp=gpar(fontsize=20)))
-      } 
+      }
         # save the legend (call function)
         legend <- get_legend(p[[i]])
         legend <- gridExtra::arrangeGrob(legend,ncol=2,widths=c(6,1))

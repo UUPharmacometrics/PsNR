@@ -66,20 +66,20 @@ cols_omega_off_diag <- function(vars = tidyselect::peek_vars()){
 #' @return A vector of OFV values
 #' @export
 get_final_ofvs <- function(ext_list, table_selection = 1){
-  ext_list[table_selection] %>% 
-    purrr::map_dbl(~dplyr::filter(.x, ITERATION == -1e+09) %>% dplyr::pull(OBJ)) %>% 
+  ext_list[table_selection] %>%
+    purrr::map_dbl(~dplyr::filter(.x, ITERATION == -1e+09) %>% dplyr::pull(OBJ)) %>%
     purrr::set_names(NULL)
 }
 #' @export
 get_initial_ofvs <- function(ext_list, table_selection = 1){
-  ext_list[table_selection] %>% 
-    purrr::map_dbl(~dplyr::filter(.x, ITERATION == 0) %>% dplyr::pull(OBJ)) %>% 
+  ext_list[table_selection] %>%
+    purrr::map_dbl(~dplyr::filter(.x, ITERATION == 0) %>% dplyr::pull(OBJ)) %>%
     purrr::set_names(NULL)
 }
 
 get_final_omegas <- function(ext_list){
-  ext_list %>% 
-    select_iterations(iter_final()) %>% 
+  ext_list %>%
+    select_iterations(iter_final()) %>%
     select_columns(cols_omega_all()) %>%
     purrr::simplify_all()
 }

@@ -3,7 +3,7 @@
 #' plots of amount of unexplained variability (on standard deviation scale) remaining in the parameters after knowledge of no covariates
 #'
 #' @param postfremdir Postfrem run directory. Will search for the file covdata.csv, pardata.csv, frem_ratio.csv, frem_id_ratios.csv and sd_coefficients_summary.csv
-#' 
+#'
 #' @return Print out all created plots
 #' @export
 all_frem_plots <- function(postfremdir) {

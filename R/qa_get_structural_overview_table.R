@@ -1,25 +1,25 @@
 #' Get structural data frame with expected improvement in OFV as well as number of additional parameters used for each idv.
-#' 
+#'
 #' @param directory A path to the qa run directory.
 #' @param idv A string vector of all possible idv names for the specific qa run.
 #' @param dvid_name A string of the DVID column name.
 #' @param skip A character vector with names of the skipped parts in the qa run. Will check if "resmod" is one of the vector elements.
 #' By default skip=NULL.
-#' 
+#'
 #' @return A data frame.
 #' @export
 get_structural_overview_table <- function(directory,idv,dvid_name,skip=NULL) {
   if(length(idv)!=0) {
     #check if dvid exist
     dvid_nr <- find_dvid_values(directory,idv[1],dvid_name)
-    
+
     if(length(dvid_nr) == 1 && dvid_nr=="NA"){
       structural_overview <- as.data.frame(array(0,c(length(idv),3)))
     } else {
       structural_overview <- as.data.frame(array(0,c((length(idv)*length(dvid_nr)+length(dvid_nr)),3)))
     }
     colnames(structural_overview) <- c("","dOFV","Add.params")
-    
+
     k <- 1
     for(j in 1:length(dvid_nr)) {
       if(length(dvid_nr) > 0 && dvid_nr != 'NA') {

@@ -11,7 +11,7 @@ keep_symbols <- function(table,type) {
       table[i,j] <- gsub("_",".",table[i,j])
     }
   }
-  
+
   #change column names
   col_names <- c()
   for(i in 1:ncol(table)) {

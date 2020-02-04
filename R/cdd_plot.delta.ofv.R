@@ -18,7 +18,7 @@ plot.delta.ofv <- function(data_plot,row_infl,fail_ID,row_outl,row_outl_infl,cut
     delta.ofv_black <- data_plot$cdd.delta.ofv
     ID_black <- data_plot$ID
   }
-  
+
   if(length(fail_ID) > 0) {
     par(oma=c(2,1,0,5))
   } else {

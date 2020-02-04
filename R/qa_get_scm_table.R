@@ -1,13 +1,13 @@
 #' Table of model parameter-covariate relationship, resulting improvement in OFV and estimated covariate coefficient.
 #'
-#' @param scm_directory Scm run directory. Will search for the file raw_results_scm.csv. Columns relation, ofv, step.number 
+#' @param scm_directory Scm run directory. Will search for the file raw_results_scm.csv. Columns relation, ofv, step.number
 #' and all columns with estimated covariate coefficient values (like, CLWGT.4.1) will be used in the function.
 #' @param nr_cov Number of covariates from the scm point of view, because categorical covariates can be binarized.
 #' @param nr_param Numbner of parameters.
 #' @param skip A character vector with names of the skipped parts in the qa run. Will check if "scm" is one of the vector elements.
 #' By default skip=NULL.
 #' @param quiet A logical indicating whether function should not write the warning message if some file not found. By default quiet=FALSE.
-#' 
+#'
 #' @return A list of 3 elements:
 #' scm_table - a data frame of model parameter covariate relationship, resulting improvement in OFV and estimated covariate coefficient
 #' max_scm_table - a data frame with only one row from scm_table with the highest dofv value
@@ -37,7 +37,7 @@ get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
         } else {
           max_scm_table <- cbind(scm_table[which.max(scm_table$dOFV),],1)
         }
-        
+
         # add coefficient
         scm_table_coef <- read.csv(rawres_file,stringsAsFactors = F) %>%
           dplyr::slice(-1)
@@ -69,7 +69,7 @@ get_scm_table <- function(scm_directory,nr_cov,nr_param,skip=NULL,quiet=F){
       max_scm_table <- cbind(scm_table,"",stringsAsFactors = F)
     }
   }
-  
+
   colnames(max_scm_table) <- c("","dOFV","Add.params")
   return(list(scm_files_exists=scm_files_exists,
               scm_table=scm_table,

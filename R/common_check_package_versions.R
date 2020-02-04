@@ -1,5 +1,5 @@
 #' Check package versions. Will print an error message if some package version is too low.
-#' 
+#'
 #' @param pkg A character vector with package names
 #' @param versions A character vector with package versions
 #' @param toolname A string of the tool name

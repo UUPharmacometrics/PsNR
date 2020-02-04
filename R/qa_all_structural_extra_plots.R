@@ -1,15 +1,15 @@
 #' Print all structural part plots and tables.
-#'    
+#'
 #' @param simeval_directory A path to the simeval run directory.
 #' @param base_dataset A path of the linbase.dta (if nonlinear=TRUE) or to the original input data file (if nonlinear=FALSE).
-#' @param resmod_structural_details 
+#' @param resmod_structural_details
 #' @param extra_table A path of the extra table with all derivatives columns.
 #' @param idv_all A string vector of all possible idv names for specific run.
 #' @param idv_name The string of the idv name from the -idv option in the qa run.
 #' @param dvid_name A string of the DVID column.
 #' @param type A string of the Rmarkdown format. Possible values "latex" or "html". Will be passed to the kable() function.
 #' @param nonlinear A logical indicating whether nonlinear qa have been run.
-#' 
+#'
 #' @return Print kable tables and plots to the report.
 #' @export
 all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_structural_details,
@@ -36,7 +36,7 @@ all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_str
       structural_bias_tables_captions <- all_captions$idv_structural_bias_tables_captions
       structural_bias_plots_captions <- all_captions$idv_structural_bias_plots_captions
       vpc_captions <- all_captions$idv_vpc_captions
-      
+
       #print
       cat(paste0("## ",resmod_structural_details[[i]]$idv_text,"\n\n"))
       first_table <- kable_table(resmod_structural_details[[i]]$first_table,format=type,booktabs=T,align = c("l","r"),linesep="",

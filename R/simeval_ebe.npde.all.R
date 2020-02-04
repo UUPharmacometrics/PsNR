@@ -1,6 +1,6 @@
 #' @export
 ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_criteria,rplots.level,model.filename,make_plot=TRUE) {
-  
+
   if(make_plot) { # make or not to make plot
     # default for the do_outlier_plot
     if(rplots.level > 1) {
@@ -11,34 +11,34 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
   } else {
     do_outlier_plot <- FALSE
   }
-  
+
   #..........................................(0) all.eta.names.............................
   etas_list <- eta_iiv_iov(iiv.eta.names,iov.eta.names)
-  
+
   eta.names <- etas_list$eta.names
   iiv.eta.names <- etas_list$iiv.eta.names
   iov.eta.names <- etas_list$iov.eta.names
   eta.names_text <- etas_list$eta.names_text
-  
-  #.........................................(1)input_ebe_npde...........................  
+
+  #.........................................(1)input_ebe_npde...........................
   input_data <- input.data(ebe.npde.file,eta.names)
-  
+
   ebenpde_tmp <- input_data$ebenpde_tmp
   n.subjects <- input_data$n.subjects
   ebenpde_obs <- input_data$ebenpde_obs
   ID_deleted_ebe <- input_data$ID_deleted
-  
-  #.........................................(2)ebe_npde_summary......................... 
+
+  #.........................................(2)ebe_npde_summary.........................
   if(make_plot) { # make or not to make plot
     # create EBE npde summary statistics table
     mydataframe <- summary.table.ebe.npde(ebenpde_obs,eta.names_text)
     # draw a table
     plot.table(mydataframe)
   }
-  
+
   # ..........................................EBE-NPDE correlation graph iiv.............................................
   ebenpde_obs_iiv <- ebenpde_obs[,iiv.eta.names]
-  
+
   # explanation (correlation graph iiv)
   if(length(iov.eta.names) > 0) {
     iiv.eta.names_text <- etas_list$iiv.eta.names_text
@@ -52,13 +52,13 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
       PerformanceAnalytics::chart.Correlation(ebenpde_obs_iiv, histogram = TRUE, method = c("spearman"))
     }
   }
-  
-  # ..........................................EBE-NPDE correlation graph iov.............................................  
+
+  # ..........................................EBE-NPDE correlation graph iov.............................................
   if(length(iov.eta.names)>0) {
     iiv_eta_place <- which(eta.names==iiv.eta.names)
     iov.eta.names_all <- eta.names[-iiv_eta_place]
     ebenpde_obs_iov <- ebenpde_obs[,iov.eta.names_all]
-    
+
     # create ebenpde_obs_iov table by sections
     ebenpde_obs_list <- list()
     for (i in 1:length(iov.eta.names)) {
@@ -76,7 +76,7 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
         colnames(ebenpde_obs_iov_sect) <- col_names
         ebenpde_obs_iov_sect <- rbind(ebenpde_obs_iov_sect,ebenpde_obs_list[[i]])
       }
-      
+
     }
     # explanation (correlation graph iov)
     if((length(iov.eta.names[[1]]) > 1) && !(any(is.na(ebenpde_obs_iov_sect)))) {
@@ -85,7 +85,7 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
         gplots::textplot(iov.eta.names_text,halign="center",valign="center")
       }
     }
-    
+
     # create EBE-NPDE IOV correlation graph
     if(make_plot) { # make or not to make plot
       if(!(any(is.na(ebenpde_obs_iov_sect)))) {
@@ -95,14 +95,14 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
       }
     }
   }
-  
+
   # create outlier grafs and tables
-    #...........................................(3)emp_distance....................................................    
+    #...........................................(3)emp_distance....................................................
     # Calsulate empirical distance
     list_emp_distance <- empirical.distance(ebenpde_obs,n.subjects)
     emp_distance <- list_emp_distance$emp_distance
-    #...........................................(4)out_tables......................................................   
-    # Sort emp_distance values and remember rows, where they were in the beginning, 
+    #...........................................(4)out_tables......................................................
+    # Sort emp_distance values and remember rows, where they were in the beginning,
     # create a vector of probability,
     # compute the inverse Chi^2 distribution,
     # create out_distance table
@@ -111,8 +111,8 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     emp_distance_sort <- out_tables$emp_distance_sort
     theor_distance <- out_tables$theor_distance
     out_distance <- out_tables$out_distance
-    
-    #...........................................(5)plot_1.....................................................    
+
+    #...........................................(5)plot_1.....................................................
     # ChiSq Q-Q plot (save flag and noutlier values from function)
     list_plot_1 <- plot_1(ebenpde_tmp,theor_distance,emp_distance_sort,index_emp_distance,
                           out_distance,n.subjects,outlying_criteria,do_outlier_plot,
@@ -120,7 +120,7 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     flag <- list_plot_1$flag
     noutlier <- list_plot_1$noutlier
     outlier_id_row <-list_plot_1$outlier_id_row
-    
+
     #............................................(6)plot_2....................................................
     # MORE PAGES OF PDF FILE WITH ChiSq Q-Q plot grafs for each n.subjects (only if out_distance < outlying_criteria && flag==1)
     # vector with values of theor_distance to print on the plot
@@ -130,27 +130,27 @@ ebe.npde.all <- function(ebe.npde.file,iiv.eta.names,iov.eta.names,outlying_crit
     vector_theor_dist <- list_plot_2$vector_theor_dist
     noutlier <- list_plot_2$noutlier
     outlier_id_row <- list_plot_2$outlier_id_row
-    
-    #............................................(7)outlier_table......................................................    
+
+    #............................................(7)outlier_table......................................................
     #CREATE FINAL TABLE (use function outlier_table to create a table fortable1)
     fortable1 <- outlier.table.ebe.npde(ebenpde_tmp,eta.names,outlier_id_row)
-    
-    #............................................(8)plot.table......................................................  
+
+    #............................................(8)plot.table......................................................
     #draw the table
     if(make_plot) { # make or not to make plot
       plot.table(fortable1)
     }
-    
+
     #for ebe.npde.outliers
     if (ncol(fortable1) > 1) {
       ebe.npde_outliers <- fortable1[,1:2]
     } else {
       ebe.npde_outliers <- fortable1
     }
-    
-  
+
+
   out <- list(ebe.npde_outliers=ebe.npde_outliers,
               ID_deleted_ebe=ID_deleted_ebe)
-  
+
   return(out)
 }

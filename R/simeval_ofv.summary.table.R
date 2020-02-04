@@ -4,7 +4,7 @@ summary.table.ofv <- function(iofv.file) {
   iOFV <- read.csv(iofv.file) #input data
   iOFV_npde <- iOFV$NPDE
   iOFV_npde <- iOFV_npde[!is.na(iOFV_npde)] # delete rows with NA values
-    
+
     variance <- sprintf("%.3f",var(iOFV_npde))
     mymean <- sprintf("%.3f",mean(iOFV_npde))
     myskewness <- sprintf("%.3f",PerformanceAnalytics::skewness(iOFV_npde))
@@ -19,7 +19,7 @@ summary.table.ofv <- function(iofv.file) {
     } else {
       p_shap.wilks <- "NA"
     }
-      
+
     mydataframe <- data.frame('NPDE' = "iOFV",
                               mean = mymean,
                               'p-value\n(H_0: mean==0)'=p_mean_not_0,
@@ -29,6 +29,6 @@ summary.table.ofv <- function(iofv.file) {
                               kurtosis=mykurtosis,
                               'p-value\n(normality)'=p_shap.wilks,
                               check.names=FALSE,stringsAsFactors = F)
-    
+
   return(mydataframe)
 }

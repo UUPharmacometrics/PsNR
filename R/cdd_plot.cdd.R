@@ -19,7 +19,7 @@ plot.cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,f
     if (fail[i] > 0) {
       count_lines <- count_lines + 1
     }
-  } 
+  }
   #add text if cov=0 or/and legend is true
   if(length(ID_failed_cov)>0) {
     if (legend) {
@@ -37,7 +37,7 @@ plot.cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,f
   xlab_text <- paste0("Cook score (cutoff: ",cutoff_cook,")")
   ylab_text <- paste0("Covariance ratio (cutoffs: ",round(min(cutoff_cov),3)," and ",round(max(cutoff_cov),3),")")
   if(length(row)>0) {
-    # Construct plot  
+    # Construct plot
     plot (cov.cook.data$cook.scores[-row], cov.cook.data$cov.ratios[-row],
           type="p",
           xlab=xlab_text,
@@ -71,7 +71,7 @@ plot.cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,f
       text(cdd.warn$cook.scores, cdd.warn$cov.ratios, labels=as.character(cdd.warn$ID),cex=.8, col="blue")
     }
   }
-  
+
   #add text about failed covariance steps for exluded ID numbers
   l <- 5
   if(length(ID_failed_cov) > 0) {
@@ -89,6 +89,6 @@ plot.cdd <- function(cov.cook.data,cutoff_cook,cutoff_cov,ID_failed_cov,legend,f
         mtext(paste0(name[i],fail[i]," of ",nr),side=1, line=l, adj=1)
       }
     }
-  }  
+  }
 
 }
