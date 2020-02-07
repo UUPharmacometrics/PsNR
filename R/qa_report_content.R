@@ -643,8 +643,9 @@ qa_report_content_outliers <- function(){
       "Outliers are parts of the data that significantly differ from the rest. In an NLME, outliers can be defined at
       several different levels. In QA, outlying observations and subjects are considered. Roughly speaking,
       both are identified by comparing different model-based statistics for the data with the same statistics for
-      simulated data (where the model is true by construction). QA uses the individual OFV as well as
-      EBEs on the subject level and CWRES on the observation level as statistics (see the following panel for details). "
+      simulated data (where the model is true by construction). QA uses the individual OFV as well as ",
+      htmltools::tags$abbr(title="Empirical Bayes Estimates", "EBEs"),
+      "on the subject level and CWRES on the observation level as statistics (see the following panel for details). "
     ),
     htmltools::tags$p(
       "The results of the outlier analysis are presented as a table of subjects that have been identified as outliers,
