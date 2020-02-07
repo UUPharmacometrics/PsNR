@@ -162,9 +162,8 @@ qa_report_content_structural <- function(){
       htmltools::tags$abbr(title="conditional PRED", "CPRED"),
       "(following NONMEM terminology). The first plot in each subsection visualizes the bias,
       on the scale of the observations, for each bin and, hence, allows an easier identification of
-      trends. Finally, each subsection also contains a before/after VPC that compares a generalized
-      VPC for the submitted model (or its linear proxy to be precise) with one where the model has been
-      corrected to remove the identified bias. "
+      trends. Finally, each subsection also contains a VPC that gives a generalized
+      VPC for the submitted model (or its linear proxy to be precise). "
     )
   )
 
@@ -324,7 +323,7 @@ qa_report_content_tdist <- function(){
     title = "The t-distribution transformation",
     htmltools::tags$p(
       "In addition to skewness, heavy tails are another reason why the assumption of a normal distribution for the ETA
-      variables might not hold. This can be evaluated by estimating a t-distribution transformation. In, QA this
+      variables might not hold. This can be evaluated by estimating a t-distribution transformation. In QA this
       is done for all ETA variables in the submitted model (including ETAs with FIX and SAME in the corresponding
       $OMEGA record). "
     ),
@@ -538,7 +537,7 @@ qa_report_content_residual <- function(){
     ),
     htmltools::tags$p(
       "The actual implementation will very much depend on the selected model. For the 'IIV on RUV' and power residual error
-      models the PsN transform tool can automatically perform it for you The following command will add the
+      models the PsN transform tool can automatically perform it for you. The following command will add the
       'IIV on RUV' model to the supplied control stream ",
       PsNR::qa_ui_console("transform iiv_on_ruv run1.mod"),
       " and to add the power residual error model, you can use",
@@ -595,7 +594,7 @@ qa_report_content_influential <- function(){
       "CDD traditionally utilize the Cook score as metrics for the individual influence on the parameter estimates.
       It requires the re-estimation of the NLME as well as the calculation of the covariance matrix for each of the
       individuals in the data. Using the delta-OFV (dOFV), to assess the influence of an individual on the quality of
-      model fit to all other individuals avoids the covariance matrix and enables the use the linearized proxy model for
+      model fit to all other individuals, avoids the covariance matrix and enables the use the linearized proxy model for
       further acceleration. In QA, the dOFV is calculated as
       $$dOFV=OFV_\\text{all}-iOFV_k-OFV_k$$
       where \\(OFV_\\text{all}\\) is the OFV of the full run with all individuals included, \\(iOFV_k\\) is the individual
@@ -650,7 +649,7 @@ qa_report_content_outliers <- function(){
     htmltools::tags$p(
       "The results of the outlier analysis are presented as a table of subjects that have been identified as outliers,
       together with the improvement in OFV, were these to be excluded from the analysis. Following the table, a graph
-      indicates the distribution in this is followed by individual plots showing individual and population predictions
+      indicates the distribution and this is followed by individual plots showing individual and population predictions
       together with the data for the outlying subjects.
       "
     )
@@ -730,7 +729,7 @@ qa_report_content_covariates <- function(){
       "For the univariate covariate screening, continuous covariates are centered at their median, and for categorical
       covariates, the effect is parameterized as the change from the most common category. The covariates are then added,
       one at a time, additively on the ETAs of the linearized proxy model. This translates to an exponential parameterization
-      in for parameters with a log-normal variability model in the submitted model. The covariate coefficients are then
+      for parameters with a log-normal variability model in the submitted model. The covariate coefficients are then
       estimated together with the change in OFV from the base model. "
     )
   )
