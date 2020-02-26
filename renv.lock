@@ -1092,12 +1092,12 @@
       "Version": "0.0.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteUsername": "sebastianueckert",
-      "RemoteRepo": "vaplot",
-      "RemoteRef": "master",
-      "RemoteSha": "4ecae83c6df4b9ff2f35d7ae0360acabb880147e",
       "RemoteHost": "api.github.com",
-      "Hash": "4618a5330119dd68a618702f9162d0bc"
+      "RemoteRepo": "vaplot",
+      "RemoteUsername": "sebastianueckert",
+      "RemoteRef": "master",
+      "RemoteSha": "224edd2c301c915acb489f8f24271afba9939cf5",
+      "Hash": "c0ff42c58a0f7d37b0cb176810c77438"
     },
     "vctrs": {
       "Package": "vctrs",
@@ -1178,10 +1178,15 @@
     },
     "xpose4": {
       "Package": "xpose4",
-      "Version": "4.6.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "81b5e6f67b5d1fc3d2070d66a1a77ba0"
+      "Version": "4.7.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "xpose4",
+      "RemoteUsername": "UUPharmacometrics",
+      "RemoteRef": "master",
+      "RemoteSha": "fd0651bcbbf113f17b06bbef69b6cf61751e4336",
+      "Hash": "45e2377eb64c0c1cd83e739120b3a201"
     },
     "xtable": {
       "Package": "xtable",
