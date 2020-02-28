@@ -12,11 +12,6 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
   # check if there are all 3 input data files
   files_exist <- (exists("inTable_frem") & exists("covdata") & exists("pardata"))
   if (files_exist) {
-    # library(grid)
-    # library(gridExtra)
-    # library(dplyr)
-    # library(ggplot2)
-    # library(tidyr)
 
     # in case if column names consist of not valid symbols, for example, "("
     parameter_names <- pardata[,1]
@@ -205,4 +200,3 @@ parameter_ratio <- function(inTable_frem,covdata,pardata) {
     cat("Input data files are not found! Make sore that input data files are in your working directory!")
   }
 }
-

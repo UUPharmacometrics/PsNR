@@ -13,11 +13,6 @@ ID_ratio <- function(frem_id,covdata,pardata) {
   files_exist <- (exists("frem_id") & exists("covdata") & exists("pardata"))
   if (files_exist) {
 
-    # library(grid)
-    # library(gridExtra)
-    # library(dplyr)
-    # library(ggplot2)
-
     # Half of numbers of ID shown in plots.
     EXTR_ID_NUM = 10
 
@@ -210,5 +205,4 @@ ID_ratio <- function(frem_id,covdata,pardata) {
   } else {
     cat("Input data files are not found! Make sore that input data files are in your working directory!")
   }
-
 }

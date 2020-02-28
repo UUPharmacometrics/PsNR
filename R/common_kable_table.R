@@ -7,7 +7,6 @@
 #' @return A kable dataframe.
 #' @export
 kable_table <- function(table,format,...) {
-  # library(kableExtra)
   table_new <- knitr::kable(table, format,...)
   if(format=="latex") {
     if(ncol(table)>1 && all(is.null(colnames(table)))) {

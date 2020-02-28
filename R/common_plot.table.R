@@ -1,6 +1,5 @@
 #' @export
 plot_table <- function(table,total_rows_per_page,rotate) {
-  # library(gridExtra)
   # draw only 18 rows of table per each page
   if (missing(total_rows_per_page)) {
     total_rows_per_page <- 18
@@ -23,9 +22,7 @@ plot_table <- function(table,total_rows_per_page,rotate) {
     }
 
     #plot table
-    # if(i != 1) {
-      frame() # need for drawing table on the next page
-    # }
+    frame() # need for drawing table on the next page
     if(packageVersion("gridExtra") < "2.0.0"){
       if(!missing(rotate)){
         gridExtra::grid.table(table_plot,show.rownames=FALSE,theme=rotate)
