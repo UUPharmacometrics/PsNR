@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "3.5.2",
+    "Version": "3.6.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -183,6 +183,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0b118d5900596bae6c4d4865374536a6"
+    },
+    "boot": {
+      "Package": "boot",
+      "Version": "1.3-24",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "72557d88b5f42f01221dfa436de99301"
     },
     "brew": {
       "Package": "brew",
@@ -597,12 +604,26 @@
       "Repository": "CRAN",
       "Hash": "6154ec2223172bce8162d4153cda21f7"
     },
+    "isoband": {
+      "Package": "isoband",
+      "Version": "0.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9b2f7cf1899f583a36d367702ecf49a3"
+    },
     "iterators": {
       "Package": "iterators",
       "Version": "1.0.12",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "117128f48662573ff4c4e72608b9e202"
+    },
+    "jpeg": {
+      "Package": "jpeg",
+      "Version": "0.1-8.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bc316c003aba520fc73d70ad53b5fc36"
     },
     "jsonlite": {
       "Package": "jsonlite",
@@ -793,6 +814,13 @@
       "Repository": "CRAN",
       "Hash": "3f1b0dbcc503320e6e7aae6c3ff87eaa"
     },
+    "png": {
+      "Package": "png",
+      "Version": "0.1-7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "03b7076c234cb3331288919983326c55"
+    },
     "polyclip": {
       "Package": "polyclip",
       "Version": "1.10-0",
@@ -905,6 +933,13 @@
       "Repository": "CRAN",
       "Hash": "6d3dbb5d528c8f726861018472bc668c"
     },
+    "rjson": {
+      "Package": "rjson",
+      "Version": "0.2.20",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7d597f982ee6263716b6a2f28efd29fa"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.4",
@@ -1002,6 +1037,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "efe6e43f90ee66c765fdaea2bf2cf7e6"
+    },
+    "spatial": {
+      "Package": "spatial",
+      "Version": "7.3-11",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f27a078d834614513608da2c08031130"
     },
     "stringi": {
       "Package": "stringi",
@@ -1105,6 +1147,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "5c2d0fe441406cba811b46708ea28e41"
+    },
+    "vegawidget": {
+      "Package": "vegawidget",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e0790297add76b0a556bbcdc4f2ac86d"
     },
     "viridis": {
       "Package": "viridis",
