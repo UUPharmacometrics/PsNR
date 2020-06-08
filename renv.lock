@@ -46,7 +46,7 @@
     },
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-51.1",
+      "Version": "7.3-51.6",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "c64a9edaef0658e36905934c5a7aa499"
@@ -60,7 +60,7 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.2-15",
+      "Version": "1.2-18",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ffbff17356922d442a4d6fab32e2bc96"
@@ -263,7 +263,7 @@
     },
     "cluster": {
       "Package": "cluster",
-      "Version": "2.0.7-1",
+      "Version": "2.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "790a06d226d7a0996ba578358e6032ce"
@@ -725,7 +725,7 @@
     },
     "mgcv": {
       "Package": "mgcv",
-      "Version": "1.8-27",
+      "Version": "1.8-31",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "060d447c4c913cbf2e66306e4c664417"
@@ -746,7 +746,7 @@
     },
     "mvtnorm": {
       "Package": "mvtnorm",
-      "Version": "1.0-12",
+      "Version": "1.1-0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "e5cf1b1d61a72646afbab28a20e9bd54"
@@ -963,7 +963,7 @@
     },
     "rpart": {
       "Package": "rpart",
-      "Version": "4.1-13",
+      "Version": "4.1-15",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "6315535da80d5cc6c2e573966d8c8210"
@@ -1061,7 +1061,7 @@
     },
     "survival": {
       "Package": "survival",
-      "Version": "2.43-3",
+      "Version": "3.1-12",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "d6fc8c1de7e40274ff7bc53524cccd4b"
