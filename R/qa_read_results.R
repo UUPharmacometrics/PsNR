@@ -23,6 +23,9 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
     dplyr::filter(name == "lin_final") %>%
     dplyr::pull("ofv")
 
+  linearize_results <- retrieve_linearize_results(files$linearize)
+  linearize_results$ofv_comparison <- ofv_df
+
   parvar_res <- retrieve_parvar_results(files$parvar)
 
   ofv_fullblock <- get_result(parvar_res$fullblock) %>%
@@ -47,15 +50,14 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
                        error = function(e) return(e)) %>%
     as_result()
 
+  simeval_res <- retrieve_simeval_results(files$simeval)
+
   return(
     list(
       options = psn_options,
       files = files,
       model_filename = model_filename,
-      linearize = list(
-        # table of OFV values
-        ofv_comparison = ofv_df
-      ),
+      linearize = linearize_results,
       resmod = list(
         idvs = get_resmod_idvs(path)
       ),
@@ -63,7 +65,7 @@ retrieve_qa_results <- function(path, model_filename, psn_options, settings = qa
       scm = scm_df,
       frem = frem_res,
       cdd = NULL,
-      simeval = NULL
+      simeval = simeval_res
     )
   )
 }
@@ -116,33 +118,61 @@ get_resmod_idvs <- function(path){
   return(idvs)
 }
 
+retrieve_linearize_results <- function(linearize_files){
+  linbase_tab <- tryCatch(
+    read_nm_table(linearize_files$linbase_tab),
+    error = function(e) return(e)) %>%
+    as_result()
+
+  list(
+    linbase_tab = linbase_tab
+  )
+}
+
 retrieve_parvar_results <- function(parvar_files){
+  fullblock_sim_tab <- tryCatch(
+    read_nm_table(parvar_files$fullblock_sim),
+    error = function(e) return(e)) %>%
+    as_result()
+
   fullblock_res <- tryCatch(
     {
       ext_list <- read_nm_ext(parvar_files$fullblock_ext)
       list(
         ofv = get_final_ofvs(ext_list),
         omegas = get_final_omegas(ext_list) %>%
-          assert_one_result()
+          assert_one_result(),
+        sim_tab = fullblock_sim_tab
       )
     },
     error = function(e) return(e)) %>%
     as_result()
 
+  boxcox_sim_tab <- tryCatch(
+    read_nm_table(parvar_files$boxcox_sim),
+    error = function(e) return(e)) %>%
+    as_result()
   boxcox_res <- tryCatch(
     list(
       omegas = read_nm_ext(parvar_files$boxcox_ext) %>%
         get_final_omegas() %>%
-        assert_one_result()
+        assert_one_result(),
+      sim_tab = boxcox_sim_tab
     ),
   error = function(e) return(e)) %>%
     as_result()
 
+
+  tdist_sim_tab <- tryCatch(
+    read_nm_table(parvar_files$tdist_sim),
+    error = function(e) return(e)) %>%
+    as_result()
   tdist_res <- tryCatch(
     list(
       omegas = read_nm_ext(parvar_files$tdist_ext) %>%
         get_final_omegas() %>%
-        assert_one_result()
+        assert_one_result(),
+      sim_tab = tdist_sim_tab
       ),
   error = function(e) return(e)) %>%
     as_result()
@@ -213,5 +243,22 @@ retrieve_frem_results <- function(m2_path, m4_path, dofv_fullblock){
     list(
       dofv = dofv_frem
     )
+  )
+}
+
+retrieve_simeval_results <- function(simeval_files){
+  sim_tab1 <- tryCatch(
+    read_nm_table(simeval_files$simulation_tables[1]),
+    error = function(e) return(e)) %>%
+    as_result()
+
+  original_tab <- tryCatch(
+    read_nm_table(simeval_files$original_table[1]),
+    error = function(e) return(e)) %>%
+    as_result()
+
+  list(
+    sim_tab1 = sim_tab1,
+    original_tab = original_tab
   )
 }

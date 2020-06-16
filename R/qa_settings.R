@@ -6,7 +6,8 @@ qa_settings <- function(){
     boxcox_lst_path = "modelfit_run/boxcox.lst",
     tdist_lst_path = "modelfit_run/tdist.lst",
     scm_path = "scm_run",
-    frem_path = "frem_run"
+    frem_path = "frem_run",
+    simeval_path = "simeval_run"
   )
 }
 
@@ -25,8 +26,11 @@ qa_files <- function(path, model_filename, settings){
       ),
       parvar = list(
         fullblock_ext = file.path(path, ext_file(settings$fullblock_lst_path)),
+        fullblock_sim = file.path(path, sub_file_ext(settings$fullblock_lst_path, "sim")),
         boxcox_ext = file.path(path, ext_file(settings$boxcox_lst_path)),
-        tdist_ext = file.path(path, ext_file(settings$tdist_lst_path))
+        boxcox_sim = file.path(path, sub_file_ext(settings$boxcox_lst_path, "sim")),
+        tdist_ext = file.path(path, ext_file(settings$tdist_lst_path)),
+        tdist_sim = file.path(path, sub_file_ext(settings$tdist_lst_path, "sim"))
       ),
       scm = list(
         raw_results_csv = file.path(path, settings$scm_path, "raw_results_scm.csv")
@@ -35,6 +39,10 @@ qa_files <- function(path, model_filename, settings){
         path = file.path(path, settings$frem_path),
         m2_raw_results_csv = file.path(path, settings$frem_path, "model2_modelfit_dir1", "raw_results.csv"),
         m4_raw_results_csv = file.path(path, settings$frem_path, "model4_modelfit_dir1", "raw_results.csv")
+      ),
+      simeval = list(
+        original_table = file.path(path, settings$simeval_path, "m1", "original_res_table.dta"),
+        simulation_tables = purrr::map_chr(1:5, ~file.path(path, settings$simeval_path, "m1", paste0("sim_res_table-", .x, ".dta")))
       )
     ) %>% purrr::map_depth(2, normalizePath, mustWork = FALSE)
   )

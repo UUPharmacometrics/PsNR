@@ -65,3 +65,49 @@ prepare_va_cov_plot <- function(qa_results){
   return(p)
 }
 
+#' Prepare VPC for parvar results
+#'
+#' @param qa_results QA result data structure
+#' @param transformation Name of the parvar transformation to create the VPC for
+#'
+#' @return A result data structure
+#' @export
+prepare_parvar_vpc <- function(qa_results, transformation = c("fullblock", "boxcox", "tdist")){
+  transformation <- match.arg(transformation)
+  obs <- get_result(qa_results$simeval$original_tab)
+
+  parvar_res <- get_result(qa_results$parvar[[transformation]])
+  parvar_sim <- get_result(parvar_res$sim_tab)
+  p <- tryCatch({
+    original_sim <- get_result(qa_results$simeval$sim_tab1) %>%
+      cbind(obs[qa_results$options$idv_name])
+    facets <- "type"
+    if(qa_results$options$dvid_name!=""){
+      dvid_col <- obs[qa_results$options$dvid_name]
+      original_sim <- cbind(original_sim, dvid_col)
+      parvar_sim <- cbind(parvar_sim, dvid_col)
+      facets <- c("type", qa_results$options$dvid_name)
+    }
+    obs_combined <- dplyr::bind_rows(original = obs, `with transformation` = obs, .id = "type")
+    sim_combined <- dplyr::bind_rows(original = original_sim, `with transformation` = parvar_sim, .id = "type")
+    vpc::vpc(
+      sim = sim_combined,
+      obs = obs_combined,
+      obs_cols = list(
+        dv = "DV",                             # these column names are the default,
+        idv = qa_results$options$idv_name),                         # update these if different.
+      sim_cols = list(
+        dv = "DV",
+        idv = qa_results$options$idv_name),
+      bins = "percentiles",
+      n_bins = 10,
+      stratify  = facets
+    )+
+      theme_bw() +
+      facet_wrap(facets)+
+      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  },
+  error = function(e) return(e)) %>%
+    as_result()
+  return(p)
+}

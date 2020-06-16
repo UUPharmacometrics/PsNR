@@ -81,13 +81,18 @@ phi_file <- function(path) {
   sub_file_ext(path, "phi")
 }
 
+read_nm_table <- function(path){
+  dplyr::bind_rows(!!!read_nm_tab(path, header_start = NULL))
+}
+
 sub_file_ext <- function(path, ext){
   return(gsub("\\.[^.]+$",paste0("\\.", ext), path))
 }
 
-read_nm_tab <- function(path, file_type, header_start){
+read_nm_tab <- function(path, file_type, header_start = NULL){
   if(!file.exists(path)) rlang::cnd_signal(cnd_file_not_found(path))
   file_content <- readr::read_lines(path)
+  if(is.null(header_start)) header_start <- file_content[[2]]
   # find important rows
   intro_rows <- grepl("TABLE", file_content, fixed = TRUE)
   header_rows <- grepl(header_start, file_content, fixed = TRUE)
