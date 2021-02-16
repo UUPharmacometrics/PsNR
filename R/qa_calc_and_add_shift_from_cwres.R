@@ -85,7 +85,7 @@
 
     dplyr::group_by(bin_index) %>%
     dplyr::summarise(relative_shift = ifelse((any(mean_shifts_table$CPRED > 0) && any(mean_shifts_table$CPRED < 0)),NA,100*mean(shift/ipred)),
-              shift = mean(shift),nobs=n()) %>%
+              shift = mean(shift),nobs=dplyr::n()) %>%
     dplyr::mutate(bin_min = structural_details_table$bin_min[bin_index],
            bin_max = structural_details_table$bin_max[bin_index],
            bin_mean = bin_min+(bin_max-bin_min)/2,
