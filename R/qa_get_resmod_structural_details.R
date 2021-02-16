@@ -28,12 +28,13 @@ get_resmod_structural_details <- function(directory, suffix, dvid) {
           dplyr::left_join(bin_boundaries, c(bin_max = "variable")) %>%
           dplyr::mutate(bin_value = ifelse(is.na(bin_value), paste0(bin_max,".00 "), bin_value),
                  type = type_labels[type]) %>%
+          dplyr::select(-c("bin_min", "bin_max")) %>%
           dplyr::rename(bin_max = bin_value,
                  bin_min = bin_min_value)
       })%>%
     dplyr::ungroup() %>%
-    dplyr::mutate_at(c("value", "bin_min", "bin_max"),dplyr::funs(as.numeric)) %>%
-    dplyr::mutate_at(c("bin_min", "bin_max"),dplyr::funs(round(.,2)))
+    dplyr::mutate_at(c("value", "bin_min", "bin_max"), list(~ as.numeric(.))) %>%
+    dplyr::mutate_at(c("bin_min", "bin_max"), list(~ round(., 2)))
 
   return(resmod_structural_table)
 }
