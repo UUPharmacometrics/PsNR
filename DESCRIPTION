@@ -21,7 +21,7 @@ Imports:
     purrr (>= 0.2.4),
     xpose (>= 0.4.3),
     kableExtra (>= 0.9.0),
-    devtools (>= 1.13.3),
+    sessioninfo (>= 1.1.1),
     yaml (>= 2.1.14),
     rmarkdown (>= 1.7.4),
     knitr (>= 1.17),

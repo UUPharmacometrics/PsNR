@@ -380,13 +380,6 @@
       "Repository": "CRAN",
       "Hash": "6c8fe8fa26a23b79949375d372c7b395"
     },
-    "devtools": {
-      "Package": "devtools",
-      "Version": "2.3.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "415656f50722f5b6e6bcf80855ce11b9"
-    },
     "diffobj": {
       "Package": "diffobj",
       "Version": "0.3.3",
@@ -540,13 +533,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4d243a9c10b00589889fe32314ffd902"
-    },
-    "gert": {
-      "Package": "gert",
-      "Version": "1.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "dcbfac00cf60125f43791a135ef68285"
     },
     "ggforce": {
       "Package": "ggforce",
@@ -1233,13 +1219,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "fc77eb5297507cccfa3349a606061030"
-    },
-    "usethis": {
-      "Package": "usethis",
-      "Version": "2.0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "360e904f9e623286e1a0c6ca0a98c5f6"
     },
     "utf8": {
       "Package": "utf8",

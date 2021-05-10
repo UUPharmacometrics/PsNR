@@ -6,7 +6,7 @@
 additional_info <- function(yaml_file) {
   yaml_list <- yaml::yaml.load_file(yaml_file)
 
-  R_packages <- as.data.frame(devtools::session_info()[[2]])
+  R_packages <- as.data.frame(sessioninfo::session_info()[[2]])
   if(any(colnames(R_packages)=="version")) {
       R_packages <- R_packages[,c("package","version","source")]
   } else {

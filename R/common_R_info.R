@@ -4,7 +4,7 @@
 #' @export
 R_info <- function(directory) {
     #get loaded R packages
-    R_packages <- as.data.frame(devtools::session_info()[[2]])
+    R_packages <- as.data.frame(sessioninfo::session_info()[[2]])
     if(any(colnames(R_packages)=="version")) {
       R_packages <- R_packages[,c("package","version","source")]
     } else {
@@ -22,8 +22,8 @@ R_info <- function(directory) {
     if(file.exists(file.path(directory,"meta.yaml"))) {
       yaml_file <- yaml::yaml.load_file(file.path(directory,"meta.yaml"))
       if(!exists("R_version",yaml_file)) {
-        cat(yaml::as.yaml(list(R_version=strsplit(devtools::session_info()[[1]]$version," ")[[1]][3],
-                               R_system=devtools::session_info()[[1]]$system,
+        cat(yaml::as.yaml(list(R_version=strsplit(sessioninfo::session_info()[[1]]$version," ")[[1]][3],
+                               R_system=sessioninfo::session_info()[[1]]$system,
                                R_packages=R_packages,
                                R_LIB_PATHS=.libPaths()),
                           column.major = F,
@@ -34,8 +34,8 @@ R_info <- function(directory) {
         yaml_file$R_packages <- NULL
         yaml_file$R_system <- NULL
         yaml_file$R_version <- NULL
-        yaml_file$R_version <- strsplit(devtools::session_info()[[1]]$version," ")[[1]][3]
-        yaml_file$R_system <- devtools::session_info()[[1]]$system
+        yaml_file$R_version <- strsplit(sessioninfo::session_info()[[1]]$version," ")[[1]][3]
+        yaml_file$R_system <- sessioninfo::session_info()[[1]]$system
         yaml_file$R_packages <- R_packages
         if(exists("R_LIB_PATHS",yaml_file)) {
           yaml_file$R_LIB_PATHS <- NULL
@@ -57,8 +57,8 @@ R_info <- function(directory) {
     } else {
       cat(yaml::as.yaml(list(R_LIB_PATHS=.libPaths(),
                              R_packages=R_packages,
-                             R_system=devtools::session_info()[[1]]$system,
-                             R_version=strsplit(devtools::session_info()[[1]]$version," ")[[1]][3]),
+                             R_system=sessioninfo::session_info()[[1]]$system,
+                             R_version=strsplit(sessioninfo::session_info()[[1]]$version," ")[[1]][3]),
                         column.major = F,
                         indent.mapping.sequence = TRUE),
           file=file.path(directory,"meta.yaml"))
