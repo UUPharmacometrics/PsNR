@@ -1052,13 +1052,6 @@
       "Repository": "CRAN",
       "Hash": "06c85365a03fdaf699966cc1d3cf53ea"
     },
-    "rsvg": {
-      "Package": "rsvg",
-      "Version": "2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "f3d32ee70ee9e5ca65b06ee61b4ce813"
-    },
     "rversions": {
       "Package": "rversions",
       "Version": "2.0.2",
