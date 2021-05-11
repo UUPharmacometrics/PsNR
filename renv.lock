@@ -963,7 +963,7 @@
       "Package": "proxy",
       "Version": "0.4-25",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "CRAN"
     }
   }
 }
