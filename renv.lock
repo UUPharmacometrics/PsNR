@@ -809,7 +809,7 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-137",
+      "Version": "3.1-152",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4320ab595f7bbff5458bc6a044a57fc0"
