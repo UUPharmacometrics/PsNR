@@ -39,7 +39,7 @@
     },
     "KernSmooth": {
       "Package": "KernSmooth",
-      "Version": "2.23-15",
+      "Version": "2.23-20",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "081f417f4d6d55b7e8981433e8404a22"
