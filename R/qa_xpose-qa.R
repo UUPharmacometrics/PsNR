@@ -221,7 +221,6 @@ var_given_eta <- function(df_deta, omega, eta_index){
 #' @export
 schur_complement <- function(M, block_index){
   MASS::ginv(M)[-block_index, -block_index] %>% MASS::ginv()
-  #  M[-block_index, -block_index] - M[block_index, -block_index] %*% MASS::ginv(M[block_index, block_index]) %*% M[-block_index, block_index]
 }
 #' @export
 var_from_eta <- function(df_deta, omega, eta_index){
@@ -232,66 +231,6 @@ var_from_eta <- function(df_deta, omega, eta_index){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-# resmod_parameter_uncertainty <- function(xpdb,dvid_col_name,dvid_value){
-#   eta_density <- get_eta_density(xpdb, dvid_col_name, dvid_value)
-#
-#   omega_matrix <- get_omega_matrix(xpdb)
-#
-#   mu_models <- sprintf("log(THETA%i)", seq(1, min(NROW(omega_matrix),NROW(get_theta_estimates(xpdb)))))
-#
-#   table <- dplyr::left_join(calc_iiv_contribution(xpdb, dvid_col_name, dvid_value), calc_resmod_ruv_contribution(xpdb, dvid_col_name, dvid_value), by = "ID") %>%
-#     {dplyr::bind_rows(., dplyr::filter(., name == first(name)) %>%
-#                         dplyr::mutate(name = "original"))} %>%
-#     dplyr::left_join(eta_density, by = "ID") %>%
-#     dplyr::left_join(get_df_eta(xpdb, dvid_col_name, dvid_value), by = "ID") %>%
-#     dplyr::mutate(
-#           ruv_var = dplyr::case_when(name == "original" ~ ruv_var,
-#                               TRUE ~ resmod_ruv_var),
-#            var_y = purrr::map2(iiv_var, ruv_var, ~.x+.y),
-#            fim = purrr::map2(var_y, df_deta, ~t(.y) %*% solve(.x) %*% .y)) %>%
-#     dplyr::group_by(name) %>%
-#     dplyr::summarise(pfim = list(purrr::reduce(fim, `+`))) %>%
-#     dplyr::mutate(pfim = purrr::map(pfim, ~.x[seq_along(mu_models), seq_along(mu_models)])) %>%
-#     mutate(
-#       dmu_dtheta = list(calc_dmu_dtheta(mu_models, xpdb)),
-#       theta_cov = purrr::map2(dmu_dtheta, pfim, ~ t(.x) %*% .y %*% .x %>% MASS::ginv()),
-#       theta_se = purrr::map(theta_cov, ~diag(.x) %>% sqrt()),
-#       theta_name = purrr::map(dmu_dtheta, colnames)
-#     ) %>%
-#     tidyr::unnest(theta_se, theta_name) %>%
-#     dplyr::left_join(get_theta_estimates(xpdb), by = c(theta_name = "name")) %>%
-#     dplyr::mutate(rse = theta_se/value*100) %>%
-#     dplyr::select(-value, -theta_se) %>%
-#     tidyr::spread(theta_name, rse) %>%
-#     dplyr::arrange(name) %>%
-#     as.data.frame()
-#
-#   orig_row <- table$name %in% "original"
-#   table <- rbind(table[orig_row,],table[!orig_row,])
-#   for(i in 1:nrow(table)) {
-#     if(grepl("^idv_varying_RUV.*",table$name[i])) {
-#       table$name[i] <- "time varying"
-#     }
-#     table$name[i] <- gsub("\\_"," ",table$name[i])
-#   }
-#   for(i in 2:ncol(table)) {
-#     table[,i] <- format(round(table[,i],3),digits=3,trim=T,nsmall=1,scientific = F)
-#   }
-#   table <- table %>% gather(THETA,values,2:ncol(table)) %>%
-#     spread_(names(table)[1],"values")
-#   return(table)
-# }
 #' @export
 resmod_shrinkage <- function(xpdb,dvid_col_name,dvid_value){
   eta_density <- get_eta_density(xpdb, dvid_col_name, dvid_value)
@@ -318,7 +257,6 @@ resmod_shrinkage <- function(xpdb,dvid_col_name,dvid_value){
     dplyr::summarise(shrinkage = 100*mean(shrinkage)) %>%
     tidyr::spread(eta_name, shrinkage)%>%
     dplyr::ungroup() %>%
-    #dplyr::arrange(name) %>%
     as.data.frame()
 
   orig_row <- table$name %in% "original"
@@ -419,8 +357,6 @@ calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
     filter_dvid(.,"dvid",dvid_value) %>%
     dplyr::select(-dofv) %>%
     dplyr::bind_rows(resmod_estimates) %>%
-    #dplyr::mutate(value = purrr::map(value, list)) %>%
-    #dplyr::bind_rows(ruv_etas) %>%
     dplyr::filter(name %in% resmod_models) %>%
     tidyr::nest(-name, .key = 'params') %>%
     dplyr::mutate(
@@ -442,11 +378,6 @@ calc_resmod_ruv_contribution <- function(xpdb, dvid_col_name, dvid_value){
 
   res_matricies$resmod_ruv_var <- purrr::invoke_map(res_matricies$f, res_matricies$fargs)
 
-  # res_matricies %>%
-  #   dplyr::mutate(ruv_var = purrr::map(fargs, "var_matrix"), ########### check this
-  #          time = purrr::map(fargs, "time")) %>%
-  #   dplyr::select(name, ID, time, resmod_ruv_var, ruv_var)
-
   res_matricies %>%
     dplyr::select(name, ID, var_matrix = resmod_ruv_var)
 }
@@ -467,7 +398,6 @@ calc_iiv_contribution <- function(xpdb, dvid_col_name, dvid_value, per_eta = F){
            iiv_var = purrr::map(df_deta, ~.x %*% omega_matrix %*% t(.x)))
 
   if(per_eta) {
- #   browser()
     iiv_contribution <- iiv_contribution %>%
     {purrr::cross_df(list(data = list(.), eta = etas))} %>%
     tidyr::unnest() %>%
@@ -515,8 +445,6 @@ as_resmod_name_factor <- function(resmod_names){
 }
 #' @export
 get_qa_data <- function(xpdb){
-  #if(!any(xpdb$special$method == "qa")) stop("The xpdb does not contain the necessary data.")
-
     special <- xpdb$special
     class(xpdb) <- c("xpose_data", "uneval")
   dplyr::filter(special, method == 'qa') %>%
