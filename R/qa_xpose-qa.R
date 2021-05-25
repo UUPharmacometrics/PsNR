@@ -6,7 +6,7 @@ qa_data <- function(xpdb, resmod_folder, derivatives_model) {
   xpdb_derivatives <- xpose::xpose_data(file = derivatives_lst, quiet = T)
 
 
-  resmod_results <- file.path(resmod_folder, "results.csv") %>%
+  resmod_results <- file.path(resmod_folder, "resmod_results.csv") %>%
     readr::read_lines(skip = 1) %>%
     stringr::str_split(",") %>%
     purrr::map(~list(dofv = as.numeric(.x[[4]]),

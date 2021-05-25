@@ -2,12 +2,12 @@
 % Please edit documentation in R/qa_get_resmod_table.R
 \name{get_resmod_table}
 \alias{get_resmod_table}
-\title{Open results.csv file and save output in the dataframe readable for R}
+\title{Open resmod_results.csv file and save output in the dataframe readable for R}
 \usage{
 get_resmod_table(directory, idv, quiet = F)
 }
 \arguments{
-\item{directory}{The qa run directory path. Will search for the results.csv file in the resmod_'idv' folder.}
+\item{directory}{The qa run directory path. Will search for the resmod_results.csv file in the resmod_'idv' folder.}
 
 \item{idv}{The string of the idv name.}
 
@@ -16,9 +16,9 @@ if some file not found. By default quiet=FALSE.}
 }
 \value{
 The list of two elements:
-resmod_file_exists - logical argument indicating whether results.csv file exists in the expected directory
-resmod_table - a results.csv data frame
+resmod_file_exists - logical argument indicating whether resmod_results.csv file exists in the expected directory
+resmod_table - a resmod_results.csv data frame
 }
 \description{
-Open results.csv file and save output in the dataframe readable for R
+Open resmod_results.csv file and save output in the dataframe readable for R
 }

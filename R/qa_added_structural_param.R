@@ -1,11 +1,11 @@
-#' Get number of added parameters to the idv_varying_theta model in the results.scv file.
+#' Get number of added parameters to the idv_varying_theta model in the resmod_results.csv file.
 #'
 #' @param directory A path to the qa run directory.
 #' @param idv A string vector of all possible idv names for the specific qa run.
 #' @param dvid A dvid value. By default="NA"
 #'
 #' @return A numeric value of added parameters to the idv_varying_theta model.
-#' If file results.csv does not exist or all parameter values are missing then added_param will be set to empty character.
+#' If file resmod_results.csv does not exist or all parameter values are missing then added_param will be set to empty character.
 #' @export
 added_structural_param <- function(directory, idv, dvid="NA") {
   resmod_table_list <- get_resmod_table(directory, idv)

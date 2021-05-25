@@ -70,7 +70,7 @@ resmod_structural_details_tables <- function(working.directory,base_dataset,orig
       }
       #print a message
       if(resmod_file_exists_idv[i]==TRUE && all(resmod_table[[i]]$parameters=="NA") && !quiet) {
-        message("WARNING: In the file ",file.path(working.directory, paste0("resmod_", idv_all[[i]]), "results.csv")," all parameter values are 'NA'!")
+        message("WARNING: In the file ",file.path(working.directory, paste0("resmod_", idv_all[[i]]), "resmod_results.csv")," all parameter values are 'NA'!")
       }
     }
     #print messages if file not exist

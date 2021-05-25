@@ -1,18 +1,18 @@
-#' Open results.csv file and save output in the dataframe readable for R
+#' Open resmod_results.csv file and save output in the dataframe readable for R
 #'
-#' @param directory The qa run directory path. Will search for the results.csv file in the resmod_'idv' folder.
+#' @param directory The qa run directory path. Will search for the resmod_results.csv file in the resmod_'idv' folder.
 #' @param idv The string of the idv name.
 #' @param quiet A logical indicating whether function should not write the warning message
 #' if some file not found. By default quiet=FALSE.
 #'
 #' @return The list of two elements:
-#' resmod_file_exists - logical argument indicating whether results.csv file exists in the expected directory
-#' resmod_table - a results.csv data frame
+#' resmod_file_exists - logical argument indicating whether resmod_results.csv file exists in the expected directory
+#' resmod_table - a resmod_results.csv data frame
 #' @export
 get_resmod_table <- function(directory, idv,quiet=F){
-  resmod_file_exists <- file.exists(file.path(directory, paste0("resmod_", idv), "results.csv"))
+  resmod_file_exists <- file.exists(file.path(directory, paste0("resmod_", idv), "resmod_results.csv"))
   if(resmod_file_exists) {
-    path <- file.path(directory, paste0("resmod_", idv), "results.csv")
+    path <- file.path(directory, paste0("resmod_", idv), "resmod_results.csv")
     con <- file(path)
     lines <- readLines(con)
     close(con)
@@ -68,7 +68,7 @@ get_resmod_table <- function(directory, idv,quiet=F){
                 resmod_table=resmod_table))
   } else {
     if(!quiet) {
-      message("WARNING: File ",file.path(directory, paste0("resmod_", idv), "results.csv")," not found!")
+      message("WARNING: File ",file.path(directory, paste0("resmod_", idv), "resmod_results.csv")," not found!")
     }
     return(list(resmod_file_exists=resmod_file_exists))
   }

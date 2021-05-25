@@ -4,7 +4,7 @@ get_resmod_ruv_table <- function(directory, idv_name, dvid_name, skip){
   resmod_file_exists <- resmod_table_list$resmod_file_exists
   resmod_ruv_table_list <- list()
   # for some $PRED models TIME and TAD can be missing but PRED will always be run with qa.
-  # resmod_PRED can be used instead, except idv_varying rows from the results.csv values.
+  # resmod_PRED can be used instead, except idv_varying rows from the resmod_results.csv values.
   if(!resmod_file_exists && all(skip!="resmod")) {
     resmod_table_list <- get_resmod_table(directory=directory, idv="PRED")
     resmod_file_exists <- resmod_table_list$resmod_file_exists
