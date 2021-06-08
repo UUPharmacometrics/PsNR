@@ -1,13 +1,5 @@
 #' @export
 plot_structural_vpc <- function(obs,sim,shift_tab,idv) {
-  # sim_shifted <- sim %>%
-  #   dplyr::mutate(bin_index = findInterval(unlist(.[[toupper(idv)]]), shift_tab$bin_min),  # in which bin did observation go
-  #          shift = shift_tab$shift[bin_index],
-  #          DV = DV - shift)
-  #
-  # obs_combined <- dplyr::bind_rows(before = obs, corrected = obs, .id = "type")
-  # sim_combined <- dplyr::bind_rows(before = sim, corrected = sim_shifted, .id = "type")
-  #
   p <- vpc::vpc (sim = sim,
                  obs = obs,
                  obs_cols = list(
@@ -20,6 +12,5 @@ plot_structural_vpc <- function(obs,sim,shift_tab,idv) {
                  n_bins = 10
   )+
     theme_bw() +
-#    facet_wrap(~type)+
     theme(axis.text.x = element_text(angle = 90, hjust = 1))
 }
