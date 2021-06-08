@@ -37,21 +37,18 @@ all_structural_extra_plots <- function(simeval_directory,base_dataset,resmod_str
       structural_bias_plots_captions <- all_captions$idv_structural_bias_plots_captions
       vpc_captions <- all_captions$idv_vpc_captions
 
-      #print
       cat(paste0("## ",resmod_structural_details[[i]]$idv_text,"\n\n"))
       first_table <- kable_table(resmod_structural_details[[i]]$first_table,format=type,booktabs=T,align = c("l","r"),linesep="",
                                  caption = resmod_dofv_table_captions) %>%
         kableExtra::kable_styling(position="c",full_width = F) %>%
         kableExtra::column_spec(1,bold=T)
       print(first_table)
-#      cat(resmod_dofv_table_captions)
       if(!nonlinear) {
         second_table <- kable_table(resmod_structural_details[[i]]$second_table,format=type,booktabs=T,longtable=T,
                                     align = c("l","r","r"),linesep="", caption = structural_bias_tables_captions) %>%
           kableExtra::kable_styling(position="c",full_width = F) %>%
           kableExtra::add_header_above(c(" "=1,"Estimated bias"=2),bold=T)
         print(second_table)
-#        cat(structural_bias_tables_captions)
       }
       shift_tab <- resmod_structural_details[[i]]$table
       if(ncol(shift_tab)!=1) {
