@@ -2,7 +2,7 @@
 #' @export
 p_ofv_ppc <- function(raw.results.file) {
   # input data
-  rawres_input <- read.csv(raw.results.file)
+  rawres_input <- read.csv(raw.results.file, stringsAsFactors = TRUE)
   rawres <- rawres_input[!is.na(rawres_input$ofv),] #take away NA values
   rownames(rawres) <- NULL
   len <- length(rawres$ofv) # numbers of rows
