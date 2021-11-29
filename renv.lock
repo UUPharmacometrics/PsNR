@@ -998,10 +998,10 @@
     },
     "stringi": {
       "Package": "stringi",
-      "Version": "1.7.6",
+      "Version": "1.7.5",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "bba431031d30789535745a9627ac9271"
+      "Hash": "cd50dc9b449de3d3b47cdc9976886999"
     },
     "stringr": {
       "Package": "stringr",
