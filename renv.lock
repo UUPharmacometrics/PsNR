@@ -624,13 +624,6 @@
       "Repository": "CRAN",
       "Hash": "7a7541cc284cb2ba3ba7eae645892af5"
     },
-    "nlme": {
-      "Package": "nlme",
-      "Version": "3.1-153",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "2d632e0d963a653a0329756ce701ecdd"
-    },
     "nnet": {
       "Package": "nnet",
       "Version": "7.3-16",
