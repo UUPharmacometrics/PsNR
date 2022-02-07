@@ -49,7 +49,6 @@ Imports:
     ggthemes,
     gplots,
     grid,
-    MCMCpack,
     plyr,
     stats4,
     tibble,
