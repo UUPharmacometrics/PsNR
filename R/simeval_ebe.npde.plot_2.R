@@ -12,7 +12,7 @@ plot_2 <- function(ebenpde_tmp,emp_distance_sort,theor_distance,index_emp_distan
     # create a vector of probability where a Chi^2 random variable with the given degrees of freedom is less than or equal to it
     ebe_npde_quant <- seq( (1-0.5)/(n.subjects-i) , ((n.subjects-i)-0.5)/(n.subjects-i) ,by=(1/(n.subjects-i)))
     # Compute the inverse Chi^2 distribution corresponding to a given probability ebe_npde_quant
-    theor_distance <- PEIP::chi2inv(ebe_npde_quant,length(eta.names)) #keep
+    theor_distance <- qchisq(ebe_npde_quant,length(eta.names)) #keep
     vector_theor_dist[n.subjects-i] <- round(theor_distance[n.subjects-i],digits=6) #keep
     out_distance[i] <- (theor_distance[(n.subjects-i)]-emp_distance_sort[(n.subjects-i)])/sqrt(2)
     if(out_distance[i] < outlying_criteria && flag==1){flag1 <- 1} #criteria to define outlying individual

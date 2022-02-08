@@ -68,21 +68,6 @@
         "lattice"
       ]
     },
-    "PEIP": {
-      "Package": "PEIP",
-      "Version": "2.2-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "dc5b9ec2c6ba3ef7cb5ef822c3f2afd3",
-      "Requirements": [
-        "Matrix",
-        "RSEIS",
-        "bvls",
-        "fields",
-        "geigen",
-        "pracma"
-      ]
-    },
     "PerformanceAnalytics": {
       "Package": "PerformanceAnalytics",
       "Version": "2.0.4",
@@ -111,25 +96,6 @@
       "Hash": "e031418365a7f7a766181ab5a41a5716",
       "Requirements": []
     },
-    "RPMG": {
-      "Package": "RPMG",
-      "Version": "2.2-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c3071f09b6abbb56c9da0f3007790fbe",
-      "Requirements": []
-    },
-    "RSEIS": {
-      "Package": "RSEIS",
-      "Version": "4.0-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "5944aea8f46ccf2600bc3fe180deb096",
-      "Requirements": [
-        "RPMG",
-        "Rwave"
-      ]
-    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.8",
@@ -148,14 +114,6 @@
         "Matrix",
         "Rcpp"
       ]
-    },
-    "Rwave": {
-      "Package": "Rwave",
-      "Version": "2.6-0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3acc4ee309d38c35d3b8c406c5a40dcd",
-      "Requirements": []
     },
     "askpass": {
       "Package": "askpass",
@@ -215,14 +173,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b7d8d8ee39869c18d8846a184dd8a1af",
-      "Requirements": []
-    },
-    "bvls": {
-      "Package": "bvls",
-      "Version": "1.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "5ddd299522ffe45428111569c43c8064",
       "Requirements": []
     },
     "caTools": {
@@ -360,14 +310,6 @@
       "Hash": "cf6b206a045a684728c3267ef7596190",
       "Requirements": []
     },
-    "dotCall64": {
-      "Package": "dotCall64",
-      "Version": "1.0-1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d0ef6cd1546530da4d72179b52856e84",
-      "Requirements": []
-    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.0.7",
@@ -451,18 +393,6 @@
       "Hash": "77bd60a6157420d4ffa93b27cf6a58b8",
       "Requirements": []
     },
-    "fields": {
-      "Package": "fields",
-      "Version": "13.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "fb9e1353a33d1a5e7b6648b33b838538",
-      "Requirements": [
-        "maps",
-        "spam",
-        "viridis"
-      ]
-    },
     "forcats": {
       "Package": "forcats",
       "Version": "0.5.1",
@@ -512,14 +442,6 @@
       "Requirements": [
         "foreach"
       ]
-    },
-    "geigen": {
-      "Package": "geigen",
-      "Version": "2.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8a49a9bd0e955b83e0a87d2cceb5100a",
-      "Requirements": []
     },
     "generics": {
       "Package": "generics",
@@ -842,14 +764,6 @@
       "Hash": "cdc87ecd81934679d1557633d8e1fe51",
       "Requirements": []
     },
-    "maps": {
-      "Package": "maps",
-      "Version": "3.4.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "b3d98a967ec17c80f795719529812fa0",
-      "Requirements": []
-    },
     "mgcv": {
       "Package": "mgcv",
       "Version": "1.8-38",
@@ -965,14 +879,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "cb167f328b3ada4ec5cf67a7df4c900a",
-      "Requirements": []
-    },
-    "pracma": {
-      "Package": "pracma",
-      "Version": "2.3.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "920efbbf2d6dd33907f540591caa010a",
       "Requirements": []
     },
     "prettyunits": {
@@ -1179,16 +1085,6 @@
       "Hash": "3f9796a8d0a0e8c6eb49a4b029359d1f",
       "Requirements": [
         "cli"
-      ]
-    },
-    "spam": {
-      "Package": "spam",
-      "Version": "2.8-0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "516ffcf193fa4f07683611a4474db22b",
-      "Requirements": [
-        "dotCall64"
       ]
     },
     "stringi": {
