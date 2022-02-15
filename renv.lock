@@ -230,10 +230,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.1.1",
+      "Version": "3.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "da5160e769a652e3ec7111d63883f9bc",
+      "Hash": "1bdb126893e9ce6aae50ad1d6fc32faf",
       "Requirements": [
         "glue"
       ]
@@ -280,10 +280,10 @@
     },
     "crayon": {
       "Package": "crayon",
-      "Version": "1.4.2",
+      "Version": "1.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "0a6a65d92bd45b47b94b84244b528d17",
+      "Hash": "741c2e098e98afe3dc26a7b0e5489f4e",
       "Requirements": []
     },
     "curl": {
@@ -312,13 +312,12 @@
     },
     "dplyr": {
       "Package": "dplyr",
-      "Version": "1.0.7",
+      "Version": "1.0.8",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "36f1ae62f026c8ba9f9b5c9a08c03297",
+      "Hash": "ef47665e64228a17609d6df877bf86f2",
       "Requirements": [
         "R6",
-        "ellipsis",
         "generics",
         "glue",
         "lifecycle",
@@ -1138,10 +1137,10 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.0.3",
+      "Version": "1.0.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5be9fcf8ef6763e8cb13ab009e273a1d",
+      "Hash": "90b28393209827327de889f49935140a",
       "Requirements": [
         "cpp11"
       ]
