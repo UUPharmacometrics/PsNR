@@ -33,7 +33,7 @@ all_outlier_report_table <- function(ofv_outliers,ebe.npde_outliers,cwres.iwres_
     if(length(residual_names)>0) {
       new_names <- c(new_names,paste(residual_names,"outliers"))
       if(ncol(cwres.iwres_outliers)>0) {
-        all_outlier_table <- dplyr::full_join(all_outlier_table,cwres.iwres_outliers,by="ID",stringsAsFactors=FALSE)
+        all_outlier_table <- dplyr::full_join(all_outlier_table, cwres.iwres_outliers, by="ID")
       } else {
         all_outlier_table <- all_outlier_table %>%
           cbind(.,as.data.frame(array("",c(nrow(all_outlier_table),length(residual_names))),stringsAsFactors=FALSE))
