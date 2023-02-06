@@ -59,7 +59,7 @@ Imports:
     rjson
 Suggests:
     testthat
-Remotes: sebastianueckert/vaplot@224edd2
+Remotes: rikardn/vaplot@digits
 URL: https://github.com/UUPharmacometrics/PsNR
 LazyData: true
 Author: Svetlana Freiberga [aut, cre, cph],

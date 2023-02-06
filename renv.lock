@@ -1365,11 +1365,8 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "sebastianueckert",
+      "RemoteUsername": "rikardn",
       "RemoteRepo": "vaplot",
-      "RemoteRef": "224edd2",
-      "RemoteSha": "224edd2c301c915acb489f8f24271afba9939cf5",
-      "Hash": "7fe38fcd41db57caccbd588bb2527d14",
       "Requirements": [
         "MASS",
         "colorspace",
