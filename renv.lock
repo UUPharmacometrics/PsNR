@@ -1367,6 +1367,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "rikardn",
       "RemoteRepo": "vaplot",
+      "RemoteRef" : "digits",
       "Requirements": [
         "MASS",
         "colorspace",
