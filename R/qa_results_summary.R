@@ -108,7 +108,7 @@ yaml_summary <- function(model.filename,
   tree$overview <- list()
   overview <- ovw_table %>%
     dplyr::filter(group_name=="Structural Model")
-  if (overview$dOFV != 'SKIPPED') {
+  if (all(overview$dOFV != 'SKIPPED')) {
     if(tree$dvid_exists==TRUE) {
         overview <- overview %>%
         dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
@@ -166,7 +166,7 @@ yaml_summary <- function(model.filename,
   # overview (ruv)
   overview <- ovw_table %>%
     dplyr::filter(group_name=="Residual Error Model")
-  if (overview$dOFV != 'SKIPPED') {
+  if (all(overview$dOFV != 'SKIPPED')) {
     if(tree$dvid_exists==TRUE) {
         overview <- overview %>%
         dplyr::mutate(dvid=dplyr::case_when(grepl(dvid_name,name) ~ name,
