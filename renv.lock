@@ -743,8 +743,8 @@
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "kupietz",
-      "RemoteRepo", "kableExtra",
-      "RemoteRef", "master",
+      "RemoteRepo": "kableExtra",
+      "RemoteRef": "master",
       "Requirements": [
         "digest",
         "glue",
