@@ -475,10 +475,9 @@
     },
     "gam": {
       "Package": "gam",
-      "Version": "1.22-1",
+      "Version": "1.22-3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "290782dae3f3d33a1361e753fa550881",
       "Requirements": [
         "foreach"
       ]
