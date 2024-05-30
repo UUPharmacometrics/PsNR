@@ -98,10 +98,9 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.10",
+      "Version": "1.0.12",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "e749cae40fa9ef469b6050959517453c",
       "Requirements": []
     },
     "RcppEigen": {
