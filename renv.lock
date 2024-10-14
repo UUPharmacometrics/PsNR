@@ -313,7 +313,7 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "5.2.1",
+      "Version": "5.2.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": []
