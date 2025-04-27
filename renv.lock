@@ -19,7 +19,7 @@
     },
     "Hmisc": {
       "Package": "Hmisc",
-      "Version": "4.7-2",
+      "Version": "5.2-3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "38d81aab48fd9587c47c8dd20d8498cd",
@@ -320,7 +320,7 @@
     },
     "data.table": {
       "Package": "data.table",
-      "Version": "1.15.4",
+      "Version": "1.17.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": []
