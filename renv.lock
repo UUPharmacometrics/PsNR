@@ -471,7 +471,7 @@
     },
     "gam": {
       "Package": "gam",
-      "Version": "1.22-3",
+      "Version": "1.22-5",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
