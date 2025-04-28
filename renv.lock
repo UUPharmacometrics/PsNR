@@ -554,10 +554,9 @@
     },
     "gplots": {
       "Package": "gplots",
-      "Version": "3.1.3",
+      "Version": "3.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "75437dd4c43599f6e9418ea249495fda",
       "Requirements": [
         "KernSmooth",
         "caTools",
