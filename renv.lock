@@ -193,10 +193,9 @@
     },
     "caTools": {
       "Package": "caTools",
-      "Version": "1.18.2",
+      "Version": "1.18.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "34d90fa5845004236b9eacafc51d07b2",
       "Requirements": [
         "bitops"
       ]
