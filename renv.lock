@@ -1377,10 +1377,9 @@
     },
     "vegawidget": {
       "Package": "vegawidget",
-      "Version": "0.4.2",
+      "Version": "0.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2a564f18e7ed58818e58b5349bbef32c",
       "Requirements": [
         "assertthat",
         "digest",
