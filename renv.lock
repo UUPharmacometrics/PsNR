@@ -1243,6 +1243,7 @@
       "Version": "0.2.2",
       "Source": "Repository",
       "Repository": "CRAN",
+      "Requirements": []
     },
     "tibble": {
       "Package": "tibble",
