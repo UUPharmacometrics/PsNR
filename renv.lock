@@ -511,20 +511,17 @@
     },
     "ggplot2": {
       "Package": "ggplot2",
-      "Version": "3.5.2",
+      "Version": "4.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
-        "MASS",
         "cli",
-        "glue",
         "gtable",
         "isoband",
         "lifecycle",
-        "mgcv",
         "rlang",
+        "S7",
         "scales",
-        "tibble",
         "vctrs",
         "withr"
       ]
@@ -574,10 +571,9 @@
     },
     "gtable": {
       "Package": "gtable",
-      "Version": "0.3.1",
+      "Version": "0.3.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "36b4265fb818f6a342bed217549cd896",
       "Requirements": []
     },
     "gtools": {
@@ -1241,6 +1237,12 @@
       "Requirements": [
         "cpp11"
       ]
+    },
+    "S7": {
+      "Package": "S7",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
     },
     "tibble": {
       "Package": "tibble",
