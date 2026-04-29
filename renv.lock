@@ -1482,10 +1482,9 @@
     },
     "xpose": {
       "Package": "xpose",
-      "Version": "0.4.14",
+      "Version": "0.4.23",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f2239213ec36392ab2b16dfbccc4b350",
       "Requirements": [
         "dplyr",
         "ggforce",
