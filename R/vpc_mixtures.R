@@ -85,8 +85,8 @@ mixture_vpc <- function(obs, sim, obs_mixture, sim_mixture, bins, dv="DV", idv="
     table_list <- list()
 
     for (i in unique_subpops) {
-        subobs <- dplyr::filter_(obs, paste0(mixcol, "==", i))
-        subsim <- dplyr::filter_(sim, paste0(mixcol, "==", i))
+        subobs <- dplyr::filter(obs, !!rlang::sym(mixcol) == i)
+        subsim <- dplyr::filter(sim, !!rlang::sym(mixcol) == i)
         if (nrow(subsim) == 0) {
             table_list[[i]] <- paste0("There are no individuals simulated to belong to subpopulation ", i)
             next
