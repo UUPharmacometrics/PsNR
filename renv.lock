@@ -1079,7 +1079,7 @@
     },
     "rpart": {
       "Package": "rpart",
-      "Version": "4.1.23",
+      "Version": "4.1.27",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": []
