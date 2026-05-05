@@ -384,10 +384,9 @@
     },
     "expm": {
       "Package": "expm",
-      "Version": "0.999-7",
+      "Version": "1.0-0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "af0c5d9f9ece61d4723904c7b2b49b4d",
       "Requirements": [
         "Matrix"
       ]
