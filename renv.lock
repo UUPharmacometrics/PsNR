@@ -817,16 +817,6 @@
         "rlang"
       ]
     },
-    "mgcv": {
-      "Package": "mgcv",
-      "Version": "1.9-4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "Matrix",
-        "nlme"
-      ]
-    },
     "mime": {
       "Package": "mime",
       "Version": "0.12",
