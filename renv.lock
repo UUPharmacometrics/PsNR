@@ -58,15 +58,6 @@
       "Hash": "e02d1a0f6122fd3e634b25b433704344",
       "Requirements": []
     },
-    "Matrix": {
-      "Package": "Matrix",
-      "Version": "1.7-4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "lattice"
-      ]
-    },
     "PerformanceAnalytics": {
       "Package": "PerformanceAnalytics",
       "Version": "2.0.4",
