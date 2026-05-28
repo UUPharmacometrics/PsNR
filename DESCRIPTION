@@ -1,17 +1,15 @@
 Package: PsNR
 Type: Package
 Title: R package for pharmacometric utilities
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
       person('Svetlana', 'Freiberga',
-             role  = c('aut', 'cre', 'cph'),
-             email = 'svetlana.freiberga@farmbio.uu.se'),
+             role  = c('aut', 'cre', 'cph')),
       person('Rikard', 'Nordgren', 
              role  = c('aut', 'cph'),
-             email = 'rikard.nordgren@farmbio.uu.se'),
+             email = 'rikard.nordgren@uu.se'),
       person('Sebastian', 'Ueckert',
-             role  = c('aut', 'cph'),
-             email = 'sebastian.ueckert@farmbio.uu.se'))
+             role  = c('aut', 'cph'))
 Description: d
 Depends: 
     R (>= 3.3.0)
@@ -65,7 +63,7 @@ LazyData: true
 Author: Svetlana Freiberga [aut, cre, cph],
   Rikard Nordgren [aut, cph],
   Sebastian Ueckert [aut, cph]
-Maintainer: Rikard Nordgren <rikard.nordgren@farmaci.uu.se>
+Maintainer: Rikard Nordgren <rikard.nordgren@uu.se>
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
