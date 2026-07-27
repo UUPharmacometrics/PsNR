@@ -835,7 +835,7 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-169",
+      "Version": "3.1-170",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
