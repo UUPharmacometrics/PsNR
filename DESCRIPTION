@@ -9,7 +9,7 @@ Authors@R: c(
              role  = c('aut', 'cph'),
              email = 'rikard.nordgren@uu.se'),
       person('Sebastian', 'Ueckert',
-             role  = c('aut', 'cph'))
+             role  = c('aut', 'cph')))
 Description: d
 Depends: 
     R (>= 3.3.0)
