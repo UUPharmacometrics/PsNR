@@ -1305,28 +1305,6 @@
       "Hash": "1fe17157424bb09c48a8b3b550c753bc",
       "Requirements": []
     },
-    "vaplot": {
-      "Package": "vaplot",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "rikardn",
-      "RemoteRepo": "vaplot",
-      "RemoteRef" : "digits",
-      "Requirements": [
-        "MASS",
-        "colorspace",
-        "dplyr",
-        "ggplot2",
-        "glue",
-        "magrittr",
-        "purrr",
-        "rlang",
-        "tidyr",
-        "tidyselect"
-      ]
-    },
     "vctrs": {
       "Package": "vctrs",
       "Version": "0.7.1",
